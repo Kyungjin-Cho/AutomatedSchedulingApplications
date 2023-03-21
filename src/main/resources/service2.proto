@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+// Options for the GRPC
+option java_multiple_files = true;
+option java_package = "grpc.example.service2";
+option java_outer_classname = "Service2Impl";
+
+package service2;
+
+// Service Definition
+service ScheduleService {
+  rpc ChangeSchedule (stream ScheduleRequest) returns (stream ScheduleResponse);
+}
+
+message ScheduleRequest {
+  string name = 1;
+  string date = 2;
+}
+
+message Schedule {
+  string name = 1;
+  string position = 2;
+  string date = 3;
+  string startTime = 4;
+  string endTime = 5;
+}
+
+message ScheduleResponse {
+  bool success = 1;
+  string message = 2;
+  Schedule schedule = 3;
+}
