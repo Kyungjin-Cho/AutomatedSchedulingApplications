@@ -1,0 +1,52 @@
+syntax = "proto3";
+
+// Options for the GRPC
+option java_multiple_files = true;
+option java_package = "grpc.example.service3";
+option java_outer_classname = "Service3Impl";
+
+package service3;
+
+// Service Definition
+service StaffAvailabilityCheck {
+  // Unary RPC for getting staff availability by name or position on a specific date
+  rpc GetStaffAvailability (StaffAvailabilityRequest) returns (StaffAvailabilityResponse) {}
+
+  // Server streaming RPC for getting all available staff for a specific position on a specific date
+  rpc GetAvailableStaff (AvailableStaffRequest) returns (stream AvailableStaffResponse) {}
+}
+
+message StaffAvailabilityRequest {
+  string date = 1;
+  enum SearchOption {
+    NAME = 0;
+    POSITION = 1;
+  }
+  SearchOption search_option = 2;
+  string search_input = 3;
+}
+
+message StaffAvailabilityResponse {
+  repeated StaffAvailabilityResult results = 1;
+}
+
+message StaffAvailabilityResult {
+  string name = 1;
+  string position = 2;
+  repeated AvailableTime available_times = 3;
+}
+
+message AvailableTime {
+  string start_time = 1;
+  string end_time = 2;
+}
+
+message AvailableStaffRequest {
+  string date = 1;
+  string position = 2;
+}
+
+message AvailableStaffResponse {
+  string name = 1;
+  repeated AvailableTime available_times = 2;
+}
