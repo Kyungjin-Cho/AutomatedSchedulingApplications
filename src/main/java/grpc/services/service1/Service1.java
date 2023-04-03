@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import grpc.services.schedule.Schedule;
 import grpc.services.service1.ScheduleServiceGrpc.ScheduleServiceImplBase;
+
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.Status;
@@ -55,40 +57,25 @@ public class Service1 extends ScheduleServiceImplBase{
 	}
 
 	@Override
-    public void registerSchedule(ScheduleRequest request, StreamObserver<ScheduleResponse> responseObserver) {
-        if (loginSuccess) {
-            // extract client name, email, start time, and end time from request
-            String name = request.getName();
-            String position = request.getPosition();
-            String date = request.getDate();
-            String startTime = request.getStartTime();
-            String endTime = request.getEndTime();
+	public void registerSchedule(ScheduleRequest request, StreamObserver<ScheduleResponse> responseObserver) {
+	    if (loginSuccess) {
+	        // extract schedule from request
+	        Schedule schedule = request.getSchedule();
 
-            // create a Schedule object
-            Schedule schedule = Schedule.newBuilder()
-                    .setName(name)
-                    .setPosition(position)
-                    .setDate(date)
-                    .setStartTime(startTime)
-                    .setEndTime(endTime)
-                    .build();
+	        // create a ScheduleResponse object with the registered field set to true and the Schedule object as its property
+	        ScheduleResponse response = ScheduleResponse.newBuilder()
+	                .setRegistered(true)
+	                .setSchedule(schedule)
+	                .build();
 
-            // create a ScheduleResponse object with the Schedule object as its property
-            ScheduleResponse response = ScheduleResponse.newBuilder()
-                    .setSchedule(schedule)
-                    .build();
-
-            // send the response to the client
-            responseObserver.onNext(response);
-            responseObserver.onCompleted();
-        } else {
-            // if the login was not successful, send an error response
-            responseObserver.onError(Status.PERMISSION_DENIED.withDescription("Login required").asRuntimeException());
-        }
-    }
-
-
-
+	        // send the response to the client
+	        responseObserver.onNext(response);
+	        responseObserver.onCompleted();
+	    } else {
+	        // if the login was not successful, send an error response
+	        responseObserver.onError(Status.PERMISSION_DENIED.withDescription("Login required").asRuntimeException());
+	    }
+	}
 
 	private boolean checkLoginCredentials(String username, String position) {
 	    // List of registered users

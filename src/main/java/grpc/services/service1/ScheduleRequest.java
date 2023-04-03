@@ -16,11 +16,6 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private ScheduleRequest() {
-    name_ = "";
-    position_ = "";
-    date_ = "";
-    startTime_ = "";
-    endTime_ = "";
   }
 
   @java.lang.Override
@@ -48,33 +43,16 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            java.lang.String s = input.readStringRequireUtf8();
+            grpc.services.schedule.Schedule.Builder subBuilder = null;
+            if (schedule_ != null) {
+              subBuilder = schedule_.toBuilder();
+            }
+            schedule_ = input.readMessage(grpc.services.schedule.Schedule.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(schedule_);
+              schedule_ = subBuilder.buildPartial();
+            }
 
-            name_ = s;
-            break;
-          }
-          case 18: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            position_ = s;
-            break;
-          }
-          case 26: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            date_ = s;
-            break;
-          }
-          case 34: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            startTime_ = s;
-            break;
-          }
-          case 42: {
-            java.lang.String s = input.readStringRequireUtf8();
-
-            endTime_ = s;
             break;
           }
           default: {
@@ -109,174 +87,25 @@ private static final long serialVersionUID = 0L;
             grpc.services.service1.ScheduleRequest.class, grpc.services.service1.ScheduleRequest.Builder.class);
   }
 
-  public static final int NAME_FIELD_NUMBER = 1;
-  private volatile java.lang.Object name_;
+  public static final int SCHEDULE_FIELD_NUMBER = 1;
+  private grpc.services.schedule.Schedule schedule_;
   /**
-   * <code>string name = 1;</code>
+   * <code>.schedule.Schedule schedule = 1;</code>
    */
-  public java.lang.String getName() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      name_ = s;
-      return s;
-    }
+  public boolean hasSchedule() {
+    return schedule_ != null;
   }
   /**
-   * <code>string name = 1;</code>
+   * <code>.schedule.Schedule schedule = 1;</code>
    */
-  public com.google.protobuf.ByteString
-      getNameBytes() {
-    java.lang.Object ref = name_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      name_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int POSITION_FIELD_NUMBER = 2;
-  private volatile java.lang.Object position_;
-  /**
-   * <code>string position = 2;</code>
-   */
-  public java.lang.String getPosition() {
-    java.lang.Object ref = position_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      position_ = s;
-      return s;
-    }
+  public grpc.services.schedule.Schedule getSchedule() {
+    return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
   }
   /**
-   * <code>string position = 2;</code>
+   * <code>.schedule.Schedule schedule = 1;</code>
    */
-  public com.google.protobuf.ByteString
-      getPositionBytes() {
-    java.lang.Object ref = position_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      position_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int DATE_FIELD_NUMBER = 3;
-  private volatile java.lang.Object date_;
-  /**
-   * <code>string date = 3;</code>
-   */
-  public java.lang.String getDate() {
-    java.lang.Object ref = date_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      date_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string date = 3;</code>
-   */
-  public com.google.protobuf.ByteString
-      getDateBytes() {
-    java.lang.Object ref = date_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      date_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int START_TIME_FIELD_NUMBER = 4;
-  private volatile java.lang.Object startTime_;
-  /**
-   * <code>string start_time = 4;</code>
-   */
-  public java.lang.String getStartTime() {
-    java.lang.Object ref = startTime_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      startTime_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string start_time = 4;</code>
-   */
-  public com.google.protobuf.ByteString
-      getStartTimeBytes() {
-    java.lang.Object ref = startTime_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      startTime_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int END_TIME_FIELD_NUMBER = 5;
-  private volatile java.lang.Object endTime_;
-  /**
-   * <code>string end_time = 5;</code>
-   */
-  public java.lang.String getEndTime() {
-    java.lang.Object ref = endTime_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      endTime_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string end_time = 5;</code>
-   */
-  public com.google.protobuf.ByteString
-      getEndTimeBytes() {
-    java.lang.Object ref = endTime_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      endTime_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
+  public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
+    return getSchedule();
   }
 
   private byte memoizedIsInitialized = -1;
@@ -293,20 +122,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, name_);
-    }
-    if (!getPositionBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, position_);
-    }
-    if (!getDateBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, date_);
-    }
-    if (!getStartTimeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, startTime_);
-    }
-    if (!getEndTimeBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 5, endTime_);
+    if (schedule_ != null) {
+      output.writeMessage(1, getSchedule());
     }
     unknownFields.writeTo(output);
   }
@@ -317,20 +134,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, name_);
-    }
-    if (!getPositionBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, position_);
-    }
-    if (!getDateBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, date_);
-    }
-    if (!getStartTimeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, startTime_);
-    }
-    if (!getEndTimeBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(5, endTime_);
+    if (schedule_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(1, getSchedule());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -348,16 +154,11 @@ private static final long serialVersionUID = 0L;
     grpc.services.service1.ScheduleRequest other = (grpc.services.service1.ScheduleRequest) obj;
 
     boolean result = true;
-    result = result && getName()
-        .equals(other.getName());
-    result = result && getPosition()
-        .equals(other.getPosition());
-    result = result && getDate()
-        .equals(other.getDate());
-    result = result && getStartTime()
-        .equals(other.getStartTime());
-    result = result && getEndTime()
-        .equals(other.getEndTime());
+    result = result && (hasSchedule() == other.hasSchedule());
+    if (hasSchedule()) {
+      result = result && getSchedule()
+          .equals(other.getSchedule());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -369,16 +170,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + NAME_FIELD_NUMBER;
-    hash = (53 * hash) + getName().hashCode();
-    hash = (37 * hash) + POSITION_FIELD_NUMBER;
-    hash = (53 * hash) + getPosition().hashCode();
-    hash = (37 * hash) + DATE_FIELD_NUMBER;
-    hash = (53 * hash) + getDate().hashCode();
-    hash = (37 * hash) + START_TIME_FIELD_NUMBER;
-    hash = (53 * hash) + getStartTime().hashCode();
-    hash = (37 * hash) + END_TIME_FIELD_NUMBER;
-    hash = (53 * hash) + getEndTime().hashCode();
+    if (hasSchedule()) {
+      hash = (37 * hash) + SCHEDULE_FIELD_NUMBER;
+      hash = (53 * hash) + getSchedule().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -512,16 +307,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      name_ = "";
-
-      position_ = "";
-
-      date_ = "";
-
-      startTime_ = "";
-
-      endTime_ = "";
-
+      if (scheduleBuilder_ == null) {
+        schedule_ = null;
+      } else {
+        schedule_ = null;
+        scheduleBuilder_ = null;
+      }
       return this;
     }
 
@@ -548,11 +339,11 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public grpc.services.service1.ScheduleRequest buildPartial() {
       grpc.services.service1.ScheduleRequest result = new grpc.services.service1.ScheduleRequest(this);
-      result.name_ = name_;
-      result.position_ = position_;
-      result.date_ = date_;
-      result.startTime_ = startTime_;
-      result.endTime_ = endTime_;
+      if (scheduleBuilder_ == null) {
+        result.schedule_ = schedule_;
+      } else {
+        result.schedule_ = scheduleBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -601,25 +392,8 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(grpc.services.service1.ScheduleRequest other) {
       if (other == grpc.services.service1.ScheduleRequest.getDefaultInstance()) return this;
-      if (!other.getName().isEmpty()) {
-        name_ = other.name_;
-        onChanged();
-      }
-      if (!other.getPosition().isEmpty()) {
-        position_ = other.position_;
-        onChanged();
-      }
-      if (!other.getDate().isEmpty()) {
-        date_ = other.date_;
-        onChanged();
-      }
-      if (!other.getStartTime().isEmpty()) {
-        startTime_ = other.startTime_;
-        onChanged();
-      }
-      if (!other.getEndTime().isEmpty()) {
-        endTime_ = other.endTime_;
-        onChanged();
+      if (other.hasSchedule()) {
+        mergeSchedule(other.getSchedule());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -650,349 +424,121 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object name_ = "";
+    private grpc.services.schedule.Schedule schedule_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> scheduleBuilder_;
     /**
-     * <code>string name = 1;</code>
+     * <code>.schedule.Schedule schedule = 1;</code>
      */
-    public java.lang.String getName() {
-      java.lang.Object ref = name_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        name_ = s;
-        return s;
+    public boolean hasSchedule() {
+      return scheduleBuilder_ != null || schedule_ != null;
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 1;</code>
+     */
+    public grpc.services.schedule.Schedule getSchedule() {
+      if (scheduleBuilder_ == null) {
+        return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
       } else {
-        return (java.lang.String) ref;
+        return scheduleBuilder_.getMessage();
       }
     }
     /**
-     * <code>string name = 1;</code>
+     * <code>.schedule.Schedule schedule = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getNameBytes() {
-      java.lang.Object ref = name_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        name_ = b;
-        return b;
+    public Builder setSchedule(grpc.services.schedule.Schedule value) {
+      if (scheduleBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        schedule_ = value;
+        onChanged();
       } else {
-        return (com.google.protobuf.ByteString) ref;
+        scheduleBuilder_.setMessage(value);
       }
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public Builder setName(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      name_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public Builder clearName() {
-      
-      name_ = getDefaultInstance().getName();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string name = 1;</code>
-     */
-    public Builder setNameBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      name_ = value;
-      onChanged();
-      return this;
-    }
 
-    private java.lang.Object position_ = "";
+      return this;
+    }
     /**
-     * <code>string position = 2;</code>
+     * <code>.schedule.Schedule schedule = 1;</code>
      */
-    public java.lang.String getPosition() {
-      java.lang.Object ref = position_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        position_ = s;
-        return s;
+    public Builder setSchedule(
+        grpc.services.schedule.Schedule.Builder builderForValue) {
+      if (scheduleBuilder_ == null) {
+        schedule_ = builderForValue.build();
+        onChanged();
       } else {
-        return (java.lang.String) ref;
+        scheduleBuilder_.setMessage(builderForValue.build());
       }
-    }
-    /**
-     * <code>string position = 2;</code>
-     */
-    public com.google.protobuf.ByteString
-        getPositionBytes() {
-      java.lang.Object ref = position_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        position_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string position = 2;</code>
-     */
-    public Builder setPosition(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      position_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string position = 2;</code>
-     */
-    public Builder clearPosition() {
-      
-      position_ = getDefaultInstance().getPosition();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string position = 2;</code>
-     */
-    public Builder setPositionBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      position_ = value;
-      onChanged();
-      return this;
-    }
 
-    private java.lang.Object date_ = "";
+      return this;
+    }
     /**
-     * <code>string date = 3;</code>
+     * <code>.schedule.Schedule schedule = 1;</code>
      */
-    public java.lang.String getDate() {
-      java.lang.Object ref = date_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        date_ = s;
-        return s;
+    public Builder mergeSchedule(grpc.services.schedule.Schedule value) {
+      if (scheduleBuilder_ == null) {
+        if (schedule_ != null) {
+          schedule_ =
+            grpc.services.schedule.Schedule.newBuilder(schedule_).mergeFrom(value).buildPartial();
+        } else {
+          schedule_ = value;
+        }
+        onChanged();
       } else {
-        return (java.lang.String) ref;
+        scheduleBuilder_.mergeFrom(value);
       }
-    }
-    /**
-     * <code>string date = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getDateBytes() {
-      java.lang.Object ref = date_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        date_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string date = 3;</code>
-     */
-    public Builder setDate(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      date_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string date = 3;</code>
-     */
-    public Builder clearDate() {
-      
-      date_ = getDefaultInstance().getDate();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string date = 3;</code>
-     */
-    public Builder setDateBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      date_ = value;
-      onChanged();
-      return this;
-    }
 
-    private java.lang.Object startTime_ = "";
+      return this;
+    }
     /**
-     * <code>string start_time = 4;</code>
+     * <code>.schedule.Schedule schedule = 1;</code>
      */
-    public java.lang.String getStartTime() {
-      java.lang.Object ref = startTime_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        startTime_ = s;
-        return s;
+    public Builder clearSchedule() {
+      if (scheduleBuilder_ == null) {
+        schedule_ = null;
+        onChanged();
       } else {
-        return (java.lang.String) ref;
+        schedule_ = null;
+        scheduleBuilder_ = null;
       }
-    }
-    /**
-     * <code>string start_time = 4;</code>
-     */
-    public com.google.protobuf.ByteString
-        getStartTimeBytes() {
-      java.lang.Object ref = startTime_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        startTime_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string start_time = 4;</code>
-     */
-    public Builder setStartTime(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      startTime_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string start_time = 4;</code>
-     */
-    public Builder clearStartTime() {
-      
-      startTime_ = getDefaultInstance().getStartTime();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string start_time = 4;</code>
-     */
-    public Builder setStartTimeBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      startTime_ = value;
-      onChanged();
-      return this;
-    }
 
-    private java.lang.Object endTime_ = "";
+      return this;
+    }
     /**
-     * <code>string end_time = 5;</code>
+     * <code>.schedule.Schedule schedule = 1;</code>
      */
-    public java.lang.String getEndTime() {
-      java.lang.Object ref = endTime_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        endTime_ = s;
-        return s;
+    public grpc.services.schedule.Schedule.Builder getScheduleBuilder() {
+      
+      onChanged();
+      return getScheduleFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 1;</code>
+     */
+    public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
+      if (scheduleBuilder_ != null) {
+        return scheduleBuilder_.getMessageOrBuilder();
       } else {
-        return (java.lang.String) ref;
+        return schedule_ == null ?
+            grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
       }
     }
     /**
-     * <code>string end_time = 5;</code>
+     * <code>.schedule.Schedule schedule = 1;</code>
      */
-    public com.google.protobuf.ByteString
-        getEndTimeBytes() {
-      java.lang.Object ref = endTime_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        endTime_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> 
+        getScheduleFieldBuilder() {
+      if (scheduleBuilder_ == null) {
+        scheduleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder>(
+                getSchedule(),
+                getParentForChildren(),
+                isClean());
+        schedule_ = null;
       }
-    }
-    /**
-     * <code>string end_time = 5;</code>
-     */
-    public Builder setEndTime(
-        java.lang.String value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  
-      endTime_ = value;
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string end_time = 5;</code>
-     */
-    public Builder clearEndTime() {
-      
-      endTime_ = getDefaultInstance().getEndTime();
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string end_time = 5;</code>
-     */
-    public Builder setEndTimeBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) {
-    throw new NullPointerException();
-  }
-  checkByteStringIsUtf8(value);
-      
-      endTime_ = value;
-      onChanged();
-      return this;
+      return scheduleBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

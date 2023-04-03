@@ -7,6 +7,8 @@ option java_outer_classname = "Service1Impl";
 
 package service1;
 
+import "schedule.proto";
+
 // Service Definition
 service ScheduleService {
   rpc registerSchedule(ScheduleRequest) returns (ScheduleResponse) {}
@@ -14,24 +16,12 @@ service ScheduleService {
 }
 
 message ScheduleRequest {
-  string name = 1;
-  string position = 2;
-  string date = 3;
-  string start_time = 4;
-  string end_time = 5;
-}
-
-message Schedule {
-  string name = 1;
-  string position = 2;
-  string date = 3;
-  string start_time = 4;
-  string end_time = 5;
+  schedule.Schedule schedule = 1;
 }
 
 message ScheduleResponse {
   bool registered = 1;
-  Schedule schedule = 2;
+  schedule.Schedule schedule = 2;
 }
 
 message LoginRequest {
@@ -39,9 +29,7 @@ message LoginRequest {
   string position = 2;
 }
 
-
 message LoginResponse {
   bool authenticated = 1;
   string loginMessage = 2;
 }
-

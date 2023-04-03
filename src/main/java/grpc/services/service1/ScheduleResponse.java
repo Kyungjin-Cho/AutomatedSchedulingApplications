@@ -49,11 +49,11 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            grpc.services.service1.Schedule.Builder subBuilder = null;
+            grpc.services.schedule.Schedule.Builder subBuilder = null;
             if (schedule_ != null) {
               subBuilder = schedule_.toBuilder();
             }
-            schedule_ = input.readMessage(grpc.services.service1.Schedule.parser(), extensionRegistry);
+            schedule_ = input.readMessage(grpc.services.schedule.Schedule.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(schedule_);
               schedule_ = subBuilder.buildPartial();
@@ -103,23 +103,23 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int SCHEDULE_FIELD_NUMBER = 2;
-  private grpc.services.service1.Schedule schedule_;
+  private grpc.services.schedule.Schedule schedule_;
   /**
-   * <code>.service1.Schedule schedule = 2;</code>
+   * <code>.schedule.Schedule schedule = 2;</code>
    */
   public boolean hasSchedule() {
     return schedule_ != null;
   }
   /**
-   * <code>.service1.Schedule schedule = 2;</code>
+   * <code>.schedule.Schedule schedule = 2;</code>
    */
-  public grpc.services.service1.Schedule getSchedule() {
-    return schedule_ == null ? grpc.services.service1.Schedule.getDefaultInstance() : schedule_;
+  public grpc.services.schedule.Schedule getSchedule() {
+    return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
   }
   /**
-   * <code>.service1.Schedule schedule = 2;</code>
+   * <code>.schedule.Schedule schedule = 2;</code>
    */
-  public grpc.services.service1.ScheduleOrBuilder getScheduleOrBuilder() {
+  public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
     return getSchedule();
   }
 
@@ -483,29 +483,29 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private grpc.services.service1.Schedule schedule_ = null;
+    private grpc.services.schedule.Schedule schedule_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
-        grpc.services.service1.Schedule, grpc.services.service1.Schedule.Builder, grpc.services.service1.ScheduleOrBuilder> scheduleBuilder_;
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> scheduleBuilder_;
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
     public boolean hasSchedule() {
       return scheduleBuilder_ != null || schedule_ != null;
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
-    public grpc.services.service1.Schedule getSchedule() {
+    public grpc.services.schedule.Schedule getSchedule() {
       if (scheduleBuilder_ == null) {
-        return schedule_ == null ? grpc.services.service1.Schedule.getDefaultInstance() : schedule_;
+        return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
       } else {
         return scheduleBuilder_.getMessage();
       }
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
-    public Builder setSchedule(grpc.services.service1.Schedule value) {
+    public Builder setSchedule(grpc.services.schedule.Schedule value) {
       if (scheduleBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -519,10 +519,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
     public Builder setSchedule(
-        grpc.services.service1.Schedule.Builder builderForValue) {
+        grpc.services.schedule.Schedule.Builder builderForValue) {
       if (scheduleBuilder_ == null) {
         schedule_ = builderForValue.build();
         onChanged();
@@ -533,13 +533,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
-    public Builder mergeSchedule(grpc.services.service1.Schedule value) {
+    public Builder mergeSchedule(grpc.services.schedule.Schedule value) {
       if (scheduleBuilder_ == null) {
         if (schedule_ != null) {
           schedule_ =
-            grpc.services.service1.Schedule.newBuilder(schedule_).mergeFrom(value).buildPartial();
+            grpc.services.schedule.Schedule.newBuilder(schedule_).mergeFrom(value).buildPartial();
         } else {
           schedule_ = value;
         }
@@ -551,7 +551,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
     public Builder clearSchedule() {
       if (scheduleBuilder_ == null) {
@@ -565,33 +565,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
-    public grpc.services.service1.Schedule.Builder getScheduleBuilder() {
+    public grpc.services.schedule.Schedule.Builder getScheduleBuilder() {
       
       onChanged();
       return getScheduleFieldBuilder().getBuilder();
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
-    public grpc.services.service1.ScheduleOrBuilder getScheduleOrBuilder() {
+    public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
       if (scheduleBuilder_ != null) {
         return scheduleBuilder_.getMessageOrBuilder();
       } else {
         return schedule_ == null ?
-            grpc.services.service1.Schedule.getDefaultInstance() : schedule_;
+            grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
       }
     }
     /**
-     * <code>.service1.Schedule schedule = 2;</code>
+     * <code>.schedule.Schedule schedule = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        grpc.services.service1.Schedule, grpc.services.service1.Schedule.Builder, grpc.services.service1.ScheduleOrBuilder> 
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> 
         getScheduleFieldBuilder() {
       if (scheduleBuilder_ == null) {
         scheduleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            grpc.services.service1.Schedule, grpc.services.service1.Schedule.Builder, grpc.services.service1.ScheduleOrBuilder>(
+            grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder>(
                 getSchedule(),
                 getParentForChildren(),
                 isClean());

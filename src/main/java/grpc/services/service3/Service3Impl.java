@@ -15,35 +15,30 @@ public final class Service3Impl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service3_StaffAvailabilityRequest_descriptor;
+    internal_static_service3_AvailabilityRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service3_StaffAvailabilityRequest_fieldAccessorTable;
+      internal_static_service3_AvailabilityRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service3_StaffAvailabilityResponse_descriptor;
+    internal_static_service3_AvailabilityResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service3_StaffAvailabilityResponse_fieldAccessorTable;
+      internal_static_service3_AvailabilityResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service3_StaffAvailabilityResult_descriptor;
+    internal_static_service3_UpdateRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service3_StaffAvailabilityResult_fieldAccessorTable;
+      internal_static_service3_UpdateRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service3_AvailableTime_descriptor;
+    internal_static_service3_UpdateResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service3_AvailableTime_fieldAccessorTable;
+      internal_static_service3_UpdateResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service3_AvailableStaffRequest_descriptor;
+    internal_static_service3_StaffSchedule_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service3_AvailableStaffRequest_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service3_AvailableStaffResponse_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service3_AvailableStaffResponse_fieldAccessorTable;
+      internal_static_service3_StaffSchedule_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -53,28 +48,22 @@ public final class Service3Impl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016service3.proto\022\010service3\"\256\001\n\030StaffAvai" +
-      "labilityRequest\022\014\n\004date\030\001 \001(\t\022F\n\rsearch_" +
-      "option\030\002 \001(\0162/.service3.StaffAvailabilit" +
-      "yRequest.SearchOption\022\024\n\014search_input\030\003 " +
-      "\001(\t\"&\n\014SearchOption\022\010\n\004NAME\020\000\022\014\n\010POSITIO" +
-      "N\020\001\"O\n\031StaffAvailabilityResponse\0222\n\007resu" +
-      "lts\030\001 \003(\0132!.service3.StaffAvailabilityRe" +
-      "sult\"k\n\027StaffAvailabilityResult\022\014\n\004name\030" +
-      "\001 \001(\t\022\020\n\010position\030\002 \001(\t\0220\n\017available_tim" +
-      "es\030\003 \003(\0132\027.service3.AvailableTime\"5\n\rAva" +
-      "ilableTime\022\022\n\nstart_time\030\001 \001(\t\022\020\n\010end_ti" +
-      "me\030\002 \001(\t\"7\n\025AvailableStaffRequest\022\014\n\004dat" +
-      "e\030\001 \001(\t\022\020\n\010position\030\002 \001(\t\"X\n\026AvailableSt" +
-      "affResponse\022\014\n\004name\030\001 \001(\t\0220\n\017available_t" +
-      "imes\030\002 \003(\0132\027.service3.AvailableTime2\327\001\n\026" +
-      "StaffAvailabilityCheck\022a\n\024GetStaffAvaila" +
-      "bility\022\".service3.StaffAvailabilityReque" +
-      "st\032#.service3.StaffAvailabilityResponse\"" +
-      "\000\022Z\n\021GetAvailableStaff\022\037.service3.Availa" +
-      "bleStaffRequest\032 .service3.AvailableStaf" +
-      "fResponse\"\0000\001B(\n\026grpc.services.service3B" +
-      "\014Service3ImplP\001b\006proto3"
+      "\n\016service3.proto\022\010service3\"C\n\023Availabili" +
+      "tyRequest\022\014\n\004date\030\001 \001(\t\022\020\n\010position\030\002 \001(" +
+      "\t\022\014\n\004name\030\003 \001(\t\"C\n\024AvailabilityResponse\022" +
+      "\024\n\014is_available\030\001 \001(\010\022\025\n\rworking_hours\030\002" +
+      " \001(\005\"@\n\rUpdateRequest\022/\n\016staff_schedule\030" +
+      "\001 \001(\0132\027.service3.StaffSchedule\"U\n\016Update" +
+      "Response\022\022\n\nis_updated\030\001 \001(\010\022/\n\016staff_sc" +
+      "hedule\030\002 \001(\0132\027.service3.StaffSchedule\"0\n" +
+      "\rStaffSchedule\022\r\n\005staff\030\001 \001(\t\022\020\n\010schedul" +
+      "e\030\002 \001(\t2\270\001\n\021StaffAvailability\022X\n\021CheckAv" +
+      "ailability\022\035.service3.AvailabilityReques" +
+      "t\032\036.service3.AvailabilityResponse\"\000(\0010\001\022" +
+      "I\n\016UpdateSchedule\022\027.service3.UpdateReque" +
+      "st\032\030.service3.UpdateResponse\"\000(\0010\001B(\n\026gr" +
+      "pc.services.service3B\014Service3ImplP\001b\006pr" +
+      "oto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -88,42 +77,36 @@ public final class Service3Impl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_service3_StaffAvailabilityRequest_descriptor =
+    internal_static_service3_AvailabilityRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_service3_StaffAvailabilityRequest_fieldAccessorTable = new
+    internal_static_service3_AvailabilityRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service3_StaffAvailabilityRequest_descriptor,
-        new java.lang.String[] { "Date", "SearchOption", "SearchInput", });
-    internal_static_service3_StaffAvailabilityResponse_descriptor =
+        internal_static_service3_AvailabilityRequest_descriptor,
+        new java.lang.String[] { "Date", "Position", "Name", });
+    internal_static_service3_AvailabilityResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_service3_StaffAvailabilityResponse_fieldAccessorTable = new
+    internal_static_service3_AvailabilityResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service3_StaffAvailabilityResponse_descriptor,
-        new java.lang.String[] { "Results", });
-    internal_static_service3_StaffAvailabilityResult_descriptor =
+        internal_static_service3_AvailabilityResponse_descriptor,
+        new java.lang.String[] { "IsAvailable", "WorkingHours", });
+    internal_static_service3_UpdateRequest_descriptor =
       getDescriptor().getMessageTypes().get(2);
-    internal_static_service3_StaffAvailabilityResult_fieldAccessorTable = new
+    internal_static_service3_UpdateRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service3_StaffAvailabilityResult_descriptor,
-        new java.lang.String[] { "Name", "Position", "AvailableTimes", });
-    internal_static_service3_AvailableTime_descriptor =
+        internal_static_service3_UpdateRequest_descriptor,
+        new java.lang.String[] { "StaffSchedule", });
+    internal_static_service3_UpdateResponse_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_service3_AvailableTime_fieldAccessorTable = new
+    internal_static_service3_UpdateResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service3_AvailableTime_descriptor,
-        new java.lang.String[] { "StartTime", "EndTime", });
-    internal_static_service3_AvailableStaffRequest_descriptor =
+        internal_static_service3_UpdateResponse_descriptor,
+        new java.lang.String[] { "IsUpdated", "StaffSchedule", });
+    internal_static_service3_StaffSchedule_descriptor =
       getDescriptor().getMessageTypes().get(4);
-    internal_static_service3_AvailableStaffRequest_fieldAccessorTable = new
+    internal_static_service3_StaffSchedule_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service3_AvailableStaffRequest_descriptor,
-        new java.lang.String[] { "Date", "Position", });
-    internal_static_service3_AvailableStaffResponse_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_service3_AvailableStaffResponse_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service3_AvailableStaffResponse_descriptor,
-        new java.lang.String[] { "Name", "AvailableTimes", });
+        internal_static_service3_StaffSchedule_descriptor,
+        new java.lang.String[] { "Staff", "Schedule", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

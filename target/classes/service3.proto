@@ -8,45 +8,35 @@ option java_outer_classname = "Service3Impl";
 package service3;
 
 // Service Definition
-service StaffAvailabilityCheck {
-  // Unary RPC for getting staff availability by name or position on a specific date
-  rpc GetStaffAvailability (StaffAvailabilityRequest) returns (StaffAvailabilityResponse) {}
+service StaffAvailability {
+  // Bidirectional RPC for checking staff availability and working hours
+  rpc CheckAvailability (stream AvailabilityRequest) returns (stream AvailabilityResponse) {}
 
-  // Server streaming RPC for getting all available staff for a specific position on a specific date
-  rpc GetAvailableStaff (AvailableStaffRequest) returns (stream AvailableStaffResponse) {}
+  // Bidirectional RPC for updating staff schedule
+  rpc UpdateSchedule (stream UpdateRequest) returns (stream UpdateResponse) {}
 }
 
-message StaffAvailabilityRequest {
-  string date = 1;
-  enum SearchOption {
-    NAME = 0;
-    POSITION = 1;
-  }
-  SearchOption search_option = 2;
-  string search_input = 3;
-}
-
-message StaffAvailabilityResponse {
-  repeated StaffAvailabilityResult results = 1;
-}
-
-message StaffAvailabilityResult {
-  string name = 1;
-  string position = 2;
-  repeated AvailableTime available_times = 3;
-}
-
-message AvailableTime {
-  string start_time = 1;
-  string end_time = 2;
-}
-
-message AvailableStaffRequest {
+message AvailabilityRequest {
   string date = 1;
   string position = 2;
+  string name = 3;
 }
 
-message AvailableStaffResponse {
-  string name = 1;
-  repeated AvailableTime available_times = 2;
+message AvailabilityResponse {
+  bool is_available = 1;
+  int32 working_hours = 2;
+}
+
+message UpdateRequest {
+  StaffSchedule staff_schedule = 1;
+}
+
+message UpdateResponse {
+  bool is_updated = 1;
+  StaffSchedule staff_schedule = 2;
+}
+
+message StaffSchedule {
+  string staff = 1;
+  string schedule = 2;
 }

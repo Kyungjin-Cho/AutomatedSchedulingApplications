@@ -13,15 +13,15 @@ public interface ScheduleResponseOrBuilder extends
   boolean getRegistered();
 
   /**
-   * <code>.service1.Schedule schedule = 2;</code>
+   * <code>.schedule.Schedule schedule = 2;</code>
    */
   boolean hasSchedule();
   /**
-   * <code>.service1.Schedule schedule = 2;</code>
+   * <code>.schedule.Schedule schedule = 2;</code>
    */
-  grpc.services.service1.Schedule getSchedule();
+  grpc.services.schedule.Schedule getSchedule();
   /**
-   * <code>.service1.Schedule schedule = 2;</code>
+   * <code>.schedule.Schedule schedule = 2;</code>
    */
-  grpc.services.service1.ScheduleOrBuilder getScheduleOrBuilder();
+  grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder();
 }

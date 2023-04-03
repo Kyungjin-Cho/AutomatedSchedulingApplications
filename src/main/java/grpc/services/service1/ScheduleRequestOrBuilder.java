@@ -8,52 +8,15 @@ public interface ScheduleRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string name = 1;</code>
+   * <code>.schedule.Schedule schedule = 1;</code>
    */
-  java.lang.String getName();
+  boolean hasSchedule();
   /**
-   * <code>string name = 1;</code>
+   * <code>.schedule.Schedule schedule = 1;</code>
    */
-  com.google.protobuf.ByteString
-      getNameBytes();
-
+  grpc.services.schedule.Schedule getSchedule();
   /**
-   * <code>string position = 2;</code>
+   * <code>.schedule.Schedule schedule = 1;</code>
    */
-  java.lang.String getPosition();
-  /**
-   * <code>string position = 2;</code>
-   */
-  com.google.protobuf.ByteString
-      getPositionBytes();
-
-  /**
-   * <code>string date = 3;</code>
-   */
-  java.lang.String getDate();
-  /**
-   * <code>string date = 3;</code>
-   */
-  com.google.protobuf.ByteString
-      getDateBytes();
-
-  /**
-   * <code>string start_time = 4;</code>
-   */
-  java.lang.String getStartTime();
-  /**
-   * <code>string start_time = 4;</code>
-   */
-  com.google.protobuf.ByteString
-      getStartTimeBytes();
-
-  /**
-   * <code>string end_time = 5;</code>
-   */
-  java.lang.String getEndTime();
-  /**
-   * <code>string end_time = 5;</code>
-   */
-  com.google.protobuf.ByteString
-      getEndTimeBytes();
+  grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder();
 }

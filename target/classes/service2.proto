@@ -7,26 +7,32 @@ option java_outer_classname = "Service2Impl";
 
 package service2;
 
-// Service Definition
+import "schedule.proto";
+
 service ScheduleService {
-  rpc ChangeSchedule (stream ScheduleRequest) returns (stream ScheduleResponse);
+  rpc listSchedule(ScheduleListRequest) returns (stream ScheduleListResponse) {}
+  rpc changeSchedule(stream ScheduleChangeRequest) returns (ScheduleChangeResponse) {}
 }
 
-message ScheduleRequest {
-  string name = 1;
-  string date = 2;
-}
-
-message Schedule {
+message ScheduleListRequest {
   string name = 1;
   string position = 2;
   string date = 3;
-  string startTime = 4;
-  string endTime = 5;
 }
 
-message ScheduleResponse {
+message ScheduleListResponse {
+  repeated schedule.Schedule schedule = 1;
+}
+
+message ScheduleChangeRequest {
+  string name = 1;
+  string position = 2;
+  string date = 3;
+  string start_time = 4;
+  string end_time = 5;
+}
+
+message ScheduleChangeResponse {
   bool success = 1;
   string message = 2;
-  Schedule schedule = 3;
 }
