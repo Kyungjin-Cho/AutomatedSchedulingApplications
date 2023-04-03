@@ -34,11 +34,6 @@ public final class Service3Impl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_service3_UpdateResponse_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_service3_StaffSchedule_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_service3_StaffSchedule_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -48,22 +43,20 @@ public final class Service3Impl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\016service3.proto\022\010service3\"C\n\023Availabili" +
-      "tyRequest\022\014\n\004date\030\001 \001(\t\022\020\n\010position\030\002 \001(" +
-      "\t\022\014\n\004name\030\003 \001(\t\"C\n\024AvailabilityResponse\022" +
-      "\024\n\014is_available\030\001 \001(\010\022\025\n\rworking_hours\030\002" +
-      " \001(\005\"@\n\rUpdateRequest\022/\n\016staff_schedule\030" +
-      "\001 \001(\0132\027.service3.StaffSchedule\"U\n\016Update" +
-      "Response\022\022\n\nis_updated\030\001 \001(\010\022/\n\016staff_sc" +
-      "hedule\030\002 \001(\0132\027.service3.StaffSchedule\"0\n" +
-      "\rStaffSchedule\022\r\n\005staff\030\001 \001(\t\022\020\n\010schedul" +
-      "e\030\002 \001(\t2\270\001\n\021StaffAvailability\022X\n\021CheckAv" +
-      "ailability\022\035.service3.AvailabilityReques" +
-      "t\032\036.service3.AvailabilityResponse\"\000(\0010\001\022" +
-      "I\n\016UpdateSchedule\022\027.service3.UpdateReque" +
-      "st\032\030.service3.UpdateResponse\"\000(\0010\001B(\n\026gr" +
-      "pc.services.service3B\014Service3ImplP\001b\006pr" +
-      "oto3"
+      "\n\016service3.proto\022\010service3\032\016schedule.pro" +
+      "to\"C\n\023AvailabilityRequest\022\014\n\004date\030\001 \001(\t\022" +
+      "\020\n\010position\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\"C\n\024Avail" +
+      "abilityResponse\022\024\n\014is_available\030\001 \001(\010\022\025\n" +
+      "\rworking_hours\030\002 \001(\005\";\n\rUpdateRequest\022*\n" +
+      "\016staff_schedule\030\001 \001(\0132\022.schedule.Schedul" +
+      "e\"P\n\016UpdateResponse\022\022\n\nis_updated\030\001 \001(\010\022" +
+      "*\n\016staff_schedule\030\002 \001(\0132\022.schedule.Sched" +
+      "ule2\270\001\n\021StaffAvailability\022X\n\021CheckAvaila" +
+      "bility\022\035.service3.AvailabilityRequest\032\036." +
+      "service3.AvailabilityResponse\"\000(\0010\001\022I\n\016U" +
+      "pdateSchedule\022\027.service3.UpdateRequest\032\030" +
+      ".service3.UpdateResponse\"\000(\0010\001B(\n\026grpc.s" +
+      "ervices.service3B\014Service3ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -76,6 +69,7 @@ public final class Service3Impl {
     com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
+          grpc.services.schedule.ScheduleOuterClass.getDescriptor(),
         }, assigner);
     internal_static_service3_AvailabilityRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
@@ -101,12 +95,7 @@ public final class Service3Impl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_service3_UpdateResponse_descriptor,
         new java.lang.String[] { "IsUpdated", "StaffSchedule", });
-    internal_static_service3_StaffSchedule_descriptor =
-      getDescriptor().getMessageTypes().get(4);
-    internal_static_service3_StaffSchedule_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_service3_StaffSchedule_descriptor,
-        new java.lang.String[] { "Staff", "Schedule", });
+    grpc.services.schedule.ScheduleOuterClass.getDescriptor();
   }
 
   // @@protoc_insertion_point(outer_class_scope)

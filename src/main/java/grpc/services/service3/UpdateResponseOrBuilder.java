@@ -13,15 +13,15 @@ public interface UpdateResponseOrBuilder extends
   boolean getIsUpdated();
 
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+   * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
   boolean hasStaffSchedule();
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+   * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
-  grpc.services.service3.StaffSchedule getStaffSchedule();
+  grpc.services.schedule.Schedule getStaffSchedule();
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+   * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
-  grpc.services.service3.StaffScheduleOrBuilder getStaffScheduleOrBuilder();
+  grpc.services.schedule.ScheduleOrBuilder getStaffScheduleOrBuilder();
 }

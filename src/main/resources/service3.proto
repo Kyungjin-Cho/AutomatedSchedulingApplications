@@ -7,6 +7,8 @@ option java_outer_classname = "Service3Impl";
 
 package service3;
 
+import "schedule.proto";
+
 // Service Definition
 service StaffAvailability {
   // Bidirectional RPC for checking staff availability and working hours
@@ -28,15 +30,10 @@ message AvailabilityResponse {
 }
 
 message UpdateRequest {
-  StaffSchedule staff_schedule = 1;
+  schedule.Schedule staff_schedule = 1;
 }
 
 message UpdateResponse {
   bool is_updated = 1;
-  StaffSchedule staff_schedule = 2;
-}
-
-message StaffSchedule {
-  string staff = 1;
-  string schedule = 2;
+  schedule.Schedule staff_schedule = 2;
 }

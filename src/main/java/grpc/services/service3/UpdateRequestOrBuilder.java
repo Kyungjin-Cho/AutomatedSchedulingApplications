@@ -8,15 +8,15 @@ public interface UpdateRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 1;</code>
+   * <code>.schedule.Schedule staff_schedule = 1;</code>
    */
   boolean hasStaffSchedule();
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 1;</code>
+   * <code>.schedule.Schedule staff_schedule = 1;</code>
    */
-  grpc.services.service3.StaffSchedule getStaffSchedule();
+  grpc.services.schedule.Schedule getStaffSchedule();
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 1;</code>
+   * <code>.schedule.Schedule staff_schedule = 1;</code>
    */
-  grpc.services.service3.StaffScheduleOrBuilder getStaffScheduleOrBuilder();
+  grpc.services.schedule.ScheduleOrBuilder getStaffScheduleOrBuilder();
 }

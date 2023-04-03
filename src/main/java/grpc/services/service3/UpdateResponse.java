@@ -49,11 +49,11 @@ private static final long serialVersionUID = 0L;
             break;
           }
           case 18: {
-            grpc.services.service3.StaffSchedule.Builder subBuilder = null;
+            grpc.services.schedule.Schedule.Builder subBuilder = null;
             if (staffSchedule_ != null) {
               subBuilder = staffSchedule_.toBuilder();
             }
-            staffSchedule_ = input.readMessage(grpc.services.service3.StaffSchedule.parser(), extensionRegistry);
+            staffSchedule_ = input.readMessage(grpc.services.schedule.Schedule.parser(), extensionRegistry);
             if (subBuilder != null) {
               subBuilder.mergeFrom(staffSchedule_);
               staffSchedule_ = subBuilder.buildPartial();
@@ -103,23 +103,23 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int STAFF_SCHEDULE_FIELD_NUMBER = 2;
-  private grpc.services.service3.StaffSchedule staffSchedule_;
+  private grpc.services.schedule.Schedule staffSchedule_;
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+   * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
   public boolean hasStaffSchedule() {
     return staffSchedule_ != null;
   }
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+   * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
-  public grpc.services.service3.StaffSchedule getStaffSchedule() {
-    return staffSchedule_ == null ? grpc.services.service3.StaffSchedule.getDefaultInstance() : staffSchedule_;
+  public grpc.services.schedule.Schedule getStaffSchedule() {
+    return staffSchedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : staffSchedule_;
   }
   /**
-   * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+   * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
-  public grpc.services.service3.StaffScheduleOrBuilder getStaffScheduleOrBuilder() {
+  public grpc.services.schedule.ScheduleOrBuilder getStaffScheduleOrBuilder() {
     return getStaffSchedule();
   }
 
@@ -483,29 +483,29 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private grpc.services.service3.StaffSchedule staffSchedule_ = null;
+    private grpc.services.schedule.Schedule staffSchedule_ = null;
     private com.google.protobuf.SingleFieldBuilderV3<
-        grpc.services.service3.StaffSchedule, grpc.services.service3.StaffSchedule.Builder, grpc.services.service3.StaffScheduleOrBuilder> staffScheduleBuilder_;
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> staffScheduleBuilder_;
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
     public boolean hasStaffSchedule() {
       return staffScheduleBuilder_ != null || staffSchedule_ != null;
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
-    public grpc.services.service3.StaffSchedule getStaffSchedule() {
+    public grpc.services.schedule.Schedule getStaffSchedule() {
       if (staffScheduleBuilder_ == null) {
-        return staffSchedule_ == null ? grpc.services.service3.StaffSchedule.getDefaultInstance() : staffSchedule_;
+        return staffSchedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : staffSchedule_;
       } else {
         return staffScheduleBuilder_.getMessage();
       }
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
-    public Builder setStaffSchedule(grpc.services.service3.StaffSchedule value) {
+    public Builder setStaffSchedule(grpc.services.schedule.Schedule value) {
       if (staffScheduleBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -519,10 +519,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
     public Builder setStaffSchedule(
-        grpc.services.service3.StaffSchedule.Builder builderForValue) {
+        grpc.services.schedule.Schedule.Builder builderForValue) {
       if (staffScheduleBuilder_ == null) {
         staffSchedule_ = builderForValue.build();
         onChanged();
@@ -533,13 +533,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
-    public Builder mergeStaffSchedule(grpc.services.service3.StaffSchedule value) {
+    public Builder mergeStaffSchedule(grpc.services.schedule.Schedule value) {
       if (staffScheduleBuilder_ == null) {
         if (staffSchedule_ != null) {
           staffSchedule_ =
-            grpc.services.service3.StaffSchedule.newBuilder(staffSchedule_).mergeFrom(value).buildPartial();
+            grpc.services.schedule.Schedule.newBuilder(staffSchedule_).mergeFrom(value).buildPartial();
         } else {
           staffSchedule_ = value;
         }
@@ -551,7 +551,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
     public Builder clearStaffSchedule() {
       if (staffScheduleBuilder_ == null) {
@@ -565,33 +565,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
-    public grpc.services.service3.StaffSchedule.Builder getStaffScheduleBuilder() {
+    public grpc.services.schedule.Schedule.Builder getStaffScheduleBuilder() {
       
       onChanged();
       return getStaffScheduleFieldBuilder().getBuilder();
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
-    public grpc.services.service3.StaffScheduleOrBuilder getStaffScheduleOrBuilder() {
+    public grpc.services.schedule.ScheduleOrBuilder getStaffScheduleOrBuilder() {
       if (staffScheduleBuilder_ != null) {
         return staffScheduleBuilder_.getMessageOrBuilder();
       } else {
         return staffSchedule_ == null ?
-            grpc.services.service3.StaffSchedule.getDefaultInstance() : staffSchedule_;
+            grpc.services.schedule.Schedule.getDefaultInstance() : staffSchedule_;
       }
     }
     /**
-     * <code>.service3.StaffSchedule staff_schedule = 2;</code>
+     * <code>.schedule.Schedule staff_schedule = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<
-        grpc.services.service3.StaffSchedule, grpc.services.service3.StaffSchedule.Builder, grpc.services.service3.StaffScheduleOrBuilder> 
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> 
         getStaffScheduleFieldBuilder() {
       if (staffScheduleBuilder_ == null) {
         staffScheduleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
-            grpc.services.service3.StaffSchedule, grpc.services.service3.StaffSchedule.Builder, grpc.services.service3.StaffScheduleOrBuilder>(
+            grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder>(
                 getStaffSchedule(),
                 getParentForChildren(),
                 isClean());
