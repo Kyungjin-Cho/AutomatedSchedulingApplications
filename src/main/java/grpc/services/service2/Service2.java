@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import grpc.services.schedule.Schedule;
-import grpc.services.service1.ScheduleServiceGrpc.ScheduleServiceImplBase;
+import grpc.services.service2.ScheduleServiceGrpc.ScheduleServiceImplBase;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
@@ -32,6 +32,7 @@ public class Service2 extends ScheduleServiceImplBase{
 		server.awaitTermination();
 	}
 	
+	@Override
 	public void listSchedule(ScheduleListRequest request, StreamObserver<ScheduleListResponse> responseObserver) {
 		String name = request.getName();
 		String position = request.getPosition();
@@ -49,7 +50,7 @@ public class Service2 extends ScheduleServiceImplBase{
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
-
+	
 	public void changeSchedule(ScheduleChangeRequest request, StreamObserver<ScheduleChangeResponse> responseObserver) {
 		String name = request.getName();
 		String position = request.getPosition();
