@@ -29,6 +29,16 @@ public final class Service1Impl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_service1_ScheduleResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service1_LoginRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service1_LoginRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_service1_LoginResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_service1_LoginResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -45,11 +55,15 @@ public final class Service1Impl {
       "osition\030\002 \001(\t\022\014\n\004date\030\003 \001(\t\022\022\n\nstart_tim" +
       "e\030\004 \001(\t\022\020\n\010end_time\030\005 \001(\t\"L\n\020ScheduleRes" +
       "ponse\022\022\n\nregistered\030\001 \001(\010\022$\n\010schedule\030\002 " +
-      "\001(\0132\022.service1.Schedule2^\n\017ScheduleServi" +
-      "ce\022K\n\020registerSchedule\022\031.service1.Schedu" +
-      "leRequest\032\032.service1.ScheduleResponse\"\000B" +
-      "(\n\026grpc.services.service1B\014Service1ImplP" +
-      "\001b\006proto3"
+      "\001(\0132\022.service1.Schedule\".\n\014LoginRequest\022" +
+      "\014\n\004name\030\001 \001(\t\022\020\n\010position\030\002 \001(\t\"<\n\rLogin" +
+      "Response\022\025\n\rauthenticated\030\001 \001(\010\022\024\n\014login" +
+      "Message\030\002 \001(\t2\232\001\n\017ScheduleService\022K\n\020reg" +
+      "isterSchedule\022\031.service1.ScheduleRequest" +
+      "\032\032.service1.ScheduleResponse\"\000\022:\n\005login\022" +
+      "\026.service1.LoginRequest\032\027.service1.Login" +
+      "Response\"\000B(\n\026grpc.services.service1B\014Se" +
+      "rvice1ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -81,6 +95,18 @@ public final class Service1Impl {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_service1_ScheduleResponse_descriptor,
         new java.lang.String[] { "Registered", "Schedule", });
+    internal_static_service1_LoginRequest_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_service1_LoginRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service1_LoginRequest_descriptor,
+        new java.lang.String[] { "Name", "Position", });
+    internal_static_service1_LoginResponse_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_service1_LoginResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_service1_LoginResponse_descriptor,
+        new java.lang.String[] { "Authenticated", "LoginMessage", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -10,8 +10,8 @@ package service1;
 // Service Definition
 service ScheduleService {
   rpc registerSchedule(ScheduleRequest) returns (ScheduleResponse) {}
+  rpc login(LoginRequest) returns (LoginResponse) {}
 }
-
 
 message ScheduleRequest {
   string name = 1;
@@ -19,7 +19,6 @@ message ScheduleRequest {
   string date = 3;
   string start_time = 4;
   string end_time = 5;
-
 }
 
 message Schedule {
@@ -34,3 +33,15 @@ message ScheduleResponse {
   bool registered = 1;
   Schedule schedule = 2;
 }
+
+message LoginRequest {
+  string name = 1;
+  string position = 2;
+}
+
+
+message LoginResponse {
+  bool authenticated = 1;
+  string loginMessage = 2;
+}
+

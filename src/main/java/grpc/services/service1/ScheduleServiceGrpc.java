@@ -62,6 +62,38 @@ public final class ScheduleServiceGrpc {
      return getRegisterScheduleMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<grpc.services.service1.LoginRequest,
+      grpc.services.service1.LoginResponse> getLoginMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "login",
+      requestType = grpc.services.service1.LoginRequest.class,
+      responseType = grpc.services.service1.LoginResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<grpc.services.service1.LoginRequest,
+      grpc.services.service1.LoginResponse> getLoginMethod() {
+    io.grpc.MethodDescriptor<grpc.services.service1.LoginRequest, grpc.services.service1.LoginResponse> getLoginMethod;
+    if ((getLoginMethod = ScheduleServiceGrpc.getLoginMethod) == null) {
+      synchronized (ScheduleServiceGrpc.class) {
+        if ((getLoginMethod = ScheduleServiceGrpc.getLoginMethod) == null) {
+          ScheduleServiceGrpc.getLoginMethod = getLoginMethod = 
+              io.grpc.MethodDescriptor.<grpc.services.service1.LoginRequest, grpc.services.service1.LoginResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "service1.ScheduleService", "login"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.services.service1.LoginRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  grpc.services.service1.LoginResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new ScheduleServiceMethodDescriptorSupplier("login"))
+                  .build();
+          }
+        }
+     }
+     return getLoginMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -99,6 +131,13 @@ public final class ScheduleServiceGrpc {
       asyncUnimplementedUnaryCall(getRegisterScheduleMethod(), responseObserver);
     }
 
+    /**
+     */
+    public void login(grpc.services.service1.LoginRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.service1.LoginResponse> responseObserver) {
+      asyncUnimplementedUnaryCall(getLoginMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -108,6 +147,13 @@ public final class ScheduleServiceGrpc {
                 grpc.services.service1.ScheduleRequest,
                 grpc.services.service1.ScheduleResponse>(
                   this, METHODID_REGISTER_SCHEDULE)))
+          .addMethod(
+            getLoginMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                grpc.services.service1.LoginRequest,
+                grpc.services.service1.LoginResponse>(
+                  this, METHODID_LOGIN)))
           .build();
     }
   }
@@ -140,6 +186,14 @@ public final class ScheduleServiceGrpc {
       asyncUnaryCall(
           getChannel().newCall(getRegisterScheduleMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void login(grpc.services.service1.LoginRequest request,
+        io.grpc.stub.StreamObserver<grpc.services.service1.LoginResponse> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getLoginMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -168,6 +222,13 @@ public final class ScheduleServiceGrpc {
     public grpc.services.service1.ScheduleResponse registerSchedule(grpc.services.service1.ScheduleRequest request) {
       return blockingUnaryCall(
           getChannel(), getRegisterScheduleMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public grpc.services.service1.LoginResponse login(grpc.services.service1.LoginRequest request) {
+      return blockingUnaryCall(
+          getChannel(), getLoginMethod(), getCallOptions(), request);
     }
   }
 
@@ -199,9 +260,18 @@ public final class ScheduleServiceGrpc {
       return futureUnaryCall(
           getChannel().newCall(getRegisterScheduleMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<grpc.services.service1.LoginResponse> login(
+        grpc.services.service1.LoginRequest request) {
+      return futureUnaryCall(
+          getChannel().newCall(getLoginMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_REGISTER_SCHEDULE = 0;
+  private static final int METHODID_LOGIN = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -223,6 +293,10 @@ public final class ScheduleServiceGrpc {
         case METHODID_REGISTER_SCHEDULE:
           serviceImpl.registerSchedule((grpc.services.service1.ScheduleRequest) request,
               (io.grpc.stub.StreamObserver<grpc.services.service1.ScheduleResponse>) responseObserver);
+          break;
+        case METHODID_LOGIN:
+          serviceImpl.login((grpc.services.service1.LoginRequest) request,
+              (io.grpc.stub.StreamObserver<grpc.services.service1.LoginResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -286,6 +360,7 @@ public final class ScheduleServiceGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new ScheduleServiceFileDescriptorSupplier())
               .addMethod(getRegisterScheduleMethod())
+              .addMethod(getLoginMethod())
               .build();
         }
       }
