@@ -51,13 +51,13 @@ public final class Service2Impl {
       "\n\004name\030\001 \001(\t\022\020\n\010position\030\002 \001(\t\022\014\n\004date\030\003" +
       " \001(\t\022\022\n\nstart_time\030\004 \001(\t\022\020\n\010end_time\030\005 \001" +
       "(\t\":\n\026ScheduleChangeResponse\022\017\n\007success\030" +
-      "\001 \001(\010\022\017\n\007message\030\002 \001(\t2\275\001\n\017ScheduleServi" +
-      "ce\022Q\n\014listSchedule\022\035.service2.ScheduleLi" +
+      "\001 \001(\010\022\017\n\007message\030\002 \001(\t2\271\001\n\017ScheduleServi" +
+      "ce\022O\n\014listSchedule\022\035.service2.ScheduleLi" +
       "stRequest\032\036.service2.ScheduleListRespons" +
-      "e\"\0000\001\022W\n\016changeSchedule\022\037.service2.Sched" +
-      "uleChangeRequest\032 .service2.ScheduleChan" +
-      "geResponse\"\000(\001B(\n\026grpc.services.service2" +
-      "B\014Service2ImplP\001b\006proto3"
+      "e\"\000\022U\n\016changeSchedule\022\037.service2.Schedul" +
+      "eChangeRequest\032 .service2.ScheduleChange" +
+      "Response\"\000B(\n\026grpc.services.service2B\014Se" +
+      "rvice2ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

@@ -27,6 +27,7 @@ message AvailabilityRequest {
 message AvailabilityResponse {
   bool is_available = 1;
   int32 working_hours = 2;
+  schedule.Schedule schedule = 3;
 }
 
 message UpdateRequest {

@@ -54,6 +54,19 @@ private static final long serialVersionUID = 0L;
             workingHours_ = input.readInt32();
             break;
           }
+          case 26: {
+            grpc.services.schedule.Schedule.Builder subBuilder = null;
+            if (schedule_ != null) {
+              subBuilder = schedule_.toBuilder();
+            }
+            schedule_ = input.readMessage(grpc.services.schedule.Schedule.parser(), extensionRegistry);
+            if (subBuilder != null) {
+              subBuilder.mergeFrom(schedule_);
+              schedule_ = subBuilder.buildPartial();
+            }
+
+            break;
+          }
           default: {
             if (!parseUnknownFieldProto3(
                 input, unknownFields, extensionRegistry, tag)) {
@@ -104,6 +117,27 @@ private static final long serialVersionUID = 0L;
     return workingHours_;
   }
 
+  public static final int SCHEDULE_FIELD_NUMBER = 3;
+  private grpc.services.schedule.Schedule schedule_;
+  /**
+   * <code>.schedule.Schedule schedule = 3;</code>
+   */
+  public boolean hasSchedule() {
+    return schedule_ != null;
+  }
+  /**
+   * <code>.schedule.Schedule schedule = 3;</code>
+   */
+  public grpc.services.schedule.Schedule getSchedule() {
+    return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
+  }
+  /**
+   * <code>.schedule.Schedule schedule = 3;</code>
+   */
+  public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
+    return getSchedule();
+  }
+
   private byte memoizedIsInitialized = -1;
   @java.lang.Override
   public final boolean isInitialized() {
@@ -124,6 +158,9 @@ private static final long serialVersionUID = 0L;
     if (workingHours_ != 0) {
       output.writeInt32(2, workingHours_);
     }
+    if (schedule_ != null) {
+      output.writeMessage(3, getSchedule());
+    }
     unknownFields.writeTo(output);
   }
 
@@ -140,6 +177,10 @@ private static final long serialVersionUID = 0L;
     if (workingHours_ != 0) {
       size += com.google.protobuf.CodedOutputStream
         .computeInt32Size(2, workingHours_);
+    }
+    if (schedule_ != null) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeMessageSize(3, getSchedule());
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -161,6 +202,11 @@ private static final long serialVersionUID = 0L;
         == other.getIsAvailable());
     result = result && (getWorkingHours()
         == other.getWorkingHours());
+    result = result && (hasSchedule() == other.hasSchedule());
+    if (hasSchedule()) {
+      result = result && getSchedule()
+          .equals(other.getSchedule());
+    }
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -177,6 +223,10 @@ private static final long serialVersionUID = 0L;
         getIsAvailable());
     hash = (37 * hash) + WORKING_HOURS_FIELD_NUMBER;
     hash = (53 * hash) + getWorkingHours();
+    if (hasSchedule()) {
+      hash = (37 * hash) + SCHEDULE_FIELD_NUMBER;
+      hash = (53 * hash) + getSchedule().hashCode();
+    }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
@@ -314,6 +364,12 @@ private static final long serialVersionUID = 0L;
 
       workingHours_ = 0;
 
+      if (scheduleBuilder_ == null) {
+        schedule_ = null;
+      } else {
+        schedule_ = null;
+        scheduleBuilder_ = null;
+      }
       return this;
     }
 
@@ -342,6 +398,11 @@ private static final long serialVersionUID = 0L;
       grpc.services.service3.AvailabilityResponse result = new grpc.services.service3.AvailabilityResponse(this);
       result.isAvailable_ = isAvailable_;
       result.workingHours_ = workingHours_;
+      if (scheduleBuilder_ == null) {
+        result.schedule_ = schedule_;
+      } else {
+        result.schedule_ = scheduleBuilder_.build();
+      }
       onBuilt();
       return result;
     }
@@ -395,6 +456,9 @@ private static final long serialVersionUID = 0L;
       }
       if (other.getWorkingHours() != 0) {
         setWorkingHours(other.getWorkingHours());
+      }
+      if (other.hasSchedule()) {
+        mergeSchedule(other.getSchedule());
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -475,6 +539,123 @@ private static final long serialVersionUID = 0L;
       workingHours_ = 0;
       onChanged();
       return this;
+    }
+
+    private grpc.services.schedule.Schedule schedule_ = null;
+    private com.google.protobuf.SingleFieldBuilderV3<
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> scheduleBuilder_;
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public boolean hasSchedule() {
+      return scheduleBuilder_ != null || schedule_ != null;
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public grpc.services.schedule.Schedule getSchedule() {
+      if (scheduleBuilder_ == null) {
+        return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
+      } else {
+        return scheduleBuilder_.getMessage();
+      }
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public Builder setSchedule(grpc.services.schedule.Schedule value) {
+      if (scheduleBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        schedule_ = value;
+        onChanged();
+      } else {
+        scheduleBuilder_.setMessage(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public Builder setSchedule(
+        grpc.services.schedule.Schedule.Builder builderForValue) {
+      if (scheduleBuilder_ == null) {
+        schedule_ = builderForValue.build();
+        onChanged();
+      } else {
+        scheduleBuilder_.setMessage(builderForValue.build());
+      }
+
+      return this;
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public Builder mergeSchedule(grpc.services.schedule.Schedule value) {
+      if (scheduleBuilder_ == null) {
+        if (schedule_ != null) {
+          schedule_ =
+            grpc.services.schedule.Schedule.newBuilder(schedule_).mergeFrom(value).buildPartial();
+        } else {
+          schedule_ = value;
+        }
+        onChanged();
+      } else {
+        scheduleBuilder_.mergeFrom(value);
+      }
+
+      return this;
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public Builder clearSchedule() {
+      if (scheduleBuilder_ == null) {
+        schedule_ = null;
+        onChanged();
+      } else {
+        schedule_ = null;
+        scheduleBuilder_ = null;
+      }
+
+      return this;
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public grpc.services.schedule.Schedule.Builder getScheduleBuilder() {
+      
+      onChanged();
+      return getScheduleFieldBuilder().getBuilder();
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
+      if (scheduleBuilder_ != null) {
+        return scheduleBuilder_.getMessageOrBuilder();
+      } else {
+        return schedule_ == null ?
+            grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
+      }
+    }
+    /**
+     * <code>.schedule.Schedule schedule = 3;</code>
+     */
+    private com.google.protobuf.SingleFieldBuilderV3<
+        grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> 
+        getScheduleFieldBuilder() {
+      if (scheduleBuilder_ == null) {
+        scheduleBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+            grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder>(
+                getSchedule(),
+                getParentForChildren(),
+                isClean());
+        schedule_ = null;
+      }
+      return scheduleBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

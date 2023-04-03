@@ -16,4 +16,17 @@ public interface AvailabilityResponseOrBuilder extends
    * <code>int32 working_hours = 2;</code>
    */
   int getWorkingHours();
+
+  /**
+   * <code>.schedule.Schedule schedule = 3;</code>
+   */
+  boolean hasSchedule();
+  /**
+   * <code>.schedule.Schedule schedule = 3;</code>
+   */
+  grpc.services.schedule.Schedule getSchedule();
+  /**
+   * <code>.schedule.Schedule schedule = 3;</code>
+   */
+  grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder();
 }
