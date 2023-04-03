@@ -11,27 +11,22 @@ import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
+public class Service2 extends ScheduleServiceImplBase {
 
-public class Service2 extends ScheduleServiceImplBase{
-	
 	private List<Schedule> schedules = new ArrayList<>();
-
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Service2 service2 = new Service2();
 
 		int port = 50052;
 
-		Server server = ServerBuilder.forPort(port)
-				.addService(service2)
-				.build()
-				.start();
+		Server server = ServerBuilder.forPort(port).addService(service2).build().start();
 
 		System.out.println("Service-1 started, listening on " + port);
 
 		server.awaitTermination();
 	}
-	
+
 	@Override
 	public void listSchedule(ScheduleListRequest request, StreamObserver<ScheduleListResponse> responseObserver) {
 		String name = request.getName();
@@ -50,7 +45,7 @@ public class Service2 extends ScheduleServiceImplBase{
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
-	
+
 	public void changeSchedule(ScheduleChangeRequest request, StreamObserver<ScheduleChangeResponse> responseObserver) {
 		String name = request.getName();
 		String position = request.getPosition();
@@ -80,6 +75,5 @@ public class Service2 extends ScheduleServiceImplBase{
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
-
 
 }
