@@ -9,3 +9,4 @@
 ## Features
 * [x] Java
 * [x] GUI
+* [x] Protocol
