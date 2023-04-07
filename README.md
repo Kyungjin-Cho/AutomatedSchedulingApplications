@@ -10,3 +10,4 @@
 * [x] Java
 * [x] GUI
 * [x] Protocol
+* [x] xml
