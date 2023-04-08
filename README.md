@@ -8,6 +8,6 @@
 
 ## Features
 * [x] Java
-* [x] GUI
+* [x] GUI(JFrame)
 * [x] Protocol
 * [x] xml
