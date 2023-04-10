@@ -65,6 +65,24 @@ public class Service1 extends ScheduleServiceImplBase {
 			// send the response to the client
 			responseObserver.onNext(response);
 			responseObserver.onCompleted();
+			
+			// Register 10 schedules in advance for the three registered staffs with different dates, start times, and end times
+	        String[] staffNames = {"john", "jane", "bob"};
+	        String[] positions = {"floor-staff", "manager", "cashier"};
+	        for (int i = 0; i < 10; i++) {
+	            Schedule newSchedule = Schedule.newBuilder()
+	                    .setName(staffNames[i % 3])
+	                    .setPosition(positions[i % 3])
+	                    .setDate("2023-04-" + (i + 1)) // Set different dates
+	                    .setStartTime(String.format("%02d:%02d", i + 9, 0)) // Set different start times
+	                    .setEndTime(String.format("%02d:%02d", i + 17, 0)) // Set different end times
+	                    .build();
+
+	            // Register the new schedule by calling the same registerSchedule method
+	            // with the new Schedule object
+	            ScheduleRequest newRequest = ScheduleRequest.newBuilder().setSchedule(newSchedule).build();
+	            registerSchedule(newRequest, responseObserver);
+	        }
 		} else {
 			// if the login was not successful, send an error response
 			responseObserver.onError(Status.PERMISSION_DENIED.withDescription("Login required").asRuntimeException());

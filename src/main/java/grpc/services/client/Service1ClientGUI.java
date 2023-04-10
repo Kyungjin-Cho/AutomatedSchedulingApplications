@@ -11,7 +11,7 @@ import grpc.services.service1.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
-public class ScheduleAppGUI extends JFrame implements ActionListener {
+public class Service1ClientGUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel loginPanel;
 	private JPanel registerPanel;
@@ -30,7 +30,7 @@ public class ScheduleAppGUI extends JFrame implements ActionListener {
 	private ScheduleServiceGrpc.ScheduleServiceBlockingStub scheduleStub;
 	private ManagedChannel channel;
 
-	public ScheduleAppGUI() {
+	public Service1ClientGUI() {
 		setTitle("Schedule App");
 		setSize(400, 300);
 
@@ -177,7 +177,7 @@ public class ScheduleAppGUI extends JFrame implements ActionListener {
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
-				ScheduleAppGUI app = new ScheduleAppGUI();
+				Service1ClientGUI app = new Service1ClientGUI();
 				app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				app.setVisible(true);
 			}
