@@ -20,7 +20,7 @@ public class Service3 extends StaffAvailabilityImplBase {
     public static void main(String[] args) throws InterruptedException, IOException {
         Service3 service3 = new Service3();
 
-        int port = 50053;
+        int port = 3032;
 
         Server server = ServerBuilder.forPort(port).addService(service3).build().start();
 
