@@ -19,7 +19,7 @@ public class Service1 extends ScheduleServiceImplBase {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Service1 service1 = new Service1();
 
-		int port = 50051;
+		int port = 3030;
 
 		Server server = ServerBuilder.forPort(port).addService(service1).build().start();
 
