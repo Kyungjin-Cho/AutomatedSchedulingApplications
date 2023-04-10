@@ -14,6 +14,31 @@ import io.grpc.stub.StreamObserver;
 public class Service2 extends ScheduleServiceImplBase {
 
 	private List<Schedule> schedules = new ArrayList<>();
+	
+	public Service2() {
+        // Add some schedules in advance to the schedules list
+        schedules.add(Schedule.newBuilder()
+                .setName("john")
+                .setPosition("floor-staff")
+                .setDate("2023-04-10")
+                .setStartTime("09:00")
+                .setEndTime("17:00")
+                .build());
+        schedules.add(Schedule.newBuilder()
+                .setName("jane")
+                .setPosition("manager")
+                .setDate("2023-04-10")
+                .setStartTime("10:00")
+                .setEndTime("18:00")
+                .build());
+        schedules.add(Schedule.newBuilder()
+                .setName("bob")
+                .setPosition("cashier")
+                .setDate("2023-04-11")
+                .setStartTime("11:00")
+                .setEndTime("19:00")
+                .build());
+    }
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Service2 service2 = new Service2();
