@@ -44,20 +44,21 @@ public final class Service3Impl {
   static {
     java.lang.String[] descriptorData = {
       "\n\016service3.proto\022\010service3\032\016schedule.pro" +
-      "to\"C\n\023AvailabilityRequest\022\014\n\004date\030\001 \001(\t\022" +
-      "\020\n\010position\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\"i\n\024Avail" +
-      "abilityResponse\022\024\n\014is_available\030\001 \001(\010\022\025\n" +
-      "\rworking_hours\030\002 \001(\005\022$\n\010schedule\030\003 \001(\0132\022" +
-      ".schedule.Schedule\";\n\rUpdateRequest\022*\n\016s" +
-      "taff_schedule\030\001 \001(\0132\022.schedule.Schedule\"" +
-      "P\n\016UpdateResponse\022\022\n\nis_updated\030\001 \001(\010\022*\n" +
-      "\016staff_schedule\030\002 \001(\0132\022.schedule.Schedul" +
-      "e2\270\001\n\021StaffAvailability\022X\n\021CheckAvailabi" +
-      "lity\022\035.service3.AvailabilityRequest\032\036.se" +
-      "rvice3.AvailabilityResponse\"\000(\0010\001\022I\n\016Upd" +
-      "ateSchedule\022\027.service3.UpdateRequest\032\030.s" +
-      "ervice3.UpdateResponse\"\000(\0010\001B(\n\026grpc.ser" +
-      "vices.service3B\014Service3ImplP\001b\006proto3"
+      "to\"[\n\023AvailabilityRequest\022\022\n\nstart_date\030" +
+      "\001 \001(\t\022\020\n\010end_date\030\002 \001(\t\022\020\n\010position\030\003 \001(" +
+      "\t\022\014\n\004name\030\004 \001(\t\"i\n\024AvailabilityResponse\022" +
+      "\024\n\014is_available\030\001 \001(\010\022\025\n\rworking_hours\030\002" +
+      " \001(\005\022$\n\010schedule\030\003 \001(\0132\022.schedule.Schedu" +
+      "le\";\n\rUpdateRequest\022*\n\016staff_schedule\030\001 " +
+      "\001(\0132\022.schedule.Schedule\"P\n\016UpdateRespons" +
+      "e\022\022\n\nis_updated\030\001 \001(\010\022*\n\016staff_schedule\030" +
+      "\002 \001(\0132\022.schedule.Schedule2\270\001\n\021StaffAvail" +
+      "ability\022X\n\021CheckAvailability\022\035.service3." +
+      "AvailabilityRequest\032\036.service3.Availabil" +
+      "ityResponse\"\000(\0010\001\022I\n\016UpdateSchedule\022\027.se" +
+      "rvice3.UpdateRequest\032\030.service3.UpdateRe" +
+      "sponse\"\000(\0010\001B(\n\026grpc.services.service3B\014" +
+      "Service3ImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -77,7 +78,7 @@ public final class Service3Impl {
     internal_static_service3_AvailabilityRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_service3_AvailabilityRequest_descriptor,
-        new java.lang.String[] { "Date", "Position", "Name", });
+        new java.lang.String[] { "StartDate", "EndDate", "Position", "Name", });
     internal_static_service3_AvailabilityResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_service3_AvailabilityResponse_fieldAccessorTable = new

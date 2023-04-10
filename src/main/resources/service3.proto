@@ -19,9 +19,10 @@ service StaffAvailability {
 }
 
 message AvailabilityRequest {
-  string date = 1;
-  string position = 2;
-  string name = 3;
+  string start_date = 1;
+  string end_date = 2;
+  string position = 3;
+  string name = 4;
 }
 
 message AvailabilityResponse {

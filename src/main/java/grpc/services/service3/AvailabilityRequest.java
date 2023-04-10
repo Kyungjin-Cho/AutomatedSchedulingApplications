@@ -16,7 +16,8 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private AvailabilityRequest() {
-    date_ = "";
+    startDate_ = "";
+    endDate_ = "";
     position_ = "";
     name_ = "";
   }
@@ -48,16 +49,22 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            date_ = s;
+            startDate_ = s;
             break;
           }
           case 18: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            position_ = s;
+            endDate_ = s;
             break;
           }
           case 26: {
+            java.lang.String s = input.readStringRequireUtf8();
+
+            position_ = s;
+            break;
+          }
+          case 34: {
             java.lang.String s = input.readStringRequireUtf8();
 
             name_ = s;
@@ -95,44 +102,78 @@ private static final long serialVersionUID = 0L;
             grpc.services.service3.AvailabilityRequest.class, grpc.services.service3.AvailabilityRequest.Builder.class);
   }
 
-  public static final int DATE_FIELD_NUMBER = 1;
-  private volatile java.lang.Object date_;
+  public static final int START_DATE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object startDate_;
   /**
-   * <code>string date = 1;</code>
+   * <code>string start_date = 1;</code>
    */
-  public java.lang.String getDate() {
-    java.lang.Object ref = date_;
+  public java.lang.String getStartDate() {
+    java.lang.Object ref = startDate_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      date_ = s;
+      startDate_ = s;
       return s;
     }
   }
   /**
-   * <code>string date = 1;</code>
+   * <code>string start_date = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getDateBytes() {
-    java.lang.Object ref = date_;
+      getStartDateBytes() {
+    java.lang.Object ref = startDate_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      date_ = b;
+      startDate_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
     }
   }
 
-  public static final int POSITION_FIELD_NUMBER = 2;
+  public static final int END_DATE_FIELD_NUMBER = 2;
+  private volatile java.lang.Object endDate_;
+  /**
+   * <code>string end_date = 2;</code>
+   */
+  public java.lang.String getEndDate() {
+    java.lang.Object ref = endDate_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      endDate_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string end_date = 2;</code>
+   */
+  public com.google.protobuf.ByteString
+      getEndDateBytes() {
+    java.lang.Object ref = endDate_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      endDate_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int POSITION_FIELD_NUMBER = 3;
   private volatile java.lang.Object position_;
   /**
-   * <code>string position = 2;</code>
+   * <code>string position = 3;</code>
    */
   public java.lang.String getPosition() {
     java.lang.Object ref = position_;
@@ -147,7 +188,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string position = 2;</code>
+   * <code>string position = 3;</code>
    */
   public com.google.protobuf.ByteString
       getPositionBytes() {
@@ -163,10 +204,10 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int NAME_FIELD_NUMBER = 3;
+  public static final int NAME_FIELD_NUMBER = 4;
   private volatile java.lang.Object name_;
   /**
-   * <code>string name = 3;</code>
+   * <code>string name = 4;</code>
    */
   public java.lang.String getName() {
     java.lang.Object ref = name_;
@@ -181,7 +222,7 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
-   * <code>string name = 3;</code>
+   * <code>string name = 4;</code>
    */
   public com.google.protobuf.ByteString
       getNameBytes() {
@@ -211,14 +252,17 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getDateBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, date_);
+    if (!getStartDateBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, startDate_);
+    }
+    if (!getEndDateBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, endDate_);
     }
     if (!getPositionBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 2, position_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, position_);
     }
     if (!getNameBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, name_);
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, name_);
     }
     unknownFields.writeTo(output);
   }
@@ -229,14 +273,17 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getDateBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, date_);
+    if (!getStartDateBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, startDate_);
+    }
+    if (!getEndDateBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, endDate_);
     }
     if (!getPositionBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, position_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, position_);
     }
     if (!getNameBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, name_);
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, name_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -254,8 +301,10 @@ private static final long serialVersionUID = 0L;
     grpc.services.service3.AvailabilityRequest other = (grpc.services.service3.AvailabilityRequest) obj;
 
     boolean result = true;
-    result = result && getDate()
-        .equals(other.getDate());
+    result = result && getStartDate()
+        .equals(other.getStartDate());
+    result = result && getEndDate()
+        .equals(other.getEndDate());
     result = result && getPosition()
         .equals(other.getPosition());
     result = result && getName()
@@ -271,8 +320,10 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + DATE_FIELD_NUMBER;
-    hash = (53 * hash) + getDate().hashCode();
+    hash = (37 * hash) + START_DATE_FIELD_NUMBER;
+    hash = (53 * hash) + getStartDate().hashCode();
+    hash = (37 * hash) + END_DATE_FIELD_NUMBER;
+    hash = (53 * hash) + getEndDate().hashCode();
     hash = (37 * hash) + POSITION_FIELD_NUMBER;
     hash = (53 * hash) + getPosition().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
@@ -410,7 +461,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      date_ = "";
+      startDate_ = "";
+
+      endDate_ = "";
 
       position_ = "";
 
@@ -442,7 +495,8 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public grpc.services.service3.AvailabilityRequest buildPartial() {
       grpc.services.service3.AvailabilityRequest result = new grpc.services.service3.AvailabilityRequest(this);
-      result.date_ = date_;
+      result.startDate_ = startDate_;
+      result.endDate_ = endDate_;
       result.position_ = position_;
       result.name_ = name_;
       onBuilt();
@@ -493,8 +547,12 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(grpc.services.service3.AvailabilityRequest other) {
       if (other == grpc.services.service3.AvailabilityRequest.getDefaultInstance()) return this;
-      if (!other.getDate().isEmpty()) {
-        date_ = other.date_;
+      if (!other.getStartDate().isEmpty()) {
+        startDate_ = other.startDate_;
+        onChanged();
+      }
+      if (!other.getEndDate().isEmpty()) {
+        endDate_ = other.endDate_;
         onChanged();
       }
       if (!other.getPosition().isEmpty()) {
@@ -534,78 +592,147 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object date_ = "";
+    private java.lang.Object startDate_ = "";
     /**
-     * <code>string date = 1;</code>
+     * <code>string start_date = 1;</code>
      */
-    public java.lang.String getDate() {
-      java.lang.Object ref = date_;
+    public java.lang.String getStartDate() {
+      java.lang.Object ref = startDate_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        date_ = s;
+        startDate_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string date = 1;</code>
+     * <code>string start_date = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getDateBytes() {
-      java.lang.Object ref = date_;
+        getStartDateBytes() {
+      java.lang.Object ref = startDate_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        date_ = b;
+        startDate_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string date = 1;</code>
+     * <code>string start_date = 1;</code>
      */
-    public Builder setDate(
+    public Builder setStartDate(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      date_ = value;
+      startDate_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string date = 1;</code>
+     * <code>string start_date = 1;</code>
      */
-    public Builder clearDate() {
+    public Builder clearStartDate() {
       
-      date_ = getDefaultInstance().getDate();
+      startDate_ = getDefaultInstance().getStartDate();
       onChanged();
       return this;
     }
     /**
-     * <code>string date = 1;</code>
+     * <code>string start_date = 1;</code>
      */
-    public Builder setDateBytes(
+    public Builder setStartDateBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      date_ = value;
+      startDate_ = value;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object endDate_ = "";
+    /**
+     * <code>string end_date = 2;</code>
+     */
+    public java.lang.String getEndDate() {
+      java.lang.Object ref = endDate_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        endDate_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string end_date = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getEndDateBytes() {
+      java.lang.Object ref = endDate_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        endDate_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string end_date = 2;</code>
+     */
+    public Builder setEndDate(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  
+      endDate_ = value;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string end_date = 2;</code>
+     */
+    public Builder clearEndDate() {
+      
+      endDate_ = getDefaultInstance().getEndDate();
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string end_date = 2;</code>
+     */
+    public Builder setEndDateBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+      
+      endDate_ = value;
       onChanged();
       return this;
     }
 
     private java.lang.Object position_ = "";
     /**
-     * <code>string position = 2;</code>
+     * <code>string position = 3;</code>
      */
     public java.lang.String getPosition() {
       java.lang.Object ref = position_;
@@ -620,7 +747,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string position = 2;</code>
+     * <code>string position = 3;</code>
      */
     public com.google.protobuf.ByteString
         getPositionBytes() {
@@ -636,7 +763,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string position = 2;</code>
+     * <code>string position = 3;</code>
      */
     public Builder setPosition(
         java.lang.String value) {
@@ -649,7 +776,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string position = 2;</code>
+     * <code>string position = 3;</code>
      */
     public Builder clearPosition() {
       
@@ -658,7 +785,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string position = 2;</code>
+     * <code>string position = 3;</code>
      */
     public Builder setPositionBytes(
         com.google.protobuf.ByteString value) {
@@ -674,7 +801,7 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object name_ = "";
     /**
-     * <code>string name = 3;</code>
+     * <code>string name = 4;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -689,7 +816,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string name = 3;</code>
+     * <code>string name = 4;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -705,7 +832,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>string name = 3;</code>
+     * <code>string name = 4;</code>
      */
     public Builder setName(
         java.lang.String value) {
@@ -718,7 +845,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string name = 3;</code>
+     * <code>string name = 4;</code>
      */
     public Builder clearName() {
       
@@ -727,7 +854,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>string name = 3;</code>
+     * <code>string name = 4;</code>
      */
     public Builder setNameBytes(
         com.google.protobuf.ByteString value) {

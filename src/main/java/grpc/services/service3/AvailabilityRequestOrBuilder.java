@@ -8,31 +8,41 @@ public interface AvailabilityRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>string date = 1;</code>
+   * <code>string start_date = 1;</code>
    */
-  java.lang.String getDate();
+  java.lang.String getStartDate();
   /**
-   * <code>string date = 1;</code>
+   * <code>string start_date = 1;</code>
    */
   com.google.protobuf.ByteString
-      getDateBytes();
+      getStartDateBytes();
 
   /**
-   * <code>string position = 2;</code>
+   * <code>string end_date = 2;</code>
+   */
+  java.lang.String getEndDate();
+  /**
+   * <code>string end_date = 2;</code>
+   */
+  com.google.protobuf.ByteString
+      getEndDateBytes();
+
+  /**
+   * <code>string position = 3;</code>
    */
   java.lang.String getPosition();
   /**
-   * <code>string position = 2;</code>
+   * <code>string position = 3;</code>
    */
   com.google.protobuf.ByteString
       getPositionBytes();
 
   /**
-   * <code>string name = 3;</code>
+   * <code>string name = 4;</code>
    */
   java.lang.String getName();
   /**
-   * <code>string name = 3;</code>
+   * <code>string name = 4;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
