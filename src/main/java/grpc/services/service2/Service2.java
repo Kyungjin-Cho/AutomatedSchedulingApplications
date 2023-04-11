@@ -47,7 +47,7 @@ public class Service2 extends ScheduleServiceImplBase {
 
 		Server server = ServerBuilder.forPort(port).addService(service2).build().start();
 
-		System.out.println("Service-1 started, listening on " + port);
+		System.out.println("Service-2 started, listening on " + port);
 
 		server.awaitTermination();
 	}
