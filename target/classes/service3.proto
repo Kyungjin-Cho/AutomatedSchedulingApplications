@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+// Options for the GRPC
+option java_multiple_files = true;
+option java_package = "grpc.services.service3";
+option java_outer_classname = "Service3Impl";
+
+package service3;
+
+import "schedule.proto";
+
+// Service Definition
+service StaffAvailability {
+  // Bidirectional RPC for checking staff availability and working hours
+  rpc CheckAvailability (stream AvailabilityRequest) returns (stream AvailabilityResponse) {}
+
+  // Bidirectional RPC for updating staff schedule
+  rpc UpdateSchedule (stream UpdateRequest) returns (stream UpdateResponse) {}
+}
+
+message AvailabilityRequest {
+  string start_date = 1;
+  string end_date = 2;
+  string position = 3;
+  string name = 4;
+}
+
+message AvailabilityResponse {
+  bool is_available = 1;
+  int32 working_hours = 2;
+  schedule.Schedule schedule = 3;
+}
+
+message UpdateRequest {
+  schedule.Schedule staff_schedule = 1;
+}
+
+message UpdateResponse {
+  bool is_updated = 1;
+  schedule.Schedule staff_schedule = 2;
+}

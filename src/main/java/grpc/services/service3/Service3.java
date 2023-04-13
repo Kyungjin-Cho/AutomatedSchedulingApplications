@@ -3,6 +3,7 @@ package grpc.services.service3;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,41 @@ import io.grpc.stub.StreamObserver;
 public class Service3 extends StaffAvailabilityImplBase {
 
 	private List<Schedule> schedules = new ArrayList<>();
+
+	public Service3() {
+		// Add some schedules in advance to the schedules list (john: 40 hrs, jane 40
+		// hrs, bob 25 hrs)
+		schedules.add(Schedule.newBuilder().setName("john").setPosition("floor-staff").setDate("2023-04-17")
+				.setStartTime("09:00").setEndTime("17:00").build());
+		schedules.add(Schedule.newBuilder().setName("jane").setPosition("manager").setDate("2023-04-17")
+				.setStartTime("10:00").setEndTime("18:00").build());
+		schedules.add(Schedule.newBuilder().setName("bob").setPosition("cashier").setDate("2023-04-17")
+				.setStartTime("11:00").setEndTime("16:00").build());
+		schedules.add(Schedule.newBuilder().setName("john").setPosition("floor-staff").setDate("2023-04-18")
+				.setStartTime("09:00").setEndTime("17:00").build());
+		schedules.add(Schedule.newBuilder().setName("jane").setPosition("manager").setDate("2023-04-18")
+				.setStartTime("10:00").setEndTime("18:00").build());
+		schedules.add(Schedule.newBuilder().setName("bob").setPosition("cashier").setDate("2023-04-18")
+				.setStartTime("11:00").setEndTime("16:00").build());
+		schedules.add(Schedule.newBuilder().setName("john").setPosition("floor-staff").setDate("2023-04-20")
+				.setStartTime("09:00").setEndTime("17:00").build());
+		schedules.add(Schedule.newBuilder().setName("jane").setPosition("manager").setDate("2023-04-20")
+				.setStartTime("10:00").setEndTime("18:00").build());
+		schedules.add(Schedule.newBuilder().setName("bob").setPosition("cashier").setDate("2023-04-20")
+				.setStartTime("11:00").setEndTime("16:00").build());
+		schedules.add(Schedule.newBuilder().setName("john").setPosition("floor-staff").setDate("2023-04-22")
+				.setStartTime("09:00").setEndTime("17:00").build());
+		schedules.add(Schedule.newBuilder().setName("jane").setPosition("manager").setDate("2023-04-22")
+				.setStartTime("10:00").setEndTime("18:00").build());
+		schedules.add(Schedule.newBuilder().setName("bob").setPosition("cashier").setDate("2023-04-22")
+				.setStartTime("11:00").setEndTime("16:00").build());
+		schedules.add(Schedule.newBuilder().setName("john").setPosition("floor-staff").setDate("2023-04-23")
+				.setStartTime("09:00").setEndTime("17:00").build());
+		schedules.add(Schedule.newBuilder().setName("jane").setPosition("manager").setDate("2023-04-23")
+				.setStartTime("10:00").setEndTime("18:00").build());
+		schedules.add(Schedule.newBuilder().setName("bob").setPosition("cashier").setDate("2023-04-23")
+				.setStartTime("11:00").setEndTime("16:00").build());
+	}
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Service3 service3 = new Service3();
@@ -51,7 +87,7 @@ public class Service3 extends StaffAvailabilityImplBase {
 					}
 				}
 
-				boolean isAvailable = staffSchedule == null;
+				boolean isAvailable = staffSchedule == null || workingHours < 40; // Update condition for isAvailable
 				AvailabilityResponse response = AvailabilityResponse.newBuilder().setIsAvailable(isAvailable)
 						.setWorkingHours(workingHours).setSchedule(staffSchedule).build();
 
@@ -76,7 +112,6 @@ public class Service3 extends StaffAvailabilityImplBase {
 			@Override
 			public void onNext(UpdateRequest request) {
 				Schedule staffSchedule = request.getStaffSchedule();
-
 				boolean isUpdated = false;
 
 				for (int i = 0; i < schedules.size(); i++) {
@@ -84,6 +119,17 @@ public class Service3 extends StaffAvailabilityImplBase {
 					if (s.getName().equals(staffSchedule.getName())
 							&& s.getPosition().equals(staffSchedule.getPosition())
 							&& s.getDate().equals(staffSchedule.getDate())) {
+						// Check if input date is the same day as a registered schedule
+						LocalDate inputDate = LocalDate.parse(staffSchedule.getDate());
+						LocalDate registeredDate = LocalDate.parse(s.getDate());
+						if (registeredDate.equals(inputDate)) {
+							// Display error message
+							UpdateResponse errorResponse = UpdateResponse.newBuilder().setIsUpdated(false).build();
+							responseObserver.onNext(errorResponse);
+							responseObserver.onCompleted();
+							return;
+						}
+
 						schedules.set(i, staffSchedule);
 						isUpdated = true;
 						break;
@@ -94,6 +140,7 @@ public class Service3 extends StaffAvailabilityImplBase {
 						.setStaffSchedule(staffSchedule).build();
 
 				responseObserver.onNext(response);
+				responseObserver.onCompleted();
 			}
 
 			@Override

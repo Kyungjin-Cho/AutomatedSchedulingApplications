@@ -1,3 +1,5 @@
+package grpc.services.client;
+
 import grpc.services.schedule.Schedule;
 import grpc.services.service3.*;
 import grpc.services.service3.StaffAvailabilityGrpc.StaffAvailabilityStub;
@@ -9,6 +11,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 public class Service3ClientGUI extends JFrame {
 	// Add the serialVersionUID field
@@ -23,71 +31,98 @@ public class Service3ClientGUI extends JFrame {
 	private JTextField startTimeTextField;
 	private JTextField endTimeTextField;
 	private JTextArea resultTextArea;
+	private JPanel checkAvailabilityPanel;
+	private JPanel updateSchedulePanel;
+	private JFrame checkAvailabilityFrame;
+	private JFrame updateScheduleFrame;
+	private ManagedChannel channel;
 
 	public Service3ClientGUI() {
-		// Set up the GUI
-		setTitle("Availability Checker");
-		setSize(400, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Set up the gRPC channel
+		channel = ManagedChannelBuilder.forAddress("localhost", 3032).usePlaintext().build(); // Update host and port
+																								// according to your
+																								// server configuration
 
-		// Create input fields
+		// Set up the GUI for checkAvailability
+		checkAvailabilityFrame = new JFrame();
+		checkAvailabilityFrame.setTitle("Availability Checker");
+		checkAvailabilityFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Create input fields for checkAvailability
 		nameTextField = new JTextField();
 		positionTextField = new JTextField();
 		startDateTextField = new JTextField();
 		endDateTextField = new JTextField();
-		dateTextField = new JTextField();
-		startTimeTextField = new JTextField();
-		endTimeTextField = new JTextField();
 
-		// Create buttons
+		// Create button for checkAvailability
 		JButton checkAvailabilityButton = new JButton("Check Availability");
-		JButton updateScheduleButton = new JButton("Update Schedule");
 
-		// Create result text area
+		// Create result text area for checkAvailability
 		resultTextArea = new JTextArea();
 		resultTextArea.setEditable(false);
 
-		// Create layout manager
-		setLayout(new BorderLayout());
+		// Create layout manager for checkAvailability
+		checkAvailabilityPanel = new JPanel();
+		checkAvailabilityPanel.setLayout(new GridLayout(5, 2));
+		checkAvailabilityPanel.add(new JLabel("Name: "));
+		checkAvailabilityPanel.add(nameTextField);
+		checkAvailabilityPanel.add(new JLabel("Position: "));
+		checkAvailabilityPanel.add(positionTextField);
+		checkAvailabilityPanel.add(new JLabel("Start Date: "));
+		checkAvailabilityPanel.add(startDateTextField);
+		checkAvailabilityPanel.add(new JLabel("End Date: "));
+		checkAvailabilityPanel.add(endDateTextField);
+		checkAvailabilityPanel.add(checkAvailabilityButton);
+		checkAvailabilityPanel.add(resultTextArea);
 
-		// Create panels for input fields and buttons
-		JPanel inputPanel = new JPanel();
-		inputPanel.setLayout(new GridLayout(7, 2));
-		JPanel buttonPanel = new JPanel();
-		buttonPanel.setLayout(new FlowLayout());
+		// Add checkAvailability panel to the frame
+		checkAvailabilityFrame.add(checkAvailabilityPanel);
 
-		// Add components to the input panel
-		inputPanel.add(new JLabel("Name: "));
-		inputPanel.add(nameTextField);
-		inputPanel.add(new JLabel("Position: "));
-		inputPanel.add(positionTextField);
-		inputPanel.add(new JLabel("Start Date: "));
-		inputPanel.add(startDateTextField);
-		inputPanel.add(new JLabel("End Date: "));
-		inputPanel.add(endDateTextField);
-		inputPanel.add(new JLabel("Date: "));
-		inputPanel.add(dateTextField);
-		inputPanel.add(new JLabel("Start Time: "));
-		inputPanel.add(startTimeTextField);
-		inputPanel.add(new JLabel("End Time: "));
-		inputPanel.add(endTimeTextField);
+		// Set the size of the checkAvailabilityFrame
+		checkAvailabilityFrame.setSize(600, 600); // Set the size to 400x300 pixels
 
-		// Add components to the button panel
-		buttonPanel.add(checkAvailabilityButton);
-		buttonPanel.add(updateScheduleButton);
+		checkAvailabilityFrame.setVisible(true);
 
-		// Add input panel, button panel, and result text area to the frame
-		add(inputPanel, BorderLayout.CENTER);
-		add(buttonPanel, BorderLayout.SOUTH);
-		add(new JScrollPane(resultTextArea), BorderLayout.NORTH);
-
-		// Register action listeners for buttons
+		// Register action listener for checkAvailability button
 		checkAvailabilityButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				checkAvailability();
 			}
 		});
+
+		// Set up the GUI for updateSchedule
+		updateScheduleFrame = new JFrame();
+		updateScheduleFrame.setTitle("Update Schedule");
+		updateScheduleFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		// Create input fields for updateSchedule
+		dateTextField = new JTextField();
+		startTimeTextField = new JTextField();
+		endTimeTextField = new JTextField();
+
+		// Create button for updateSchedule
+		JButton updateScheduleButton = new JButton("Update Schedule");
+
+		// Create layout manager for updateSchedule
+		updateSchedulePanel = new JPanel();
+		updateSchedulePanel.setLayout(new GridLayout(4, 2));
+		updateSchedulePanel.add(new JLabel("Date: "));
+		updateSchedulePanel.add(dateTextField);
+		updateSchedulePanel.add(new JLabel("Start Time: "));
+		updateSchedulePanel.add(startTimeTextField);
+		updateSchedulePanel.add(new JLabel("End Time: "));
+		updateSchedulePanel.add(endTimeTextField);
+		updateSchedulePanel.add(updateScheduleButton);
+
+		// Add updateSchedule panel to the frame
+		updateScheduleFrame.add(updateSchedulePanel);
+
+		// Set the size of the updateScheduleFrame
+		updateScheduleFrame.setSize(400, 300); // Set the size to 400x300 pixels
+
+		// Set the updateSchedule panel to initially not visible
+		updateSchedulePanel.setVisible(false);
 
 		updateScheduleButton.addActionListener(new ActionListener() {
 			@Override
@@ -98,20 +133,56 @@ public class Service3ClientGUI extends JFrame {
 	}
 
 	private void checkAvailability() {
+		// Initialize the availabilityStub variable
+		availabilityStub = StaffAvailabilityGrpc.newStub(getChannel());
+
 		String name = nameTextField.getText();
 		String position = positionTextField.getText();
 		String startDate = startDateTextField.getText();
 		String endDate = endDateTextField.getText();
 
+		// Check if startDate and endDate are valid dates
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date start, end;
+		try {
+			start = sdf.parse(startDate);
+			end = sdf.parse(endDate);
+		} catch (ParseException e) {
+			resultTextArea.setText("Error: Invalid date format. Please use yyyy-MM-dd.");
+			return;
+		}
+
+		// Check if the period between startDate and endDate is 7 days
+		long diff = end.getTime() - start.getTime();
+		long diffDays = diff / (24 * 60 * 60 * 1000);
+		if (diffDays != 6) { // 6 days because the difference between two dates is inclusive of the start
+								// date itself
+			resultTextArea.setText("Error: The period from startDate to endDate should be 7 days.");
+			return;
+		}
+
 		AvailabilityRequest request = AvailabilityRequest.newBuilder().setName(name).setPosition(position)
 				.setStartDate(startDate).setEndDate(endDate).build();
 
-		availabilityStub.checkAvailability(request, new StreamObserver<AvailabilityResponse>() {
+		StreamObserver<AvailabilityResponse> responseObserver = new StreamObserver<AvailabilityResponse>() {
 			@Override
 			public void onNext(AvailabilityResponse response) {
-				String result = "Is " + response.getName() + " available for " + response.getPosition() + " from "
-						+ response.getStartDate() + " to " + response.getEndDate() + "? " + response.getAvailable();
+				String result = "This staff is available considering working hours " + response.getWorkingHours() + "? "
+						+ response.getIsAvailable();
 				resultTextArea.setText(result);
+
+				// Check if staff is available based on server-side logic
+				boolean isAvailable = response.getIsAvailable(); // Get isAvailable status from the response
+
+				// Show the updateSchedule panel if staff is available and working hours is less
+				// than 40
+				if (isAvailable && response.getWorkingHours() < 40) {
+					updateSchedulePanel.setVisible(true);
+					updateScheduleFrame.setVisible(true);
+				} else {
+					updateSchedulePanel.setVisible(false);
+					updateScheduleFrame.setVisible(false); // Add this line to hide updateScheduleFrame
+				}
 			}
 
 			@Override
@@ -123,22 +194,45 @@ public class Service3ClientGUI extends JFrame {
 			public void onCompleted() {
 				// Do nothing
 			}
-		});
+		};
+
+		StreamObserver<AvailabilityRequest> requestObserver = availabilityStub.checkAvailability(responseObserver);
+		requestObserver.onNext(request);
+		requestObserver.onCompleted();
 	}
 
 	private void updateSchedule() {
 		String name = nameTextField.getText();
+		String position = positionTextField.getText();
 		String date = dateTextField.getText();
 		String startTime = startTimeTextField.getText();
 		String endTime = endTimeTextField.getText();
 
-		Schedule schedule = Schedule.newBuilder().setName(name).setDate(date).setStartTime(startTime)
-				.setEndTime(endTime).build();
+		// Perform validation on input fields
+		if (name.isEmpty() || position.isEmpty() || date.isEmpty() || startTime.isEmpty() || endTime.isEmpty()) {
+			JOptionPane.showMessageDialog(Service3ClientGUI.this, "Please fill in all fields", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 
-		availabilityStub.updateSchedule(schedule, new StreamObserver<UpdateScheduleResponse>() {
+		Schedule staffSchedule = Schedule.newBuilder().setName(name).setPosition(position).setDate(date)
+				.setStartTime(startTime).setEndTime(endTime).build();
+
+		// Create a UpdateRequest object
+		UpdateRequest request = UpdateRequest.newBuilder().setStaffSchedule(staffSchedule).build();
+
+		// Call the updateSchedule method with a StreamObserver
+		availabilityStub.updateSchedule(new StreamObserver<UpdateResponse>() {
 			@Override
-			public void onNext(UpdateScheduleResponse response) {
-				resultTextArea.setText(response.getMessage());
+			public void onNext(UpdateResponse response) {
+			    if (response.getIsUpdated()) {
+			        String result = "Update Schedule Result: " + response.getStaffSchedule();
+			        resultTextArea.setText(result);
+			    } else {
+			        String errorMessage = "Cannot update schedule on the same day as an existing schedule";
+			        JOptionPane.showMessageDialog(Service3ClientGUI.this, errorMessage, "Error",
+			                JOptionPane.ERROR_MESSAGE);
+			    }
 			}
 
 			@Override
@@ -150,28 +244,22 @@ public class Service3ClientGUI extends JFrame {
 			public void onCompleted() {
 				// Do nothing
 			}
-		});
+		}).onNext(request); // Pass the request to the onNext() method to initiate the RPC call
 	}
 
 	public void setAvailabilityStub(StaffAvailabilityStub availabilityStub) {
 		this.availabilityStub = availabilityStub;
 	}
 
+	// Method to get the gRPC channel
+	public ManagedChannel getChannel() {
+		return channel;
+	}
+
 	public static void main(String[] args) {
-		// Create a new Service3ClientGUI instance
-		Service3ClientGUI clientGUI = new Service3ClientGUI();
-
-		// Create a gRPC channel to connect to the server
-		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 3032).usePlaintext().build();
-
-		// Create a stub for the StaffAvailability service
-		StaffAvailabilityStub availabilityStub = StaffAvailabilityGrpc.newStub(channel);
-
-		// Set the availabilityStub in the clientGUI instance
-		clientGUI.setAvailabilityStub(availabilityStub);
-
-		// Show the GUI
-		clientGUI.setVisible(true);
+		SwingUtilities.invokeLater(() -> {
+			Service3ClientGUI clientGUI = new Service3ClientGUI();
+			clientGUI.setVisible(true);
+		});
 	}
 }
-
