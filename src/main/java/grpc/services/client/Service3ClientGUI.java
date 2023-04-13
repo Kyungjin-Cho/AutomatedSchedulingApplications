@@ -14,9 +14,9 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.List;
 
 public class Service3ClientGUI extends JFrame {
 	// Add the serialVersionUID field
@@ -79,7 +79,7 @@ public class Service3ClientGUI extends JFrame {
 		checkAvailabilityFrame.add(checkAvailabilityPanel);
 
 		// Set the size of the checkAvailabilityFrame
-		checkAvailabilityFrame.setSize(600, 600); // Set the size to 400x300 pixels
+		checkAvailabilityFrame.setSize(700, 600); // Set the size to 400x300 pixels
 
 		checkAvailabilityFrame.setVisible(true);
 
@@ -148,7 +148,7 @@ public class Service3ClientGUI extends JFrame {
 			start = sdf.parse(startDate);
 			end = sdf.parse(endDate);
 		} catch (ParseException e) {
-			resultTextArea.setText("Error: Invalid date format. Please use yyyy-MM-dd.");
+			resultTextArea.setText("Error:\nInvalid date format. Please use yyyy-MM-dd.");
 			return;
 		}
 
@@ -215,24 +215,37 @@ public class Service3ClientGUI extends JFrame {
 			return;
 		}
 
+		// Validate date format
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		sdf.setLenient(false);
+		try {
+			sdf.parse(date);
+		} catch (ParseException e) {
+			JOptionPane.showMessageDialog(Service3ClientGUI.this, "Invalid date format. Please use yyyy-MM-dd", "Error",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		// Create a Schedule object
 		Schedule staffSchedule = Schedule.newBuilder().setName(name).setPosition(position).setDate(date)
 				.setStartTime(startTime).setEndTime(endTime).build();
 
-		// Create a UpdateRequest object
+		// Create an UpdateRequest object
 		UpdateRequest request = UpdateRequest.newBuilder().setStaffSchedule(staffSchedule).build();
 
 		// Call the updateSchedule method with a StreamObserver
 		availabilityStub.updateSchedule(new StreamObserver<UpdateResponse>() {
 			@Override
 			public void onNext(UpdateResponse response) {
-			    if (response.getIsUpdated()) {
-			        String result = "Update Schedule Result: " + response.getStaffSchedule();
-			        resultTextArea.setText(result);
-			    } else {
-			        String errorMessage = "Cannot update schedule on the same day as an existing schedule";
-			        JOptionPane.showMessageDialog(Service3ClientGUI.this, errorMessage, "Error",
-			                JOptionPane.ERROR_MESSAGE);
-			    }
+				if (response.getIsUpdated()) {
+					String result = "Update Schedule Result: " + response.getStaffSchedule();
+					resultTextArea.setText(result);
+					// Display success message
+					JOptionPane.showMessageDialog(Service3ClientGUI.this, "Schedule updated successfully", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					resultTextArea.setText("Error: Cannot update schedule on the same day as an existing schedule");
+				}
 			}
 
 			@Override
@@ -242,7 +255,7 @@ public class Service3ClientGUI extends JFrame {
 
 			@Override
 			public void onCompleted() {
-				// Do nothing
+				// This method will not be called in this case
 			}
 		}).onNext(request); // Pass the request to the onNext() method to initiate the RPC call
 	}

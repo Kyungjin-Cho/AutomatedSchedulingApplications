@@ -3,7 +3,6 @@ package grpc.services.service3;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,27 +112,26 @@ public class Service3 extends StaffAvailabilityImplBase {
 			public void onNext(UpdateRequest request) {
 				Schedule staffSchedule = request.getStaffSchedule();
 				boolean isUpdated = false;
+				boolean isDuplicate = false;
 
 				for (int i = 0; i < schedules.size(); i++) {
 					Schedule s = schedules.get(i);
 					if (s.getName().equals(staffSchedule.getName())
 							&& s.getPosition().equals(staffSchedule.getPosition())
 							&& s.getDate().equals(staffSchedule.getDate())) {
-						// Check if input date is the same day as a registered schedule
-						LocalDate inputDate = LocalDate.parse(staffSchedule.getDate());
-						LocalDate registeredDate = LocalDate.parse(s.getDate());
-						if (registeredDate.equals(inputDate)) {
-							// Display error message
-							UpdateResponse errorResponse = UpdateResponse.newBuilder().setIsUpdated(false).build();
-							responseObserver.onNext(errorResponse);
-							responseObserver.onCompleted();
-							return;
-						}
 
-						schedules.set(i, staffSchedule);
-						isUpdated = true;
+						isDuplicate = true;
 						break;
 					}
+				}
+
+				if (isDuplicate) {
+					// Display error message
+					UpdateResponse errorResponse = UpdateResponse.newBuilder().setIsUpdated(false).build();
+					responseObserver.onNext(errorResponse);
+				} else {
+					schedules.add(staffSchedule);
+					isUpdated = true;
 				}
 
 				UpdateResponse response = UpdateResponse.newBuilder().setIsUpdated(isUpdated)
@@ -145,7 +143,9 @@ public class Service3 extends StaffAvailabilityImplBase {
 
 			@Override
 			public void onError(Throwable t) {
+				// Handle the error, e.g., log the error or send an error response
 				System.err.println("Error in updateSchedule: " + t);
+				responseObserver.onError(t);
 			}
 
 			@Override
