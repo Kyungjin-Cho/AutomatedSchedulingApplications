@@ -68,9 +68,9 @@ public class Service3ClientGUI extends JFrame {
 		checkAvailabilityPanel.add(nameTextField);
 		checkAvailabilityPanel.add(new JLabel("Position: "));
 		checkAvailabilityPanel.add(positionTextField);
-		checkAvailabilityPanel.add(new JLabel("Start Date: "));
+		checkAvailabilityPanel.add(new JLabel("Start Date(yyyy-mm-dd): "));
 		checkAvailabilityPanel.add(startDateTextField);
-		checkAvailabilityPanel.add(new JLabel("End Date: "));
+		checkAvailabilityPanel.add(new JLabel("End Date(yyyy-mm-dd): "));
 		checkAvailabilityPanel.add(endDateTextField);
 		checkAvailabilityPanel.add(checkAvailabilityButton);
 		checkAvailabilityPanel.add(resultTextArea);
@@ -109,9 +109,9 @@ public class Service3ClientGUI extends JFrame {
 		updateSchedulePanel.setLayout(new GridLayout(4, 2));
 		updateSchedulePanel.add(new JLabel("Date: "));
 		updateSchedulePanel.add(dateTextField);
-		updateSchedulePanel.add(new JLabel("Start Time: "));
+		updateSchedulePanel.add(new JLabel("Start Time(HH:MM): "));
 		updateSchedulePanel.add(startTimeTextField);
-		updateSchedulePanel.add(new JLabel("End Time: "));
+		updateSchedulePanel.add(new JLabel("End Time(HH:MM): "));
 		updateSchedulePanel.add(endTimeTextField);
 		updateSchedulePanel.add(updateScheduleButton);
 

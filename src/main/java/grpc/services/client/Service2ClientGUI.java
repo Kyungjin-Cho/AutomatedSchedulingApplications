@@ -44,7 +44,7 @@ public class Service2ClientGUI extends JFrame {
 		positionTextField = new JTextField();
 		inputPanel.add(positionTextField);
 
-		inputPanel.add(new JLabel("Date:"));
+		inputPanel.add(new JLabel("Date(yyyy-mm-dd):"));
 		dateTextField = new JTextField();
 		inputPanel.add(dateTextField);
 
@@ -65,11 +65,11 @@ public class Service2ClientGUI extends JFrame {
 		JPanel changeSchedulePanel = new JPanel(new GridLayout(3, 2)); // Added panel for changing schedule
 		changeSchedulePanel.setBorder(BorderFactory.createTitledBorder("Change Schedule"));
 
-		changeSchedulePanel.add(new JLabel("Start Time:"));
+		changeSchedulePanel.add(new JLabel("Start Time(HH:MM):"));
 		startTimeTextField = new JTextField();
 		changeSchedulePanel.add(startTimeTextField);
 
-		changeSchedulePanel.add(new JLabel("End Time:"));
+		changeSchedulePanel.add(new JLabel("End Time(HH:MM):"));
 		endTimeTextField = new JTextField();
 		changeSchedulePanel.add(endTimeTextField);
 
