@@ -1,8 +1,16 @@
 package grpc.services.service2;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceInfo;
 
 import grpc.services.schedule.Schedule;
 import grpc.services.service2.ScheduleServiceGrpc.ScheduleServiceImplBase;
@@ -14,42 +22,48 @@ import io.grpc.stub.StreamObserver;
 public class Service2 extends ScheduleServiceImplBase {
 
 	private List<Schedule> schedules = new ArrayList<>();
-	
+
 	public Service2() {
-        // Add some schedules in advance to the schedules list
-        schedules.add(Schedule.newBuilder()
-                .setName("john")
-                .setPosition("floor-staff")
-                .setDate("2023-04-10")
-                .setStartTime("09:00")
-                .setEndTime("17:00")
-                .build());
-        schedules.add(Schedule.newBuilder()
-                .setName("jane")
-                .setPosition("manager")
-                .setDate("2023-04-10")
-                .setStartTime("10:00")
-                .setEndTime("18:00")
-                .build());
-        schedules.add(Schedule.newBuilder()
-                .setName("bob")
-                .setPosition("cashier")
-                .setDate("2023-04-11")
-                .setStartTime("11:00")
-                .setEndTime("19:00")
-                .build());
-    }
+		// Add some schedules in advance to the schedules list
+		schedules.add(Schedule.newBuilder().setName("john").setPosition("floor-staff").setDate("2023-04-10")
+				.setStartTime("09:00").setEndTime("17:00").build());
+		schedules.add(Schedule.newBuilder().setName("jane").setPosition("manager").setDate("2023-04-10")
+				.setStartTime("10:00").setEndTime("18:00").build());
+		schedules.add(Schedule.newBuilder().setName("bob").setPosition("cashier").setDate("2023-04-11")
+				.setStartTime("11:00").setEndTime("19:00").build());
+	}
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Service2 service2 = new Service2();
 
 		int port = 3031;
 
+		JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
 		Server server = ServerBuilder.forPort(port).addService(service2).build().start();
 
-		System.out.println("Service-2 started, listening on " + port);
-
 		server.awaitTermination();
+
+		// Register a service
+		ServiceInfo serviceInfo = ServiceInfo.create("_date._tcp.local.", "date", port,
+				"Date Server will give you the current date");
+		jmdns.registerService(serviceInfo);
+		System.out.println("Starting the Date Server loop " + "\nService-2 started, listening on \" + port");
+
+		ServerSocket listener = new ServerSocket(3030);
+		try {
+			while (true) {
+				Socket socket = listener.accept();
+				try {
+					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+					out.println(new Date().toString());
+				} finally {
+					socket.close();
+				}
+			}
+		} finally {
+			listener.close();
+		}
 	}
 
 	@Override

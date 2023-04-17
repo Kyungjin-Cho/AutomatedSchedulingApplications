@@ -1,11 +1,19 @@
 package grpc.services.service3;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceInfo;
 
 import grpc.services.schedule.Schedule;
 import grpc.services.service3.StaffAvailabilityGrpc.StaffAvailabilityImplBase;
@@ -57,11 +65,32 @@ public class Service3 extends StaffAvailabilityImplBase {
 
 		int port = 3032;
 
+		JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
 		Server server = ServerBuilder.forPort(port).addService(service3).build().start();
 
-		System.out.println("Service-3 started, listening on " + port);
-
 		server.awaitTermination();
+
+		// Register a service
+		ServiceInfo serviceInfo = ServiceInfo.create("_date._tcp.local.", "date", port,
+				"Date Server will give you the current date");
+		jmdns.registerService(serviceInfo);
+		System.out.println("Starting the Date Server loop " + "\nService-2 started, listening on \" + port");
+
+		ServerSocket listener = new ServerSocket(3030);
+		try {
+			while (true) {
+				Socket socket = listener.accept();
+				try {
+					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+					out.println(new Date().toString());
+				} finally {
+					socket.close();
+				}
+			}
+		} finally {
+			listener.close();
+		}
 	}
 
 	@Override
