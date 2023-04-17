@@ -1,11 +1,7 @@
 package grpc.services.service1;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,38 +17,23 @@ import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 
 public class Service1 extends ScheduleServiceImplBase {
-
+	static int port = 3030;
 	private boolean loginSuccess = false;
 
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Service1 service1 = new Service1();
 
-		int port = 3030;
-		JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-
-		Server server = ServerBuilder.forPort(port).addService(service1).build().start();
-
-		server.awaitTermination();
-
-		// Register a service
-		ServiceInfo serviceInfo = ServiceInfo.create("_date._tcp.local.", "date", port,
-				"Date Server will give you the current date");
-		jmdns.registerService(serviceInfo);
-		System.out.println("Starting the Date Server loop " + "\nService-2 started, listening on \" + port");
-
-		ServerSocket listener = new ServerSocket(3030);
+		Server server;
 		try {
-			while (true) {
-				Socket socket = listener.accept();
-				try {
-					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-					out.println(new Date().toString());
-				} finally {
-					socket.close();
-				}
-			}
-		} finally {
-			listener.close();
+			server = ServerBuilder.forPort(port).addService(service1).build().start();
+			System.out.println("Server started....");
+			testJMDNS();
+			server.awaitTermination();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
 
 	}
@@ -126,6 +107,26 @@ public class Service1 extends ScheduleServiceImplBase {
 
 		// Check if the supplied username and position match any of the registered users
 		return registeredUsers.containsKey(username) && registeredUsers.get(username).equals(position);
+	}
+
+	public static void testJMDNS() {
+		try {
+			// Create a JmDNS instance
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
+			// Register a service
+			ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "example", port, "path=index.html");
+			jmdns.registerService(serviceInfo);
+
+			// Wait a bit
+			Thread.sleep(20000);
+
+			// Unregister all services
+			// jmdns.unregisterAllServices();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 
 }
