@@ -23,6 +23,7 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel loginPanel;
 	private JPanel registerPanel;
+	private JFrame frame;
 
 	private JTextField usernameField;
 	private JTextField userPositionField;
@@ -36,13 +37,16 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 	private JButton addScheduleButton;
 
 	private static ScheduleServiceGrpc.ScheduleServiceBlockingStub scheduleStub;
-	private ManagedChannel channel;
+	private static ManagedChannel channel;
 
-	static String host = "_http._tcp.local.";// = "localhost";
-	static int port;// = 3030;
-	static String resolvedIP;
+	private static String host = "_http._tcp.local.";// = "localhost";
+	private static int port;// = 3030;
+	private static String resolvedIP;
 
 	public Service1ClientGUI() {
+		frame = new JFrame("Service1 Client");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
 		setTitle("Schedule App");
 		setSize(400, 300);
 
@@ -109,28 +113,23 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 		registerPanel.add(new JLabel("End Time(HH:MM): "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(endTimeField, registerConstraints);
+
 		addScheduleButton = new JButton("Add Schedule");
 		addScheduleButton.addActionListener(this);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 5;
 		registerConstraints.gridwidth = 2;
 		registerPanel.add(addScheduleButton, registerConstraints);
-
-		// Set initial visibility of panels
-		loginPanel.setVisible(true);
-		registerPanel.setVisible(false);
-
-		// Add panels to JFrame
+		
+		
+		frame.add(loginPanel); // Add login panel to frame initially
+		// Add panels to main frame
 		setLayout(new BorderLayout());
-		add(loginPanel, BorderLayout.CENTER);
-		add(registerPanel, BorderLayout.SOUTH);
+		add(loginPanel, BorderLayout.NORTH);
+		add(registerPanel, BorderLayout.CENTER);
 
-		// Add window listener to close gRPC channel when window is closed
-		addWindowListener(new WindowAdapter() {
-			public void windowClosing(WindowEvent e) {
-				channel.shutdownNow();
-			}
-		});
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
 	}
 
 	@Override
@@ -181,70 +180,43 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 			}
 		}
 	}
+	
+	public void createAndShowGUI() {
+        frame.pack();
+        frame.setVisible(true);
+    }
 
 	public static void main(String[] args) {
-		testClientJMDNS();
-
-		ManagedChannel channel = ManagedChannelBuilder.forAddress(resolvedIP, port).usePlaintext().build();
-		scheduleStub = ScheduleServiceGrpc.newBlockingStub(channel);
-
+		// Get the service information using JmDNS
 		try {
-			SwingUtilities.invokeLater(new Runnable() {
-				public void run() {
-					Service1ClientGUI app = new Service1ClientGUI();
-					app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					app.setVisible(true);
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			jmdns.addServiceListener(host, new ServiceListener() {
+				@Override
+				public void serviceResolved(ServiceEvent event) {
+					ServiceInfo info = event.getInfo();
+					System.out.println("Service resolved: " + info);
+					resolvedIP = info.getHostAddresses()[0];
+					port = info.getPort();
+					channel = ManagedChannelBuilder.forAddress(resolvedIP, port).usePlaintext().build();
+					scheduleStub = ScheduleServiceGrpc.newBlockingStub(channel);
+				}
+
+				@Override
+				public void serviceRemoved(ServiceEvent event) {
+					System.out.println("Service removed: " + event.getInfo());
+				}
+
+				@Override
+				public void serviceAdded(ServiceEvent event) {
+					System.out.println("Service added: " + event.getInfo());
 				}
 			});
-
-		} catch (StatusRuntimeException e) {
-			e.getStatus();
-		} finally {
-			try {
-				channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-
-	}
-
-	private static class SampleListener implements ServiceListener {
-		public void serviceAdded(ServiceEvent event) {
-			System.out.println("Service added: " + event.getInfo());
-		}
-
-		public void serviceRemoved(ServiceEvent event) {
-			System.out.println("Service removed: " + event.getInfo());
-		}
-
-		@SuppressWarnings("deprecation")
-		public void serviceResolved(ServiceEvent event) {
-			System.out.println("Service resolved: " + event.getInfo());
-
-			ServiceInfo info = event.getInfo();
-			port = info.getPort();
-			resolvedIP = info.getHostAddress();
-			System.out.println("IP Resolved - " + resolvedIP + ":" + port);
-		}
-	}
-
-	public static void testClientJMDNS() {
-		try {
-			// Create a JmDNS instance
-			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-
-			// Add a service listener
-			jmdns.addServiceListener(host, new SampleListener());
-
-			// Wait a bit
-			Thread.sleep(20000);
-
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			System.err.println("Error: " + e.getMessage());
 		}
 
+		// Create the GUI
+		Service1ClientGUI client = new Service1ClientGUI();
+		client.createAndShowGUI();
 	}
-
 }

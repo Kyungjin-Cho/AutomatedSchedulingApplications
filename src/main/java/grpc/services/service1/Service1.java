@@ -115,7 +115,7 @@ public class Service1 extends ScheduleServiceImplBase {
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 
 			// Register a service
-			ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "example", port, "path=index.html");
+			ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "grpc", port, "path=index.html");
 			jmdns.registerService(serviceInfo);
 
 			// Wait a bit
