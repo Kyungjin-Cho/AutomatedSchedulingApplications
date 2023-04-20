@@ -7,10 +7,15 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.InetAddress;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -127,6 +132,32 @@ public class Service3ClientGUI extends JFrame {
 				updateSchedule();
 			}
 		});
+
+		// Register JmDNS service listener to discover the service
+		try {
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			jmdns.addServiceListener("_date._tcp.local.", new ServiceListener() {
+				@Override
+				public void serviceRemoved(ServiceEvent event) {
+					System.out.println("Service removed: " + event.getInfo());
+				}
+
+				@Override
+				public void serviceAdded(ServiceEvent event) {
+					System.out.println("Service added: " + event.getInfo());
+				}
+
+				@Override
+				public void serviceResolved(ServiceEvent event) {
+					String host = event.getInfo().getHostAddresses()[0];
+					int port = event.getInfo().getPort();
+					channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+					availabilityStub = StaffAvailabilityGrpc.newStub(channel);
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void checkAvailability() {
