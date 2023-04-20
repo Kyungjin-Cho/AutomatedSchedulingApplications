@@ -1,19 +1,14 @@
 package grpc.services.service2;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
 import grpc.services.schedule.Schedule;
-import grpc.services.service1.Service1;
 import grpc.services.service2.ScheduleServiceGrpc.ScheduleServiceImplBase;
 
 import io.grpc.Server;
