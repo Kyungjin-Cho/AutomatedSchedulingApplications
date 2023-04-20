@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.GridBagConstraints;
 import java.awt.event.*;
 import java.net.InetAddress;
-import java.util.concurrent.TimeUnit;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
@@ -17,7 +16,6 @@ import grpc.services.schedule.Schedule;
 import grpc.services.service1.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.StatusRuntimeException;
 
 public class Service1ClientGUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;

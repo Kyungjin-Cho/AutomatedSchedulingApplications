@@ -10,14 +10,21 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
 
+import javax.jmdns.JmDNS;
+import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceInfo;
+import javax.jmdns.ServiceListener;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.InetAddress;
 
 public class Service2ClientGUI extends JFrame {
 	// Add the serialVersionUID field
 	private static final long serialVersionUID = 1L;
+
+	private JFrame frame;
 
 	private final JTextField nameTextField;
 	private final JTextField positionTextField;
@@ -26,11 +33,19 @@ public class Service2ClientGUI extends JFrame {
 	private final JTextField endTimeTextField;
 	private final JTextArea resultTextArea;
 
-	private ScheduleServiceGrpc.ScheduleServiceBlockingStub blockingStub;
+	private static ScheduleServiceGrpc.ScheduleServiceBlockingStub blockingStub;
+	private static ManagedChannel channel;
+
+	private static String host = "_http._tcp.local.";// = "localhost";
+	private static int port;// = 3031;
+	private static String resolvedIP;
 
 	public Service2ClientGUI() {
+		frame = new JFrame("Service2 Client");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setTitle("Service2 Client GUI");
-		setSize(500, 300);
+		setSize(500, 500);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLayout(new BorderLayout());
 
@@ -57,10 +72,11 @@ public class Service2ClientGUI extends JFrame {
 		});
 		inputPanel.add(listScheduleButton);
 
-		add(inputPanel, BorderLayout.NORTH);
+		frame.add(inputPanel, BorderLayout.NORTH);
 
 		resultTextArea = new JTextArea();
-		add(new JScrollPane(resultTextArea), BorderLayout.CENTER);
+		resultTextArea.setRows(10);
+		frame.add(new JScrollPane(resultTextArea), BorderLayout.CENTER);
 
 		JPanel changeSchedulePanel = new JPanel(new GridLayout(3, 2)); // Added panel for changing schedule
 		changeSchedulePanel.setBorder(BorderFactory.createTitledBorder("Change Schedule"));
@@ -82,7 +98,7 @@ public class Service2ClientGUI extends JFrame {
 		});
 		changeSchedulePanel.add(changeScheduleButton);
 
-		add(changeSchedulePanel, BorderLayout.SOUTH); // Add changeSchedulePanel to the bottom of the JFrame
+		frame.add(changeSchedulePanel, BorderLayout.SOUTH); // Add changeSchedulePanel to the bottom of the JFrame
 
 		blockingStub = createBlockingStub("localhost", 3031);
 	}
@@ -165,13 +181,42 @@ public class Service2ClientGUI extends JFrame {
 		return ScheduleServiceGrpc.newStub(channel);
 	}
 
+	public void createAndShowGUI() {
+		frame.pack();
+		frame.setVisible(true);
+	}
+
 	public static void main(String[] args) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run() {
-				Service2ClientGUI app = new Service2ClientGUI();
-				app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				app.setVisible(true);
-			}
-		});
+		// Get the service information using JmDNS
+		try {
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			jmdns.addServiceListener(host, new ServiceListener() {
+				@Override
+				public void serviceResolved(ServiceEvent event) {
+					ServiceInfo info = event.getInfo();
+					System.out.println("Service resolved: " + info);
+					resolvedIP = info.getHostAddresses()[0];
+					port = info.getPort();
+					channel = ManagedChannelBuilder.forAddress(resolvedIP, port).usePlaintext().build();
+					blockingStub = ScheduleServiceGrpc.newBlockingStub(channel);
+				}
+
+				@Override
+				public void serviceRemoved(ServiceEvent event) {
+					System.out.println("Service removed: " + event.getInfo());
+				}
+
+				@Override
+				public void serviceAdded(ServiceEvent event) {
+					System.out.println("Service added: " + event.getInfo());
+				}
+			});
+		} catch (Exception e) {
+			System.err.println("Error: " + e.getMessage());
+		}
+
+		// Create the GUI
+		Service2ClientGUI client = new Service2ClientGUI();
+		client.createAndShowGUI();
 	}
 }
