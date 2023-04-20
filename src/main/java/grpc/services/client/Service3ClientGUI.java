@@ -9,6 +9,7 @@ import io.grpc.stub.StreamObserver;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
+import javax.jmdns.ServiceInfo;
 import javax.jmdns.ServiceListener;
 import javax.swing.*;
 import java.awt.*;
@@ -24,7 +25,6 @@ public class Service3ClientGUI extends JFrame {
 	// Add the serialVersionUID field
 	private static final long serialVersionUID = 1L;
 
-	private StaffAvailabilityStub availabilityStub;
 	private JTextField nameTextField;
 	private JTextField positionTextField;
 	private JTextField startDateTextField;
@@ -37,7 +37,13 @@ public class Service3ClientGUI extends JFrame {
 	private JPanel updateSchedulePanel;
 	private JFrame checkAvailabilityFrame;
 	private JFrame updateScheduleFrame;
-	private ManagedChannel channel;
+
+	private static StaffAvailabilityStub availabilityStub;
+	private static ManagedChannel channel;
+
+	private static String host = "_http._tcp.local.";// = "localhost";
+	private static int port;// = 3032;
+	private static String resolvedIP;
 
 	public Service3ClientGUI() {
 		// Set up the gRPC channel
@@ -133,31 +139,6 @@ public class Service3ClientGUI extends JFrame {
 			}
 		});
 
-		// Register JmDNS service listener to discover the service
-		try {
-			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-			jmdns.addServiceListener("_date._tcp.local.", new ServiceListener() {
-				@Override
-				public void serviceRemoved(ServiceEvent event) {
-					System.out.println("Service removed: " + event.getInfo());
-				}
-
-				@Override
-				public void serviceAdded(ServiceEvent event) {
-					System.out.println("Service added: " + event.getInfo());
-				}
-
-				@Override
-				public void serviceResolved(ServiceEvent event) {
-					String host = event.getInfo().getHostAddresses()[0];
-					int port = event.getInfo().getPort();
-					channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-					availabilityStub = StaffAvailabilityGrpc.newStub(channel);
-				}
-			});
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void checkAvailability() {
@@ -289,7 +270,7 @@ public class Service3ClientGUI extends JFrame {
 	}
 
 	public void setAvailabilityStub(StaffAvailabilityStub availabilityStub) {
-		this.availabilityStub = availabilityStub;
+		Service3ClientGUI.availabilityStub = availabilityStub;
 	}
 
 	// Method to get the gRPC channel
@@ -302,5 +283,33 @@ public class Service3ClientGUI extends JFrame {
 			Service3ClientGUI clientGUI = new Service3ClientGUI();
 			clientGUI.setVisible(true);
 		});
+
+		// Register JmDNS service listener to discover the service
+		try {
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			jmdns.addServiceListener(host, new ServiceListener() {
+				@Override
+				public void serviceRemoved(ServiceEvent event) {
+					System.out.println("Service removed: " + event.getInfo());
+				}
+
+				@Override
+				public void serviceAdded(ServiceEvent event) {
+					System.out.println("Service added: " + event.getInfo());
+				}
+
+				@Override
+				public void serviceResolved(ServiceEvent event) {
+					ServiceInfo info = event.getInfo();
+					System.out.println("Service resolved: " + info);
+					resolvedIP = info.getHostAddresses()[0];
+					port = info.getPort();
+					channel = ManagedChannelBuilder.forAddress(resolvedIP, port).usePlaintext().build();
+					availabilityStub = StaffAvailabilityGrpc.newStub(channel);
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 }

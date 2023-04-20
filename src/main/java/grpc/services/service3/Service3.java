@@ -22,6 +22,7 @@ import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
 
 public class Service3 extends StaffAvailabilityImplBase {
+	static int port = 3032;
 
 	private List<Schedule> schedules = new ArrayList<>();
 
@@ -63,34 +64,19 @@ public class Service3 extends StaffAvailabilityImplBase {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Service3 service3 = new Service3();
 
-		int port = 3032;
-
-		JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-
-		Server server = ServerBuilder.forPort(port).addService(service3).build().start();
-
-		server.awaitTermination();
-
-		// Register a service
-		ServiceInfo serviceInfo = ServiceInfo.create("_date._tcp.local.", "date", port,
-				"Date Server will give you the current date");
-		jmdns.registerService(serviceInfo);
-		System.out.println("Starting the Date Server loop " + "\nService-2 started, listening on \" + port");
-
-		ServerSocket listener = new ServerSocket(3030);
+		Server server;
 		try {
-			while (true) {
-				Socket socket = listener.accept();
-				try {
-					PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
-					out.println(new Date().toString());
-				} finally {
-					socket.close();
-				}
-			}
-		} finally {
-			listener.close();
+			server = ServerBuilder.forPort(port).addService(service3).build().start();
+			System.out.println("Server started....");
+			testJMDNS();
+			server.awaitTermination();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
+
 	}
 
 	@Override
@@ -198,5 +184,25 @@ public class Service3 extends StaffAvailabilityImplBase {
 
 		return (scheduleDate.isEqual(start) || scheduleDate.isAfter(start))
 				&& (scheduleDate.isEqual(end) || scheduleDate.isBefore(end));
+	}
+
+	public static void testJMDNS() {
+		try {
+			// Create a JmDNS instance
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+
+			// Register a service
+			ServiceInfo serviceInfo = ServiceInfo.create("_http._tcp.local.", "grpc", port, "path=index.html");
+			jmdns.registerService(serviceInfo);
+
+			// Wait a bit
+			Thread.sleep(20000);
+
+			// Unregister all services
+			// jmdns.unregisterAllServices();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 }
