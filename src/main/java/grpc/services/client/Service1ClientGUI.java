@@ -1,5 +1,6 @@
 package grpc.services.client;
 
+//Import required libraries
 import java.awt.*;
 
 import java.awt.GridBagConstraints;
@@ -56,19 +57,22 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 		loginConstraints.anchor = GridBagConstraints.CENTER;
 
 		loginPanel.setBorder(BorderFactory.createTitledBorder("Login"));
-
+		
+		// Add username field and label to login panel
 		usernameField = new JTextField(10);
 		loginPanel.add(new JLabel("Username: "), loginConstraints);
 		loginConstraints.gridx = 1;
 		loginPanel.add(usernameField, loginConstraints);
-
+		
+		// Add user position field and label to login panel
 		userPositionField = new JTextField(10);
 		loginConstraints.gridx = 0;
 		loginConstraints.gridy = 1;
 		loginPanel.add(new JLabel("Position: "), loginConstraints);
 		loginConstraints.gridx = 1;
 		loginPanel.add(userPositionField, loginConstraints);
-
+		
+		// Add login button to login panel
 		loginButton = new JButton("Login");
 		loginButton.addActionListener(this);
 		loginConstraints.gridx = 0;
@@ -83,35 +87,46 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 		registerConstraints.gridy = 0;
 		registerConstraints.anchor = GridBagConstraints.CENTER;
 		registerPanel.setBorder(BorderFactory.createTitledBorder("Register Schedule"));
+		
+		// Add name field and label to register panel
 		nameField = new JTextField(10);
 		registerPanel.add(new JLabel("Name: "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(nameField, registerConstraints);
+		
+		// Add position field and label to register panel
 		positionField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 1;
 		registerPanel.add(new JLabel("Position: "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(positionField, registerConstraints);
+		
+		// Add date field and label to register panel
 		dateField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 2;
 		registerPanel.add(new JLabel("Date(yyyy-mm-dd): "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(dateField, registerConstraints);
+		
+		// Add start time field and label to register panel
 		startTimeField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 3;
 		registerPanel.add(new JLabel("Start Time(HH:MM): "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(startTimeField, registerConstraints);
+		
+		// Add end time field and label to register panel
 		endTimeField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 4;
 		registerPanel.add(new JLabel("End Time(HH:MM): "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(endTimeField, registerConstraints);
-
+		
+		// Add add schedule button to register panel
 		addScheduleButton = new JButton("Add Schedule");
 		addScheduleButton.addActionListener(this);
 		registerConstraints.gridx = 0;
@@ -119,8 +134,9 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 		registerConstraints.gridwidth = 2;
 		registerPanel.add(addScheduleButton, registerConstraints);
 		
+		// Add login panel to frame initially
+		frame.add(loginPanel);
 		
-		frame.add(loginPanel); // Add login panel to frame initially
 		// Add panels to main frame
 		setLayout(new BorderLayout());
 		add(loginPanel, BorderLayout.NORTH);
@@ -219,7 +235,7 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 			System.err.println("Error: " + e.getMessage());
 		}
 
-		// Create the GUI
+		// Create Service1ClientGUI instance
 		Service1ClientGUI client = new Service1ClientGUI();
 		client.createAndShowGUI();
 	}
