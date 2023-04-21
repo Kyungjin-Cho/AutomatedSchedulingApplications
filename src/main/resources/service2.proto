@@ -1,38 +1,46 @@
+// Protocol Buffer file for the 'service2' service
 syntax = "proto3";
 
-// Options for the GRPC
+// Options for generating Java files with multiple files, specifying the Java package, and setting the outer class name
 option java_multiple_files = true;
 option java_package = "grpc.services.service2";
 option java_outer_classname = "Service2Impl";
 
+// Package name for the 'service2' service
 package service2;
 
+// Importing the 'schedule' service definition from another Proto file
 import "schedule.proto";
 
+// Service Definition for the 'ScheduleService'
 service ScheduleService {
-  rpc listSchedule(ScheduleListRequest) returns (stream ScheduleListResponse) {}
-  rpc changeSchedule(stream ScheduleChangeRequest) returns (ScheduleChangeResponse) {}
+rpc listSchedule(ScheduleListRequest) returns (stream ScheduleListResponse) {} // RPC method for listing schedules
+rpc changeSchedule(stream ScheduleChangeRequest) returns (ScheduleChangeResponse) {} // RPC method for changing schedules
 }
 
+// Definition of the 'ScheduleListRequest' message with its fields
 message ScheduleListRequest {
-  string name = 1;
-  string position = 2;
-  string date = 3;
+string name = 1; // Field for the name for listing schedules
+string position = 2; // Field for the position for listing schedules
+string date = 3; // Field for the date for listing schedules
 }
 
+// Definition of the 'ScheduleListResponse' message with its fields
 message ScheduleListResponse {
-  repeated schedule.Schedule schedule = 1;
+repeated schedule.Schedule schedule = 1; // Field for the list of schedules
 }
 
+// Definition of the 'ScheduleChangeRequest' message with its fields
 message ScheduleChangeRequest {
-  string name = 1;
-  string position = 2;
-  string date = 3;
-  string start_time = 4;
-  string end_time = 5;
+string name = 1; // Field for the name for changing schedules
+string position = 2; // Field for the position for changing schedules
+string date = 3; // Field for the date for changing schedules
+string start_time = 4; // Field for the start time for changing schedules
+string end_time = 5; // Field for the end time for changing schedules
 }
 
+// Definition of the 'ScheduleChangeResponse' message with its fields
 message ScheduleChangeResponse {
-  bool success = 1;
-  string message = 2;
+bool success = 1; // Field indicating if the schedule change is successful
+string message = 2; // Field containing the response message for the schedule change
 }

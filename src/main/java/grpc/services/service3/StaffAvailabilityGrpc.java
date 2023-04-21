@@ -17,7 +17,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
- * Service Definition
+ * Service Definition for the 'StaffAvailability' service
  * </pre>
  */
 @javax.annotation.Generated(
@@ -119,15 +119,12 @@ public final class StaffAvailabilityGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'StaffAvailability' service
    * </pre>
    */
   public static abstract class StaffAvailabilityImplBase implements io.grpc.BindableService {
 
     /**
-     * <pre>
-     * Bidirectional RPC for checking staff availability and working hours
-     * </pre>
      */
     public io.grpc.stub.StreamObserver<grpc.services.service3.AvailabilityRequest> checkAvailability(
         io.grpc.stub.StreamObserver<grpc.services.service3.AvailabilityResponse> responseObserver) {
@@ -135,9 +132,6 @@ public final class StaffAvailabilityGrpc {
     }
 
     /**
-     * <pre>
-     * Bidirectional RPC for updating staff schedule
-     * </pre>
      */
     public io.grpc.stub.StreamObserver<grpc.services.service3.UpdateRequest> updateSchedule(
         io.grpc.stub.StreamObserver<grpc.services.service3.UpdateResponse> responseObserver) {
@@ -166,7 +160,7 @@ public final class StaffAvailabilityGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'StaffAvailability' service
    * </pre>
    */
   public static final class StaffAvailabilityStub extends io.grpc.stub.AbstractStub<StaffAvailabilityStub> {
@@ -186,9 +180,6 @@ public final class StaffAvailabilityGrpc {
     }
 
     /**
-     * <pre>
-     * Bidirectional RPC for checking staff availability and working hours
-     * </pre>
      */
     public io.grpc.stub.StreamObserver<grpc.services.service3.AvailabilityRequest> checkAvailability(
         io.grpc.stub.StreamObserver<grpc.services.service3.AvailabilityResponse> responseObserver) {
@@ -197,9 +188,6 @@ public final class StaffAvailabilityGrpc {
     }
 
     /**
-     * <pre>
-     * Bidirectional RPC for updating staff schedule
-     * </pre>
      */
     public io.grpc.stub.StreamObserver<grpc.services.service3.UpdateRequest> updateSchedule(
         io.grpc.stub.StreamObserver<grpc.services.service3.UpdateResponse> responseObserver) {
@@ -210,7 +198,7 @@ public final class StaffAvailabilityGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'StaffAvailability' service
    * </pre>
    */
   public static final class StaffAvailabilityBlockingStub extends io.grpc.stub.AbstractStub<StaffAvailabilityBlockingStub> {
@@ -232,7 +220,7 @@ public final class StaffAvailabilityGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'StaffAvailability' service
    * </pre>
    */
   public static final class StaffAvailabilityFutureStub extends io.grpc.stub.AbstractStub<StaffAvailabilityFutureStub> {

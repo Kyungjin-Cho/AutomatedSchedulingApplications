@@ -8,15 +8,27 @@ public interface ScheduleChangeResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field indicating if the schedule change is successful
+   * </pre>
+   *
    * <code>bool success = 1;</code>
    */
   boolean getSuccess();
 
   /**
+   * <pre>
+   * Field containing the response message for the schedule change
+   * </pre>
+   *
    * <code>string message = 2;</code>
    */
   java.lang.String getMessage();
   /**
+   * <pre>
+   * Field containing the response message for the schedule change
+   * </pre>
+   *
    * <code>string message = 2;</code>
    */
   com.google.protobuf.ByteString

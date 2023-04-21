@@ -4,6 +4,10 @@
 package grpc.services.service3;
 
 /**
+ * <pre>
+ * Definition of the 'AvailabilityResponse' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service3.AvailabilityResponse}
  */
 public  final class AvailabilityResponse extends
@@ -102,6 +106,10 @@ private static final long serialVersionUID = 0L;
   public static final int IS_AVAILABLE_FIELD_NUMBER = 1;
   private boolean isAvailable_;
   /**
+   * <pre>
+   * Field indicating if staff is available during the specified time period
+   * </pre>
+   *
    * <code>bool is_available = 1;</code>
    */
   public boolean getIsAvailable() {
@@ -111,6 +119,10 @@ private static final long serialVersionUID = 0L;
   public static final int WORKING_HOURS_FIELD_NUMBER = 2;
   private int workingHours_;
   /**
+   * <pre>
+   * Field for the working hours of the staff during the specified time period
+   * </pre>
+   *
    * <code>int32 working_hours = 2;</code>
    */
   public int getWorkingHours() {
@@ -120,18 +132,30 @@ private static final long serialVersionUID = 0L;
   public static final int SCHEDULE_FIELD_NUMBER = 3;
   private grpc.services.schedule.Schedule schedule_;
   /**
+   * <pre>
+   * Field containing the schedule of the staff during the specified time period
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 3;</code>
    */
   public boolean hasSchedule() {
     return schedule_ != null;
   }
   /**
+   * <pre>
+   * Field containing the schedule of the staff during the specified time period
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 3;</code>
    */
   public grpc.services.schedule.Schedule getSchedule() {
     return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
   }
   /**
+   * <pre>
+   * Field containing the schedule of the staff during the specified time period
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 3;</code>
    */
   public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
@@ -323,6 +347,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'AvailabilityResponse' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service3.AvailabilityResponse}
    */
   public static final class Builder extends
@@ -491,12 +519,20 @@ private static final long serialVersionUID = 0L;
 
     private boolean isAvailable_ ;
     /**
+     * <pre>
+     * Field indicating if staff is available during the specified time period
+     * </pre>
+     *
      * <code>bool is_available = 1;</code>
      */
     public boolean getIsAvailable() {
       return isAvailable_;
     }
     /**
+     * <pre>
+     * Field indicating if staff is available during the specified time period
+     * </pre>
+     *
      * <code>bool is_available = 1;</code>
      */
     public Builder setIsAvailable(boolean value) {
@@ -506,6 +542,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field indicating if staff is available during the specified time period
+     * </pre>
+     *
      * <code>bool is_available = 1;</code>
      */
     public Builder clearIsAvailable() {
@@ -517,12 +557,20 @@ private static final long serialVersionUID = 0L;
 
     private int workingHours_ ;
     /**
+     * <pre>
+     * Field for the working hours of the staff during the specified time period
+     * </pre>
+     *
      * <code>int32 working_hours = 2;</code>
      */
     public int getWorkingHours() {
       return workingHours_;
     }
     /**
+     * <pre>
+     * Field for the working hours of the staff during the specified time period
+     * </pre>
+     *
      * <code>int32 working_hours = 2;</code>
      */
     public Builder setWorkingHours(int value) {
@@ -532,6 +580,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the working hours of the staff during the specified time period
+     * </pre>
+     *
      * <code>int32 working_hours = 2;</code>
      */
     public Builder clearWorkingHours() {
@@ -545,12 +597,20 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> scheduleBuilder_;
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public boolean hasSchedule() {
       return scheduleBuilder_ != null || schedule_ != null;
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public grpc.services.schedule.Schedule getSchedule() {
@@ -561,6 +621,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public Builder setSchedule(grpc.services.schedule.Schedule value) {
@@ -577,6 +641,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public Builder setSchedule(
@@ -591,6 +659,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public Builder mergeSchedule(grpc.services.schedule.Schedule value) {
@@ -609,6 +681,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public Builder clearSchedule() {
@@ -623,6 +699,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public grpc.services.schedule.Schedule.Builder getScheduleBuilder() {
@@ -631,6 +711,10 @@ private static final long serialVersionUID = 0L;
       return getScheduleFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
@@ -642,6 +726,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the schedule of the staff during the specified time period
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 3;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<

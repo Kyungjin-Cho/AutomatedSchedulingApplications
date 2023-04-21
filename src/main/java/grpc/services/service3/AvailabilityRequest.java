@@ -4,6 +4,10 @@
 package grpc.services.service3;
 
 /**
+ * <pre>
+ * Definition of the 'AvailabilityRequest' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service3.AvailabilityRequest}
  */
 public  final class AvailabilityRequest extends
@@ -105,6 +109,10 @@ private static final long serialVersionUID = 0L;
   public static final int START_DATE_FIELD_NUMBER = 1;
   private volatile java.lang.Object startDate_;
   /**
+   * <pre>
+   * Field for the start date for checking staff availability
+   * </pre>
+   *
    * <code>string start_date = 1;</code>
    */
   public java.lang.String getStartDate() {
@@ -120,6 +128,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field for the start date for checking staff availability
+   * </pre>
+   *
    * <code>string start_date = 1;</code>
    */
   public com.google.protobuf.ByteString
@@ -139,6 +151,10 @@ private static final long serialVersionUID = 0L;
   public static final int END_DATE_FIELD_NUMBER = 2;
   private volatile java.lang.Object endDate_;
   /**
+   * <pre>
+   * Field for the end date for checking staff availability
+   * </pre>
+   *
    * <code>string end_date = 2;</code>
    */
   public java.lang.String getEndDate() {
@@ -154,6 +170,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field for the end date for checking staff availability
+   * </pre>
+   *
    * <code>string end_date = 2;</code>
    */
   public com.google.protobuf.ByteString
@@ -173,6 +193,10 @@ private static final long serialVersionUID = 0L;
   public static final int POSITION_FIELD_NUMBER = 3;
   private volatile java.lang.Object position_;
   /**
+   * <pre>
+   * Field for the position for checking staff availability
+   * </pre>
+   *
    * <code>string position = 3;</code>
    */
   public java.lang.String getPosition() {
@@ -188,6 +212,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field for the position for checking staff availability
+   * </pre>
+   *
    * <code>string position = 3;</code>
    */
   public com.google.protobuf.ByteString
@@ -207,6 +235,10 @@ private static final long serialVersionUID = 0L;
   public static final int NAME_FIELD_NUMBER = 4;
   private volatile java.lang.Object name_;
   /**
+   * <pre>
+   * Field for the name for checking staff availability
+   * </pre>
+   *
    * <code>string name = 4;</code>
    */
   public java.lang.String getName() {
@@ -222,6 +254,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field for the name for checking staff availability
+   * </pre>
+   *
    * <code>string name = 4;</code>
    */
   public com.google.protobuf.ByteString
@@ -424,6 +460,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'AvailabilityRequest' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service3.AvailabilityRequest}
    */
   public static final class Builder extends
@@ -594,6 +634,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object startDate_ = "";
     /**
+     * <pre>
+     * Field for the start date for checking staff availability
+     * </pre>
+     *
      * <code>string start_date = 1;</code>
      */
     public java.lang.String getStartDate() {
@@ -609,6 +653,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the start date for checking staff availability
+     * </pre>
+     *
      * <code>string start_date = 1;</code>
      */
     public com.google.protobuf.ByteString
@@ -625,6 +673,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the start date for checking staff availability
+     * </pre>
+     *
      * <code>string start_date = 1;</code>
      */
     public Builder setStartDate(
@@ -638,6 +690,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the start date for checking staff availability
+     * </pre>
+     *
      * <code>string start_date = 1;</code>
      */
     public Builder clearStartDate() {
@@ -647,6 +703,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the start date for checking staff availability
+     * </pre>
+     *
      * <code>string start_date = 1;</code>
      */
     public Builder setStartDateBytes(
@@ -663,6 +723,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object endDate_ = "";
     /**
+     * <pre>
+     * Field for the end date for checking staff availability
+     * </pre>
+     *
      * <code>string end_date = 2;</code>
      */
     public java.lang.String getEndDate() {
@@ -678,6 +742,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the end date for checking staff availability
+     * </pre>
+     *
      * <code>string end_date = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -694,6 +762,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the end date for checking staff availability
+     * </pre>
+     *
      * <code>string end_date = 2;</code>
      */
     public Builder setEndDate(
@@ -707,6 +779,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the end date for checking staff availability
+     * </pre>
+     *
      * <code>string end_date = 2;</code>
      */
     public Builder clearEndDate() {
@@ -716,6 +792,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the end date for checking staff availability
+     * </pre>
+     *
      * <code>string end_date = 2;</code>
      */
     public Builder setEndDateBytes(
@@ -732,6 +812,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object position_ = "";
     /**
+     * <pre>
+     * Field for the position for checking staff availability
+     * </pre>
+     *
      * <code>string position = 3;</code>
      */
     public java.lang.String getPosition() {
@@ -747,6 +831,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the position for checking staff availability
+     * </pre>
+     *
      * <code>string position = 3;</code>
      */
     public com.google.protobuf.ByteString
@@ -763,6 +851,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the position for checking staff availability
+     * </pre>
+     *
      * <code>string position = 3;</code>
      */
     public Builder setPosition(
@@ -776,6 +868,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the position for checking staff availability
+     * </pre>
+     *
      * <code>string position = 3;</code>
      */
     public Builder clearPosition() {
@@ -785,6 +881,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the position for checking staff availability
+     * </pre>
+     *
      * <code>string position = 3;</code>
      */
     public Builder setPositionBytes(
@@ -801,6 +901,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object name_ = "";
     /**
+     * <pre>
+     * Field for the name for checking staff availability
+     * </pre>
+     *
      * <code>string name = 4;</code>
      */
     public java.lang.String getName() {
@@ -816,6 +920,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the name for checking staff availability
+     * </pre>
+     *
      * <code>string name = 4;</code>
      */
     public com.google.protobuf.ByteString
@@ -832,6 +940,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the name for checking staff availability
+     * </pre>
+     *
      * <code>string name = 4;</code>
      */
     public Builder setName(
@@ -845,6 +957,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the name for checking staff availability
+     * </pre>
+     *
      * <code>string name = 4;</code>
      */
     public Builder clearName() {
@@ -854,6 +970,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the name for checking staff availability
+     * </pre>
+     *
      * <code>string name = 4;</code>
      */
     public Builder setNameBytes(

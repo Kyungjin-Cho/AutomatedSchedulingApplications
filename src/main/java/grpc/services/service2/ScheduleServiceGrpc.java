@@ -16,6 +16,9 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
+ * <pre>
+ * Service Definition for the 'ScheduleService'
+ * </pre>
  */
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.15.0)",
@@ -115,6 +118,9 @@ public final class ScheduleServiceGrpc {
   }
 
   /**
+   * <pre>
+   * Service Definition for the 'ScheduleService'
+   * </pre>
    */
   public static abstract class ScheduleServiceImplBase implements io.grpc.BindableService {
 
@@ -153,6 +159,9 @@ public final class ScheduleServiceGrpc {
   }
 
   /**
+   * <pre>
+   * Service Definition for the 'ScheduleService'
+   * </pre>
    */
   public static final class ScheduleServiceStub extends io.grpc.stub.AbstractStub<ScheduleServiceStub> {
     private ScheduleServiceStub(io.grpc.Channel channel) {
@@ -188,6 +197,9 @@ public final class ScheduleServiceGrpc {
   }
 
   /**
+   * <pre>
+   * Service Definition for the 'ScheduleService'
+   * </pre>
    */
   public static final class ScheduleServiceBlockingStub extends io.grpc.stub.AbstractStub<ScheduleServiceBlockingStub> {
     private ScheduleServiceBlockingStub(io.grpc.Channel channel) {
@@ -215,6 +227,9 @@ public final class ScheduleServiceGrpc {
   }
 
   /**
+   * <pre>
+   * Service Definition for the 'ScheduleService'
+   * </pre>
    */
   public static final class ScheduleServiceFutureStub extends io.grpc.stub.AbstractStub<ScheduleServiceFutureStub> {
     private ScheduleServiceFutureStub(io.grpc.Channel channel) {

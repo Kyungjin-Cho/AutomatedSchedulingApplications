@@ -4,6 +4,10 @@
 package grpc.services.service2;
 
 /**
+ * <pre>
+ * Definition of the 'ScheduleChangeResponse' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service2.ScheduleChangeResponse}
  */
 public  final class ScheduleChangeResponse extends
@@ -90,6 +94,10 @@ private static final long serialVersionUID = 0L;
   public static final int SUCCESS_FIELD_NUMBER = 1;
   private boolean success_;
   /**
+   * <pre>
+   * Field indicating if the schedule change is successful
+   * </pre>
+   *
    * <code>bool success = 1;</code>
    */
   public boolean getSuccess() {
@@ -99,6 +107,10 @@ private static final long serialVersionUID = 0L;
   public static final int MESSAGE_FIELD_NUMBER = 2;
   private volatile java.lang.Object message_;
   /**
+   * <pre>
+   * Field containing the response message for the schedule change
+   * </pre>
+   *
    * <code>string message = 2;</code>
    */
   public java.lang.String getMessage() {
@@ -114,6 +126,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field containing the response message for the schedule change
+   * </pre>
+   *
    * <code>string message = 2;</code>
    */
   public com.google.protobuf.ByteString
@@ -298,6 +314,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'ScheduleChangeResponse' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service2.ScheduleChangeResponse}
    */
   public static final class Builder extends
@@ -453,12 +473,20 @@ private static final long serialVersionUID = 0L;
 
     private boolean success_ ;
     /**
+     * <pre>
+     * Field indicating if the schedule change is successful
+     * </pre>
+     *
      * <code>bool success = 1;</code>
      */
     public boolean getSuccess() {
       return success_;
     }
     /**
+     * <pre>
+     * Field indicating if the schedule change is successful
+     * </pre>
+     *
      * <code>bool success = 1;</code>
      */
     public Builder setSuccess(boolean value) {
@@ -468,6 +496,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field indicating if the schedule change is successful
+     * </pre>
+     *
      * <code>bool success = 1;</code>
      */
     public Builder clearSuccess() {
@@ -479,6 +511,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object message_ = "";
     /**
+     * <pre>
+     * Field containing the response message for the schedule change
+     * </pre>
+     *
      * <code>string message = 2;</code>
      */
     public java.lang.String getMessage() {
@@ -494,6 +530,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the response message for the schedule change
+     * </pre>
+     *
      * <code>string message = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -510,6 +550,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the response message for the schedule change
+     * </pre>
+     *
      * <code>string message = 2;</code>
      */
     public Builder setMessage(
@@ -523,6 +567,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the response message for the schedule change
+     * </pre>
+     *
      * <code>string message = 2;</code>
      */
     public Builder clearMessage() {
@@ -532,6 +580,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the response message for the schedule change
+     * </pre>
+     *
      * <code>string message = 2;</code>
      */
     public Builder setMessageBytes(

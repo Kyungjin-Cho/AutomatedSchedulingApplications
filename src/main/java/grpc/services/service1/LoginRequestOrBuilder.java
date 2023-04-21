@@ -8,20 +8,36 @@ public interface LoginRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field for the name for login
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
+   * <pre>
+   * Field for the name for login
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
 
   /**
+   * <pre>
+   * Field for the position for login
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   java.lang.String getPosition();
   /**
+   * <pre>
+   * Field for the position for login
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   com.google.protobuf.ByteString

@@ -4,6 +4,10 @@
 package grpc.services.service1;
 
 /**
+ * <pre>
+ * Definition of the 'LoginResponse' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service1.LoginResponse}
  */
 public  final class LoginResponse extends
@@ -90,6 +94,10 @@ private static final long serialVersionUID = 0L;
   public static final int AUTHENTICATED_FIELD_NUMBER = 1;
   private boolean authenticated_;
   /**
+   * <pre>
+   * Field indicating if the login is authenticated
+   * </pre>
+   *
    * <code>bool authenticated = 1;</code>
    */
   public boolean getAuthenticated() {
@@ -99,6 +107,10 @@ private static final long serialVersionUID = 0L;
   public static final int LOGINMESSAGE_FIELD_NUMBER = 2;
   private volatile java.lang.Object loginMessage_;
   /**
+   * <pre>
+   * Field containing the login message
+   * </pre>
+   *
    * <code>string loginMessage = 2;</code>
    */
   public java.lang.String getLoginMessage() {
@@ -114,6 +126,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field containing the login message
+   * </pre>
+   *
    * <code>string loginMessage = 2;</code>
    */
   public com.google.protobuf.ByteString
@@ -298,6 +314,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'LoginResponse' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service1.LoginResponse}
    */
   public static final class Builder extends
@@ -453,12 +473,20 @@ private static final long serialVersionUID = 0L;
 
     private boolean authenticated_ ;
     /**
+     * <pre>
+     * Field indicating if the login is authenticated
+     * </pre>
+     *
      * <code>bool authenticated = 1;</code>
      */
     public boolean getAuthenticated() {
       return authenticated_;
     }
     /**
+     * <pre>
+     * Field indicating if the login is authenticated
+     * </pre>
+     *
      * <code>bool authenticated = 1;</code>
      */
     public Builder setAuthenticated(boolean value) {
@@ -468,6 +496,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field indicating if the login is authenticated
+     * </pre>
+     *
      * <code>bool authenticated = 1;</code>
      */
     public Builder clearAuthenticated() {
@@ -479,6 +511,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object loginMessage_ = "";
     /**
+     * <pre>
+     * Field containing the login message
+     * </pre>
+     *
      * <code>string loginMessage = 2;</code>
      */
     public java.lang.String getLoginMessage() {
@@ -494,6 +530,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the login message
+     * </pre>
+     *
      * <code>string loginMessage = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -510,6 +550,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the login message
+     * </pre>
+     *
      * <code>string loginMessage = 2;</code>
      */
     public Builder setLoginMessage(
@@ -523,6 +567,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the login message
+     * </pre>
+     *
      * <code>string loginMessage = 2;</code>
      */
     public Builder clearLoginMessage() {
@@ -532,6 +580,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the login message
+     * </pre>
+     *
      * <code>string loginMessage = 2;</code>
      */
     public Builder setLoginMessageBytes(

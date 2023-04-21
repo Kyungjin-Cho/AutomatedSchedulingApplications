@@ -8,30 +8,54 @@ public interface ScheduleListRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field for the name for listing schedules
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
+   * <pre>
+   * Field for the name for listing schedules
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
 
   /**
+   * <pre>
+   * Field for the position for listing schedules
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   java.lang.String getPosition();
   /**
+   * <pre>
+   * Field for the position for listing schedules
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   com.google.protobuf.ByteString
       getPositionBytes();
 
   /**
+   * <pre>
+   * Field for the date for listing schedules
+   * </pre>
+   *
    * <code>string date = 3;</code>
    */
   java.lang.String getDate();
   /**
+   * <pre>
+   * Field for the date for listing schedules
+   * </pre>
+   *
    * <code>string date = 3;</code>
    */
   com.google.protobuf.ByteString

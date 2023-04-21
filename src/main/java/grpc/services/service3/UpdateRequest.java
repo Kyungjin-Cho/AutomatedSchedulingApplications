@@ -4,6 +4,10 @@
 package grpc.services.service3;
 
 /**
+ * <pre>
+ * Definition of the 'UpdateRequest' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service3.UpdateRequest}
  */
 public  final class UpdateRequest extends
@@ -90,18 +94,30 @@ private static final long serialVersionUID = 0L;
   public static final int STAFF_SCHEDULE_FIELD_NUMBER = 1;
   private grpc.services.schedule.Schedule staffSchedule_;
   /**
+   * <pre>
+   * Field for the staff schedule to be updated
+   * </pre>
+   *
    * <code>.schedule.Schedule staff_schedule = 1;</code>
    */
   public boolean hasStaffSchedule() {
     return staffSchedule_ != null;
   }
   /**
+   * <pre>
+   * Field for the staff schedule to be updated
+   * </pre>
+   *
    * <code>.schedule.Schedule staff_schedule = 1;</code>
    */
   public grpc.services.schedule.Schedule getStaffSchedule() {
     return staffSchedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : staffSchedule_;
   }
   /**
+   * <pre>
+   * Field for the staff schedule to be updated
+   * </pre>
+   *
    * <code>.schedule.Schedule staff_schedule = 1;</code>
    */
   public grpc.services.schedule.ScheduleOrBuilder getStaffScheduleOrBuilder() {
@@ -270,6 +286,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'UpdateRequest' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service3.UpdateRequest}
    */
   public static final class Builder extends
@@ -428,12 +448,20 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> staffScheduleBuilder_;
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public boolean hasStaffSchedule() {
       return staffScheduleBuilder_ != null || staffSchedule_ != null;
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public grpc.services.schedule.Schedule getStaffSchedule() {
@@ -444,6 +472,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public Builder setStaffSchedule(grpc.services.schedule.Schedule value) {
@@ -460,6 +492,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public Builder setStaffSchedule(
@@ -474,6 +510,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public Builder mergeStaffSchedule(grpc.services.schedule.Schedule value) {
@@ -492,6 +532,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public Builder clearStaffSchedule() {
@@ -506,6 +550,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public grpc.services.schedule.Schedule.Builder getStaffScheduleBuilder() {
@@ -514,6 +562,10 @@ private static final long serialVersionUID = 0L;
       return getStaffScheduleFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     public grpc.services.schedule.ScheduleOrBuilder getStaffScheduleOrBuilder() {
@@ -525,6 +577,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the staff schedule to be updated
+     * </pre>
+     *
      * <code>.schedule.Schedule staff_schedule = 1;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<

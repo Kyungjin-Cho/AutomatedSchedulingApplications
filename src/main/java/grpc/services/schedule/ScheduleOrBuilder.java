@@ -8,50 +8,90 @@ public interface ScheduleOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field for the name of the schedule
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   java.lang.String getName();
   /**
+   * <pre>
+   * Field for the name of the schedule
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   com.google.protobuf.ByteString
       getNameBytes();
 
   /**
+   * <pre>
+   * Field for the position of the schedule
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   java.lang.String getPosition();
   /**
+   * <pre>
+   * Field for the position of the schedule
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   com.google.protobuf.ByteString
       getPositionBytes();
 
   /**
+   * <pre>
+   * Field for the date of the schedule
+   * </pre>
+   *
    * <code>string date = 3;</code>
    */
   java.lang.String getDate();
   /**
+   * <pre>
+   * Field for the date of the schedule
+   * </pre>
+   *
    * <code>string date = 3;</code>
    */
   com.google.protobuf.ByteString
       getDateBytes();
 
   /**
+   * <pre>
+   * Field for the start time of the schedule
+   * </pre>
+   *
    * <code>string start_time = 4;</code>
    */
   java.lang.String getStartTime();
   /**
+   * <pre>
+   * Field for the start time of the schedule
+   * </pre>
+   *
    * <code>string start_time = 4;</code>
    */
   com.google.protobuf.ByteString
       getStartTimeBytes();
 
   /**
+   * <pre>
+   * Field for the end time of the schedule
+   * </pre>
+   *
    * <code>string end_time = 5;</code>
    */
   java.lang.String getEndTime();
   /**
+   * <pre>
+   * Field for the end time of the schedule
+   * </pre>
+   *
    * <code>string end_time = 5;</code>
    */
   com.google.protobuf.ByteString

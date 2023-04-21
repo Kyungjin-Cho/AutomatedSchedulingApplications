@@ -8,40 +8,72 @@ public interface AvailabilityRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field for the start date for checking staff availability
+   * </pre>
+   *
    * <code>string start_date = 1;</code>
    */
   java.lang.String getStartDate();
   /**
+   * <pre>
+   * Field for the start date for checking staff availability
+   * </pre>
+   *
    * <code>string start_date = 1;</code>
    */
   com.google.protobuf.ByteString
       getStartDateBytes();
 
   /**
+   * <pre>
+   * Field for the end date for checking staff availability
+   * </pre>
+   *
    * <code>string end_date = 2;</code>
    */
   java.lang.String getEndDate();
   /**
+   * <pre>
+   * Field for the end date for checking staff availability
+   * </pre>
+   *
    * <code>string end_date = 2;</code>
    */
   com.google.protobuf.ByteString
       getEndDateBytes();
 
   /**
+   * <pre>
+   * Field for the position for checking staff availability
+   * </pre>
+   *
    * <code>string position = 3;</code>
    */
   java.lang.String getPosition();
   /**
+   * <pre>
+   * Field for the position for checking staff availability
+   * </pre>
+   *
    * <code>string position = 3;</code>
    */
   com.google.protobuf.ByteString
       getPositionBytes();
 
   /**
+   * <pre>
+   * Field for the name for checking staff availability
+   * </pre>
+   *
    * <code>string name = 4;</code>
    */
   java.lang.String getName();
   /**
+   * <pre>
+   * Field for the name for checking staff availability
+   * </pre>
+   *
    * <code>string name = 4;</code>
    */
   com.google.protobuf.ByteString

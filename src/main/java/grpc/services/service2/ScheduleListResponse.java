@@ -4,6 +4,10 @@
 package grpc.services.service2;
 
 /**
+ * <pre>
+ * Definition of the 'ScheduleListResponse' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service2.ScheduleListResponse}
  */
 public  final class ScheduleListResponse extends
@@ -90,12 +94,20 @@ private static final long serialVersionUID = 0L;
   public static final int SCHEDULE_FIELD_NUMBER = 1;
   private java.util.List<grpc.services.schedule.Schedule> schedule_;
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   public java.util.List<grpc.services.schedule.Schedule> getScheduleList() {
     return schedule_;
   }
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   public java.util.List<? extends grpc.services.schedule.ScheduleOrBuilder> 
@@ -103,18 +115,30 @@ private static final long serialVersionUID = 0L;
     return schedule_;
   }
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   public int getScheduleCount() {
     return schedule_.size();
   }
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   public grpc.services.schedule.Schedule getSchedule(int index) {
     return schedule_.get(index);
   }
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder(
@@ -281,6 +305,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'ScheduleListResponse' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service2.ScheduleListResponse}
    */
   public static final class Builder extends
@@ -478,6 +506,10 @@ private static final long serialVersionUID = 0L;
         grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> scheduleBuilder_;
 
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public java.util.List<grpc.services.schedule.Schedule> getScheduleList() {
@@ -488,6 +520,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public int getScheduleCount() {
@@ -498,6 +534,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public grpc.services.schedule.Schedule getSchedule(int index) {
@@ -508,6 +548,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder setSchedule(
@@ -525,6 +569,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder setSchedule(
@@ -539,6 +587,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder addSchedule(grpc.services.schedule.Schedule value) {
@@ -555,6 +607,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder addSchedule(
@@ -572,6 +628,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder addSchedule(
@@ -586,6 +646,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder addSchedule(
@@ -600,6 +664,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder addAllSchedule(
@@ -615,6 +683,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder clearSchedule() {
@@ -628,6 +700,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public Builder removeSchedule(int index) {
@@ -641,6 +717,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public grpc.services.schedule.Schedule.Builder getScheduleBuilder(
@@ -648,6 +728,10 @@ private static final long serialVersionUID = 0L;
       return getScheduleFieldBuilder().getBuilder(index);
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder(
@@ -658,6 +742,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public java.util.List<? extends grpc.services.schedule.ScheduleOrBuilder> 
@@ -669,6 +757,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public grpc.services.schedule.Schedule.Builder addScheduleBuilder() {
@@ -676,6 +768,10 @@ private static final long serialVersionUID = 0L;
           grpc.services.schedule.Schedule.getDefaultInstance());
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public grpc.services.schedule.Schedule.Builder addScheduleBuilder(
@@ -684,6 +780,10 @@ private static final long serialVersionUID = 0L;
           index, grpc.services.schedule.Schedule.getDefaultInstance());
     }
     /**
+     * <pre>
+     * Field for the list of schedules
+     * </pre>
+     *
      * <code>repeated .schedule.Schedule schedule = 1;</code>
      */
     public java.util.List<grpc.services.schedule.Schedule.Builder> 

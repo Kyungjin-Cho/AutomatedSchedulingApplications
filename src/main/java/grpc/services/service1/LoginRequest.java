@@ -4,6 +4,10 @@
 package grpc.services.service1;
 
 /**
+ * <pre>
+ * Definition of the 'LoginRequest' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service1.LoginRequest}
  */
 public  final class LoginRequest extends
@@ -91,6 +95,10 @@ private static final long serialVersionUID = 0L;
   public static final int NAME_FIELD_NUMBER = 1;
   private volatile java.lang.Object name_;
   /**
+   * <pre>
+   * Field for the name for login
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   public java.lang.String getName() {
@@ -106,6 +114,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field for the name for login
+   * </pre>
+   *
    * <code>string name = 1;</code>
    */
   public com.google.protobuf.ByteString
@@ -125,6 +137,10 @@ private static final long serialVersionUID = 0L;
   public static final int POSITION_FIELD_NUMBER = 2;
   private volatile java.lang.Object position_;
   /**
+   * <pre>
+   * Field for the position for login
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   public java.lang.String getPosition() {
@@ -140,6 +156,10 @@ private static final long serialVersionUID = 0L;
     }
   }
   /**
+   * <pre>
+   * Field for the position for login
+   * </pre>
+   *
    * <code>string position = 2;</code>
    */
   public com.google.protobuf.ByteString
@@ -322,6 +342,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'LoginRequest' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service1.LoginRequest}
    */
   public static final class Builder extends
@@ -478,6 +502,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object name_ = "";
     /**
+     * <pre>
+     * Field for the name for login
+     * </pre>
+     *
      * <code>string name = 1;</code>
      */
     public java.lang.String getName() {
@@ -493,6 +521,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the name for login
+     * </pre>
+     *
      * <code>string name = 1;</code>
      */
     public com.google.protobuf.ByteString
@@ -509,6 +541,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the name for login
+     * </pre>
+     *
      * <code>string name = 1;</code>
      */
     public Builder setName(
@@ -522,6 +558,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the name for login
+     * </pre>
+     *
      * <code>string name = 1;</code>
      */
     public Builder clearName() {
@@ -531,6 +571,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the name for login
+     * </pre>
+     *
      * <code>string name = 1;</code>
      */
     public Builder setNameBytes(
@@ -547,6 +591,10 @@ private static final long serialVersionUID = 0L;
 
     private java.lang.Object position_ = "";
     /**
+     * <pre>
+     * Field for the position for login
+     * </pre>
+     *
      * <code>string position = 2;</code>
      */
     public java.lang.String getPosition() {
@@ -562,6 +610,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the position for login
+     * </pre>
+     *
      * <code>string position = 2;</code>
      */
     public com.google.protobuf.ByteString
@@ -578,6 +630,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field for the position for login
+     * </pre>
+     *
      * <code>string position = 2;</code>
      */
     public Builder setPosition(
@@ -591,6 +647,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the position for login
+     * </pre>
+     *
      * <code>string position = 2;</code>
      */
     public Builder clearPosition() {
@@ -600,6 +660,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field for the position for login
+     * </pre>
+     *
      * <code>string position = 2;</code>
      */
     public Builder setPositionBytes(

@@ -1,15 +1,25 @@
+// Protocol Buffer file for the 'schedule' service
+
 syntax = "proto3";
 
-// Options for the GRPC
+// Options for generating Java files with multiple files and specifying the Java package
 option java_multiple_files = true;
 option java_package = "grpc.services.schedule";
 
+// Package name for the 'schedule' service
 package schedule;
 
+// Definition of the 'Schedule' message with its fields
 message Schedule {
-  string name = 1;
-  string position = 2;
-  string date = 3;
-  string start_time = 4;
-  string end_time = 5;
+string name = 1; // Field for the name of the schedule
+string position = 2; // Field for the position of the schedule
+string date = 3; // Field for the date of the schedule
+string start_time = 4; // Field for the start time of the schedule
+string end_time = 5; // Field for the end time of the schedule
 }
+
+
+
+
+
+

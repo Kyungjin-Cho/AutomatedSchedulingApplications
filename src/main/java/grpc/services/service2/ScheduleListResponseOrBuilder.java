@@ -8,24 +8,44 @@ public interface ScheduleListResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   java.util.List<grpc.services.schedule.Schedule> 
       getScheduleList();
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   grpc.services.schedule.Schedule getSchedule(int index);
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   int getScheduleCount();
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   java.util.List<? extends grpc.services.schedule.ScheduleOrBuilder> 
       getScheduleOrBuilderList();
   /**
+   * <pre>
+   * Field for the list of schedules
+   * </pre>
+   *
    * <code>repeated .schedule.Schedule schedule = 1;</code>
    */
   grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder(

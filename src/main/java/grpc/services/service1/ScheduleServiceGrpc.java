@@ -17,7 +17,7 @@ import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 /**
  * <pre>
- * Service Definition
+ * Service Definition for the 'ScheduleService'
  * </pre>
  */
 @javax.annotation.Generated(
@@ -119,7 +119,7 @@ public final class ScheduleServiceGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'ScheduleService'
    * </pre>
    */
   public static abstract class ScheduleServiceImplBase implements io.grpc.BindableService {
@@ -160,7 +160,7 @@ public final class ScheduleServiceGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'ScheduleService'
    * </pre>
    */
   public static final class ScheduleServiceStub extends io.grpc.stub.AbstractStub<ScheduleServiceStub> {
@@ -198,7 +198,7 @@ public final class ScheduleServiceGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'ScheduleService'
    * </pre>
    */
   public static final class ScheduleServiceBlockingStub extends io.grpc.stub.AbstractStub<ScheduleServiceBlockingStub> {
@@ -234,7 +234,7 @@ public final class ScheduleServiceGrpc {
 
   /**
    * <pre>
-   * Service Definition
+   * Service Definition for the 'ScheduleService'
    * </pre>
    */
   public static final class ScheduleServiceFutureStub extends io.grpc.stub.AbstractStub<ScheduleServiceFutureStub> {

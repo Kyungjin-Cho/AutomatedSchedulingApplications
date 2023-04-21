@@ -8,14 +8,26 @@ public interface ScheduleRequestOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field for the schedule to be registered
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 1;</code>
    */
   boolean hasSchedule();
   /**
+   * <pre>
+   * Field for the schedule to be registered
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 1;</code>
    */
   grpc.services.schedule.Schedule getSchedule();
   /**
+   * <pre>
+   * Field for the schedule to be registered
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 1;</code>
    */
   grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder();

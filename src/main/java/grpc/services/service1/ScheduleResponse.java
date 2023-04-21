@@ -4,6 +4,10 @@
 package grpc.services.service1;
 
 /**
+ * <pre>
+ * Definition of the 'ScheduleResponse' message with its fields
+ * </pre>
+ *
  * Protobuf type {@code service1.ScheduleResponse}
  */
 public  final class ScheduleResponse extends
@@ -96,6 +100,10 @@ private static final long serialVersionUID = 0L;
   public static final int REGISTERED_FIELD_NUMBER = 1;
   private boolean registered_;
   /**
+   * <pre>
+   * Field indicating if the schedule is registered
+   * </pre>
+   *
    * <code>bool registered = 1;</code>
    */
   public boolean getRegistered() {
@@ -105,18 +113,30 @@ private static final long serialVersionUID = 0L;
   public static final int SCHEDULE_FIELD_NUMBER = 2;
   private grpc.services.schedule.Schedule schedule_;
   /**
+   * <pre>
+   * Field containing the registered schedule
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 2;</code>
    */
   public boolean hasSchedule() {
     return schedule_ != null;
   }
   /**
+   * <pre>
+   * Field containing the registered schedule
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 2;</code>
    */
   public grpc.services.schedule.Schedule getSchedule() {
     return schedule_ == null ? grpc.services.schedule.Schedule.getDefaultInstance() : schedule_;
   }
   /**
+   * <pre>
+   * Field containing the registered schedule
+   * </pre>
+   *
    * <code>.schedule.Schedule schedule = 2;</code>
    */
   public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
@@ -297,6 +317,10 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
+   * <pre>
+   * Definition of the 'ScheduleResponse' message with its fields
+   * </pre>
+   *
    * Protobuf type {@code service1.ScheduleResponse}
    */
   public static final class Builder extends
@@ -459,12 +483,20 @@ private static final long serialVersionUID = 0L;
 
     private boolean registered_ ;
     /**
+     * <pre>
+     * Field indicating if the schedule is registered
+     * </pre>
+     *
      * <code>bool registered = 1;</code>
      */
     public boolean getRegistered() {
       return registered_;
     }
     /**
+     * <pre>
+     * Field indicating if the schedule is registered
+     * </pre>
+     *
      * <code>bool registered = 1;</code>
      */
     public Builder setRegistered(boolean value) {
@@ -474,6 +506,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field indicating if the schedule is registered
+     * </pre>
+     *
      * <code>bool registered = 1;</code>
      */
     public Builder clearRegistered() {
@@ -487,12 +523,20 @@ private static final long serialVersionUID = 0L;
     private com.google.protobuf.SingleFieldBuilderV3<
         grpc.services.schedule.Schedule, grpc.services.schedule.Schedule.Builder, grpc.services.schedule.ScheduleOrBuilder> scheduleBuilder_;
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public boolean hasSchedule() {
       return scheduleBuilder_ != null || schedule_ != null;
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public grpc.services.schedule.Schedule getSchedule() {
@@ -503,6 +547,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public Builder setSchedule(grpc.services.schedule.Schedule value) {
@@ -519,6 +567,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public Builder setSchedule(
@@ -533,6 +585,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public Builder mergeSchedule(grpc.services.schedule.Schedule value) {
@@ -551,6 +607,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public Builder clearSchedule() {
@@ -565,6 +625,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public grpc.services.schedule.Schedule.Builder getScheduleBuilder() {
@@ -573,6 +637,10 @@ private static final long serialVersionUID = 0L;
       return getScheduleFieldBuilder().getBuilder();
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     public grpc.services.schedule.ScheduleOrBuilder getScheduleOrBuilder() {
@@ -584,6 +652,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
+     * <pre>
+     * Field containing the registered schedule
+     * </pre>
+     *
      * <code>.schedule.Schedule schedule = 2;</code>
      */
     private com.google.protobuf.SingleFieldBuilderV3<

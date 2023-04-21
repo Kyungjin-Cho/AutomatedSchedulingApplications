@@ -8,19 +8,35 @@ public interface UpdateResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
+   * <pre>
+   * Field indicating if the staff schedule is updated successfully
+   * </pre>
+   *
    * <code>bool is_updated = 1;</code>
    */
   boolean getIsUpdated();
 
   /**
+   * <pre>
+   * Field containing the updated staff schedule
+   * </pre>
+   *
    * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
   boolean hasStaffSchedule();
   /**
+   * <pre>
+   * Field containing the updated staff schedule
+   * </pre>
+   *
    * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
   grpc.services.schedule.Schedule getStaffSchedule();
   /**
+   * <pre>
+   * Field containing the updated staff schedule
+   * </pre>
+   *
    * <code>.schedule.Schedule staff_schedule = 2;</code>
    */
   grpc.services.schedule.ScheduleOrBuilder getStaffScheduleOrBuilder();
