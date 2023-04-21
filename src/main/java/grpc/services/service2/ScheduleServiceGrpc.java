@@ -34,7 +34,7 @@ public final class ScheduleServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "listSchedule",
       requestType = grpc.services.service2.ScheduleListRequest.class,
       responseType = grpc.services.service2.ScheduleListResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<grpc.services.service2.ScheduleListRequest,
       grpc.services.service2.ScheduleListResponse> getListScheduleMethod() {
     io.grpc.MethodDescriptor<grpc.services.service2.ScheduleListRequest, grpc.services.service2.ScheduleListResponse> getListScheduleMethod;
@@ -43,7 +43,7 @@ public final class ScheduleServiceGrpc {
         if ((getListScheduleMethod = ScheduleServiceGrpc.getListScheduleMethod) == null) {
           ScheduleServiceGrpc.getListScheduleMethod = getListScheduleMethod = 
               io.grpc.MethodDescriptor.<grpc.services.service2.ScheduleListRequest, grpc.services.service2.ScheduleListResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "service2.ScheduleService", "listSchedule"))
               .setSampledToLocalTracing(true)
@@ -66,7 +66,7 @@ public final class ScheduleServiceGrpc {
       fullMethodName = SERVICE_NAME + '/' + "changeSchedule",
       requestType = grpc.services.service2.ScheduleChangeRequest.class,
       responseType = grpc.services.service2.ScheduleChangeResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
   public static io.grpc.MethodDescriptor<grpc.services.service2.ScheduleChangeRequest,
       grpc.services.service2.ScheduleChangeResponse> getChangeScheduleMethod() {
     io.grpc.MethodDescriptor<grpc.services.service2.ScheduleChangeRequest, grpc.services.service2.ScheduleChangeResponse> getChangeScheduleMethod;
@@ -75,7 +75,7 @@ public final class ScheduleServiceGrpc {
         if ((getChangeScheduleMethod = ScheduleServiceGrpc.getChangeScheduleMethod) == null) {
           ScheduleServiceGrpc.getChangeScheduleMethod = getChangeScheduleMethod = 
               io.grpc.MethodDescriptor.<grpc.services.service2.ScheduleChangeRequest, grpc.services.service2.ScheduleChangeResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.CLIENT_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "service2.ScheduleService", "changeSchedule"))
               .setSampledToLocalTracing(true)
@@ -127,23 +127,23 @@ public final class ScheduleServiceGrpc {
 
     /**
      */
-    public void changeSchedule(grpc.services.service2.ScheduleChangeRequest request,
+    public io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleChangeRequest> changeSchedule(
         io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleChangeResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getChangeScheduleMethod(), responseObserver);
+      return asyncUnimplementedStreamingCall(getChangeScheduleMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
             getListScheduleMethod(),
-            asyncUnaryCall(
+            asyncServerStreamingCall(
               new MethodHandlers<
                 grpc.services.service2.ScheduleListRequest,
                 grpc.services.service2.ScheduleListResponse>(
                   this, METHODID_LIST_SCHEDULE)))
           .addMethod(
             getChangeScheduleMethod(),
-            asyncUnaryCall(
+            asyncClientStreamingCall(
               new MethodHandlers<
                 grpc.services.service2.ScheduleChangeRequest,
                 grpc.services.service2.ScheduleChangeResponse>(
@@ -174,16 +174,16 @@ public final class ScheduleServiceGrpc {
      */
     public void listSchedule(grpc.services.service2.ScheduleListRequest request,
         io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleListResponse> responseObserver) {
-      asyncUnaryCall(
+      asyncServerStreamingCall(
           getChannel().newCall(getListScheduleMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void changeSchedule(grpc.services.service2.ScheduleChangeRequest request,
+    public io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleChangeRequest> changeSchedule(
         io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleChangeResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getChangeScheduleMethod(), getCallOptions()), request, responseObserver);
+      return asyncClientStreamingCall(
+          getChannel().newCall(getChangeScheduleMethod(), getCallOptions()), responseObserver);
     }
   }
 
@@ -207,16 +207,10 @@ public final class ScheduleServiceGrpc {
 
     /**
      */
-    public grpc.services.service2.ScheduleListResponse listSchedule(grpc.services.service2.ScheduleListRequest request) {
-      return blockingUnaryCall(
+    public java.util.Iterator<grpc.services.service2.ScheduleListResponse> listSchedule(
+        grpc.services.service2.ScheduleListRequest request) {
+      return blockingServerStreamingCall(
           getChannel(), getListScheduleMethod(), getCallOptions(), request);
-    }
-
-    /**
-     */
-    public grpc.services.service2.ScheduleChangeResponse changeSchedule(grpc.services.service2.ScheduleChangeRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getChangeScheduleMethod(), getCallOptions(), request);
     }
   }
 
@@ -236,22 +230,6 @@ public final class ScheduleServiceGrpc {
     protected ScheduleServiceFutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new ScheduleServiceFutureStub(channel, callOptions);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.services.service2.ScheduleListResponse> listSchedule(
-        grpc.services.service2.ScheduleListRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getListScheduleMethod(), getCallOptions()), request);
-    }
-
-    /**
-     */
-    public com.google.common.util.concurrent.ListenableFuture<grpc.services.service2.ScheduleChangeResponse> changeSchedule(
-        grpc.services.service2.ScheduleChangeRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getChangeScheduleMethod(), getCallOptions()), request);
     }
   }
 
@@ -279,10 +257,6 @@ public final class ScheduleServiceGrpc {
           serviceImpl.listSchedule((grpc.services.service2.ScheduleListRequest) request,
               (io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleListResponse>) responseObserver);
           break;
-        case METHODID_CHANGE_SCHEDULE:
-          serviceImpl.changeSchedule((grpc.services.service2.ScheduleChangeRequest) request,
-              (io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleChangeResponse>) responseObserver);
-          break;
         default:
           throw new AssertionError();
       }
@@ -293,6 +267,9 @@ public final class ScheduleServiceGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_CHANGE_SCHEDULE:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.changeSchedule(
+              (io.grpc.stub.StreamObserver<grpc.services.service2.ScheduleChangeResponse>) responseObserver);
         default:
           throw new AssertionError();
       }

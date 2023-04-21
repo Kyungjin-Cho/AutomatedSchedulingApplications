@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.InetAddress;
+import java.util.Iterator;
 
 public class Service2ClientGUI extends JFrame {
 	// Add the serialVersionUID field
@@ -116,70 +117,79 @@ public class Service2ClientGUI extends JFrame {
 		ScheduleListRequest request = ScheduleListRequest.newBuilder().setName(name).setPosition(position).setDate(date)
 				.build();
 
-		ScheduleListResponse response = blockingStub.listSchedule(request);
+		// Replace the following line
+		Iterator<ScheduleListResponse> response = blockingStub.listSchedule(request);
 
 		resultTextArea.append("List of Schedules:\n");
-		for (Schedule schedule : response.getScheduleList()) {
-			resultTextArea.append("Name: " + schedule.getName() + "\n");
-			resultTextArea.append("Position: " + schedule.getPosition() + "\n");
-			resultTextArea.append("Date: " + schedule.getDate() + "\n");
-			resultTextArea.append("Start Time: " + schedule.getStartTime() + "\n");
-			resultTextArea.append("End Time: " + schedule.getEndTime() + "\n");
-			resultTextArea.append("\n");
+		while (response.hasNext()) {
+			ScheduleListResponse scheduleListResponse = response.next();
+			for (Schedule schedule : scheduleListResponse.getScheduleList()) {
+				resultTextArea.append("Name: " + schedule.getName() + "\n");
+				resultTextArea.append("Position: " + schedule.getPosition() + "\n");
+				resultTextArea.append("Date: " + schedule.getDate() + "\n");
+				resultTextArea.append("Start Time: " + schedule.getStartTime() + "\n");
+				resultTextArea.append("End Time: " + schedule.getEndTime() + "\n");
+				resultTextArea.append("\n");
+			}
 		}
 	}
 
 	private void changeSchedule() {
-		String name = nameTextField.getText();
-		String position = positionTextField.getText();
-		String date = dateTextField.getText();
-		String startTime = startTimeTextField.getText();
-		String endTime = endTimeTextField.getText();
+		// Clear resultTextArea
+	    resultTextArea.setText("");
+		
+	    String name = nameTextField.getText();
+	    String position = positionTextField.getText();
+	    String date = dateTextField.getText();
+	    String startTime = startTimeTextField.getText();
+	    String endTime = endTimeTextField.getText();
 
-		ScheduleChangeRequest request = ScheduleChangeRequest.newBuilder().setName(name).setPosition(position)
-				.setDate(date).setStartTime(startTime).setEndTime(endTime).build();
+	    ScheduleChangeRequest request = ScheduleChangeRequest.newBuilder()
+	            .setName(name)
+	            .setPosition(position)
+	            .setDate(date)
+	            .setStartTime(startTime)
+	            .setEndTime(endTime)
+	            .build();
 
-		StreamObserver<ScheduleChangeResponse> responseObserver = new StreamObserver<ScheduleChangeResponse>() {
-			@Override
-			public void onNext(ScheduleChangeResponse response) {
-				boolean success = response.getSuccess();
-				String message = response.getMessage();
-				// Update UI with response information
-				if (success) {
-					// Schedule updated successfully
-					JOptionPane.showMessageDialog(null, message, "Success", JOptionPane.INFORMATION_MESSAGE);
-				} else {
-					// Failed to update schedule
-					JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
-				}
-			}
+	    StreamObserver<ScheduleChangeResponse> responseObserver = new StreamObserver<ScheduleChangeResponse>() {
+	        @Override
+	        public void onNext(ScheduleChangeResponse response) {
+	            boolean success = response.getSuccess();
+	            String message = response.getMessage();
+	            // Update UI with response information
+	            if (success) {
+	                // Schedule updated successfully
+	                JOptionPane.showMessageDialog(null, message, "Success", JOptionPane.INFORMATION_MESSAGE);
+	            } else {
+	                // Failed to update schedule
+	                JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+	            }
+	        }
 
-			@Override
-			public void onError(Throwable throwable) {
-				// Handle error from server
-				JOptionPane.showMessageDialog(null, "Error: " + throwable.getMessage(), "Error",
-						JOptionPane.ERROR_MESSAGE);
-			}
+	        @Override
+	        public void onError(Throwable throwable) {
+	            // Handle error from server
+	            JOptionPane.showMessageDialog(null, "Error: " + throwable.getMessage(), "Error",
+	                    JOptionPane.ERROR_MESSAGE);
+	        }
 
-			@Override
-			public void onCompleted() {
-				SwingUtilities.invokeLater(() -> {
-					JOptionPane.showMessageDialog(null, "Schedule change completed.", "Completed",
-							JOptionPane.INFORMATION_MESSAGE);
-					// Additional actions or UI updates
-				});
-			}
-		};
+	        @Override
+	        public void onCompleted() {
+	            SwingUtilities.invokeLater(() -> {
+	                JOptionPane.showMessageDialog(null, "Schedule change completed.", "Success",
+	                        JOptionPane.INFORMATION_MESSAGE);
+	            });
+	        }
+	    };
 
-		// Call the gRPC method and pass the responseObserver as an argument
-		ScheduleServiceGrpc.ScheduleServiceStub asyncStub = createAsyncStub("localhost", 3031);
-		asyncStub.changeSchedule(request, responseObserver);
+	    // Call the changeSchedule() method on the blockingStub and pass the request and responseObserver
+	    ScheduleServiceGrpc.ScheduleServiceStub asyncStub = ScheduleServiceGrpc.newStub(channel);
+	    asyncStub.changeSchedule(responseObserver).onNext(request); // Update this line
+
 	}
 
-	private ScheduleServiceGrpc.ScheduleServiceStub createAsyncStub(String host, int port) {
-		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-		return ScheduleServiceGrpc.newStub(channel);
-	}
+
 
 	public void createAndShowGUI() {
 		frame.pack();

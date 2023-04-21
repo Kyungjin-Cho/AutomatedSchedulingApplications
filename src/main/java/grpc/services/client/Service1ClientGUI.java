@@ -128,6 +128,12 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
+		
+		// Create a gRPC channel
+	    channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+
+	    // Create a gRPC stub using the channel
+	    scheduleStub = ScheduleServiceGrpc.newBlockingStub(channel);
 	}
 
 	@Override
