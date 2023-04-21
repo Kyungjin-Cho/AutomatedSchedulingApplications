@@ -1,0 +1,46 @@
+// Protocol Buffer file for the 'service3' service
+
+syntax = "proto3";
+
+// Options for generating Java files with multiple files, specifying the Java package, and setting the outer class name
+option java_multiple_files = true;
+option java_package = "grpc.services.service3";
+option java_outer_classname = "Service3Impl";
+
+// Package name for the 'service3' service
+package service3;
+
+// Importing the 'schedule' service definition from another Proto file
+import "schedule.proto";
+
+// Service Definition for the 'StaffAvailability' service
+service StaffAvailability {
+rpc CheckAvailability (stream AvailabilityRequest) returns (stream AvailabilityResponse) {} // Bidirectional RPC for checking staff availability and working hours
+rpc UpdateSchedule (stream UpdateRequest) returns (stream UpdateResponse) {} // Bidirectional RPC for updating staff schedule
+}
+
+// Definition of the 'AvailabilityRequest' message with its fields
+message AvailabilityRequest {
+string start_date = 1; // Field for the start date for checking staff availability
+string end_date = 2; // Field for the end date for checking staff availability
+string position = 3; // Field for the position for checking staff availability
+string name = 4; // Field for the name for checking staff availability
+}
+
+// Definition of the 'AvailabilityResponse' message with its fields
+message AvailabilityResponse {
+bool is_available = 1; // Field indicating if staff is available during the specified time period
+int32 working_hours = 2; // Field for the working hours of the staff during the specified time period
+schedule.Schedule schedule = 3; // Field containing the schedule of the staff during the specified time period
+}
+
+// Definition of the 'UpdateRequest' message with its fields
+message UpdateRequest {
+schedule.Schedule staff_schedule = 1; // Field for the staff schedule to be updated
+}
+
+// Definition of the 'UpdateResponse' message with its fields
+message UpdateResponse {
+bool is_updated = 1; // Field indicating if the staff schedule is updated successfully
+schedule.Schedule staff_schedule = 2; // Field containing the updated staff schedule
+}
