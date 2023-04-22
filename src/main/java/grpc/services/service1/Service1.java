@@ -1,7 +1,3 @@
-/* This is the main server file for Service1 in a gRPC service.
- * It handles incoming gRPC requests and implements the login and registerSchedule methods.
- * Additionally, it includes JmDNS integration for registering and unregistering the service */
-
 package grpc.services.service1;
 
 import java.io.IOException;
@@ -11,7 +7,6 @@ import java.util.Map;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
-import javax.swing.JOptionPane;
 
 import grpc.services.schedule.Schedule;
 import grpc.services.service1.ScheduleServiceGrpc.ScheduleServiceImplBase;
@@ -30,13 +25,12 @@ public class Service1 extends ScheduleServiceImplBase {
 
 		Server server;
 		try {
-			// Create and start the gRPC server
 			server = ServerBuilder.forPort(port).addService(service1).build().start();
 			System.out.println("Server started....");
-			// Register the service with JmDNS
 			testJMDNS();
 			server.awaitTermination();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
@@ -46,22 +40,24 @@ public class Service1 extends ScheduleServiceImplBase {
 
 	@Override
 	public void login(LoginRequest request, StreamObserver<LoginResponse> responseObserver) {
-		// Extract client name and position from request
+		// extract client name and position from request
 		String name = request.getName();
 		String position = request.getPosition();
 
-		// Check login credentials and set authenticated and loginSuccess fields accordingly
+		// check login credentials and set authenticated and loginSuccess fields
+		// accordingly
 		boolean authenticated = checkLoginCredentials(name, position);
 		loginSuccess = authenticated ? true : false;
 
-		// Set the message field based on login success
+		// set the message field based on login success
 		String message = loginSuccess ? "Login successful" : "Invalid username or password";
 
-		// Create a LoginResponse object with the authenticated, loginSuccess, and message fields set
+		// create a LoginResponse object with the authenticated, loginSuccess, and
+		// message fields set
 		LoginResponse response = LoginResponse.newBuilder().setAuthenticated(authenticated).setLoginMessage(message)
 				.build();
 
-		// Send the response to the client
+		// send the response to the client
 		responseObserver.onNext(response);
 		responseObserver.onCompleted();
 	}
@@ -69,17 +65,19 @@ public class Service1 extends ScheduleServiceImplBase {
 	@Override
 	public void registerSchedule(ScheduleRequest request, StreamObserver<ScheduleResponse> responseObserver) {
 		if (loginSuccess) {
-			// Extract schedule from request
+			// extract schedule from request
 			Schedule schedule = request.getSchedule();
 
-			// Create a ScheduleResponse object with the registered field set to true and the Schedule object as its property
+			// create a ScheduleResponse object with the registered field set to true and
+			// the Schedule object as its property
 			ScheduleResponse response = ScheduleResponse.newBuilder().setRegistered(true).setSchedule(schedule).build();
 
-			// Send the response to the client
+			// send the response to the client
 			responseObserver.onNext(response);
 			responseObserver.onCompleted();
 
-			// Register 10 schedules in advance for the three registered staffs with different dates, start times, and end times
+			// Register 10 schedules in advance for the three registered staffs with
+			// different dates, start times, and end times
 			String[] staffNames = { "john", "jane", "bob" };
 			String[] positions = { "floor-staff", "manager", "cashier" };
 			for (int i = 0; i < 10; i++) {
@@ -89,12 +87,13 @@ public class Service1 extends ScheduleServiceImplBase {
 						.setEndTime(String.format("%02d:%02d", i + 17, 0)) // Set different end times
 						.build();
 
-				// Register the new schedule by calling the same registerSchedule method with the new Schedule object
+				// Register the new schedule by calling the same registerSchedule method
+				// with the new Schedule object
 				ScheduleRequest newRequest = ScheduleRequest.newBuilder().setSchedule(newSchedule).build();
 				registerSchedule(newRequest, responseObserver);
 			}
 		} else {
-			// If the login was not successful, send an error response
+			// if the login was not successful, send an error response
 			responseObserver.onError(Status.PERMISSION_DENIED.withDescription("Login required").asRuntimeException());
 		}
 	}
@@ -123,17 +122,11 @@ public class Service1 extends ScheduleServiceImplBase {
 			Thread.sleep(20000);
 
 			// Unregister all services
-			jmdns.unregisterAllServices();
+			// jmdns.unregisterAllServices();
 		} catch (Exception e) {
-			// Show an error message to the user
-		    showErrorMessage("An error occurred: " + e.getMessage());
+			// TODO: handle exception
 		}
 
-	}
-	
-	public static void showErrorMessage(String errorMessage) {
-	    // Display the error message in a dialog box
-	    JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
 	}
 
 }

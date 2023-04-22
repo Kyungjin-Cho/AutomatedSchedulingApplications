@@ -1,6 +1,5 @@
 package grpc.services.client;
 
-//Import required libraries
 import java.awt.*;
 
 import java.awt.GridBagConstraints;
@@ -44,8 +43,8 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 
 	public Service1ClientGUI() {
 		frame = new JFrame("Service1 Client");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setTitle("Schedule App");
 		setSize(400, 300);
 
@@ -57,22 +56,19 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 		loginConstraints.anchor = GridBagConstraints.CENTER;
 
 		loginPanel.setBorder(BorderFactory.createTitledBorder("Login"));
-		
-		// Add username field and label to login panel
+
 		usernameField = new JTextField(10);
 		loginPanel.add(new JLabel("Username: "), loginConstraints);
 		loginConstraints.gridx = 1;
 		loginPanel.add(usernameField, loginConstraints);
-		
-		// Add user position field and label to login panel
+
 		userPositionField = new JTextField(10);
 		loginConstraints.gridx = 0;
 		loginConstraints.gridy = 1;
 		loginPanel.add(new JLabel("Position: "), loginConstraints);
 		loginConstraints.gridx = 1;
 		loginPanel.add(userPositionField, loginConstraints);
-		
-		// Add login button to login panel
+
 		loginButton = new JButton("Login");
 		loginButton.addActionListener(this);
 		loginConstraints.gridx = 0;
@@ -87,56 +83,43 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 		registerConstraints.gridy = 0;
 		registerConstraints.anchor = GridBagConstraints.CENTER;
 		registerPanel.setBorder(BorderFactory.createTitledBorder("Register Schedule"));
-		
-		// Add name field and label to register panel
 		nameField = new JTextField(10);
 		registerPanel.add(new JLabel("Name: "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(nameField, registerConstraints);
-		
-		// Add position field and label to register panel
 		positionField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 1;
 		registerPanel.add(new JLabel("Position: "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(positionField, registerConstraints);
-		
-		// Add date field and label to register panel
 		dateField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 2;
 		registerPanel.add(new JLabel("Date(yyyy-mm-dd): "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(dateField, registerConstraints);
-		
-		// Add start time field and label to register panel
 		startTimeField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 3;
 		registerPanel.add(new JLabel("Start Time(HH:MM): "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(startTimeField, registerConstraints);
-		
-		// Add end time field and label to register panel
 		endTimeField = new JTextField(10);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 4;
 		registerPanel.add(new JLabel("End Time(HH:MM): "), registerConstraints);
 		registerConstraints.gridx = 1;
 		registerPanel.add(endTimeField, registerConstraints);
-		
-		// Add add schedule button to register panel
+
 		addScheduleButton = new JButton("Add Schedule");
 		addScheduleButton.addActionListener(this);
 		registerConstraints.gridx = 0;
 		registerConstraints.gridy = 5;
 		registerConstraints.gridwidth = 2;
 		registerPanel.add(addScheduleButton, registerConstraints);
-		
-		// Add login panel to frame initially
-		frame.add(loginPanel);
-		
+
+		frame.add(loginPanel); // Add login panel to frame initially
 		// Add panels to main frame
 		setLayout(new BorderLayout());
 		add(loginPanel, BorderLayout.NORTH);
@@ -144,12 +127,6 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		
-		// Create a gRPC channel
-	    channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
-
-	    // Create a gRPC stub using the channel
-	    scheduleStub = ScheduleServiceGrpc.newBlockingStub(channel);
 	}
 
 	@Override
@@ -172,7 +149,8 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 				registerPanel.setVisible(true);
 			} else {
 				System.out.println("Login failed");
-				JOptionPane.showMessageDialog(this, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(this, "Invalid username or position", "Login Failed",
+						JOptionPane.ERROR_MESSAGE);
 			}
 		} else if (e.getSource() == addScheduleButton) {
 			// Get input values from register panel
@@ -189,22 +167,25 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 			// Create a ScheduleRequest object
 			ScheduleRequest request = ScheduleRequest.newBuilder().setSchedule(schedule).build();
 
-			// Call the registerSchedule method on the ScheduleService client
+			// Call gRPC addSchedule method
 			ScheduleResponse response = scheduleStub.registerSchedule(request);
 
-			// Handle the response from the server
+			// Handle addSchedule response
 			if (response.getRegistered()) {
-				System.out.println("Schedule registered successfully.");
+				System.out.println("Schedule added successfully.");
+				JOptionPane.showMessageDialog(this, "Schedule added successfully", "Success",
+						JOptionPane.INFORMATION_MESSAGE);
 			} else {
-				System.out.println("Failed to register schedule.");
+				System.out.println("Failed to add schedule");
+				JOptionPane.showMessageDialog(this, "Failed to add schedule", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 	}
-	
+
 	public void createAndShowGUI() {
-        frame.pack();
-        frame.setVisible(true);
-    }
+		frame.pack();
+		frame.setVisible(true);
+	}
 
 	public static void main(String[] args) {
 		// Get the service information using JmDNS
@@ -235,7 +216,7 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 			System.err.println("Error: " + e.getMessage());
 		}
 
-		// Create Service1ClientGUI instance
+		// Create the GUI
 		Service1ClientGUI client = new Service1ClientGUI();
 		client.createAndShowGUI();
 	}
