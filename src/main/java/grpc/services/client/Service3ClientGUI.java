@@ -3,6 +3,7 @@ package grpc.services.client;
 import grpc.services.schedule.Schedule;
 import grpc.services.service3.*;
 import grpc.services.service3.StaffAvailabilityGrpc.StaffAvailabilityStub;
+import io.grpc.Deadline;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
@@ -20,6 +21,7 @@ import java.net.InetAddress;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Service3ClientGUI extends JFrame {
 	// Add the serialVersionUID field
@@ -205,7 +207,10 @@ public class Service3ClientGUI extends JFrame {
 			}
 		};
 
-		StreamObserver<AvailabilityRequest> requestObserver = availabilityStub.checkAvailability(responseObserver);
+		// Set a deadline of 5 seconds for the RPC
+		Deadline deadline = Deadline.after(5, TimeUnit.SECONDS);
+		StreamObserver<AvailabilityRequest> requestObserver = availabilityStub.withDeadline(deadline)
+				.checkAvailability(responseObserver);
 		requestObserver.onNext(request);
 		requestObserver.onCompleted();
 	}
@@ -242,8 +247,11 @@ public class Service3ClientGUI extends JFrame {
 		// Create an UpdateRequest object
 		UpdateRequest request = UpdateRequest.newBuilder().setStaffSchedule(staffSchedule).build();
 
-		// Call the updateSchedule method with a StreamObserver
-		availabilityStub.updateSchedule(new StreamObserver<UpdateResponse>() {
+		// Set a deadline for the RPC call
+		Deadline deadline = Deadline.after(5, TimeUnit.SECONDS); // Example: 5 seconds deadline
+
+		// Call the updateSchedule method with a StreamObserver and deadline
+		availabilityStub.withDeadline(deadline).updateSchedule(new StreamObserver<UpdateResponse>() {
 			@Override
 			public void onNext(UpdateResponse response) {
 				if (response.getIsUpdated()) {

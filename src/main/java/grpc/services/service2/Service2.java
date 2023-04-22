@@ -68,58 +68,51 @@ public class Service2 extends ScheduleServiceImplBase {
 	}
 
 	@Override
-	public StreamObserver<ScheduleChangeRequest> changeSchedule(StreamObserver<ScheduleChangeResponse> responseObserver) {
-	    return new StreamObserver<ScheduleChangeRequest>() {
-	        @Override
-	        public void onNext(ScheduleChangeRequest request) {
-	            String name = request.getName();
-	            String position = request.getPosition();
-	            String date = request.getDate();
-	            String startTime = request.getStartTime();
-	            String endTime = request.getEndTime();
+	public StreamObserver<ScheduleChangeRequest> changeSchedule(
+			StreamObserver<ScheduleChangeResponse> responseObserver) {
+		return new StreamObserver<ScheduleChangeRequest>() {
+			@Override
+			public void onNext(ScheduleChangeRequest request) {
+				String name = request.getName();
+				String position = request.getPosition();
+				String date = request.getDate();
+				String startTime = request.getStartTime();
+				String endTime = request.getEndTime();
 
-	            boolean success = false;
-	            String message = "";
+				boolean success = false;
+				String message = "";
 
-	            // Loop through existing schedules and update the matching schedule
-	            for (int i = 0; i < schedules.size(); i++) {
-	                Schedule s = schedules.get(i);
-	                if (s.getName().equals(name) && s.getPosition().equals(position) && s.getDate().equals(date)) {
-	                    // Update the existing schedule with the new values
-	                    s = s.toBuilder()
-	                            .setStartTime(startTime)
-	                            .setEndTime(endTime)
-	                            .build();
-	                    schedules.set(i, s);
-	                    success = true;
-	                    message = "Schedule updated successfully";
-	                    break;
-	                }
-	            }
+				// Loop through existing schedules and update the matching schedule
+				for (int i = 0; i < schedules.size(); i++) {
+					Schedule s = schedules.get(i);
+					if (s.getName().equals(name) && s.getPosition().equals(position) && s.getDate().equals(date)) {
+						// Update the existing schedule with the new values
+						s = s.toBuilder().setStartTime(startTime).setEndTime(endTime).build();
+						schedules.set(i, s);
+						success = true;
+						message = "Schedule updated successfully";
+						break;
+					}
+				}
 
-	            ScheduleChangeResponse response = ScheduleChangeResponse.newBuilder()
-	                    .setSuccess(success)
-	                    .setMessage(message)
-	                    .build();
+				ScheduleChangeResponse response = ScheduleChangeResponse.newBuilder().setSuccess(success)
+						.setMessage(message).build();
 
-	            responseObserver.onNext(response);
-	            responseObserver.onCompleted();
-	        }
+				responseObserver.onNext(response);
+				responseObserver.onCompleted();
+			}
 
-	        @Override
-	        public void onError(Throwable throwable) {
-	            // Handle error if needed
-	        }
+			@Override
+			public void onError(Throwable throwable) {
+				// Handle error if needed
+			}
 
-	        @Override
-	        public void onCompleted() {
-	            responseObserver.onCompleted();
-	        }
-	    };
+			@Override
+			public void onCompleted() {
+				responseObserver.onCompleted();
+			}
+		};
 	}
-
-
-
 
 	public static void testJMDNS() {
 		try {
@@ -132,11 +125,9 @@ public class Service2 extends ScheduleServiceImplBase {
 
 			// Wait a bit
 			Thread.sleep(20000);
-
-			// Unregister all services
-			// jmdns.unregisterAllServices();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 	}

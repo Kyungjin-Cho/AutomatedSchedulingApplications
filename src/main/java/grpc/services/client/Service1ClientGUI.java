@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.GridBagConstraints;
 import java.awt.event.*;
 import java.net.InetAddress;
+import java.util.concurrent.TimeUnit;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceEvent;
@@ -16,6 +17,7 @@ import grpc.services.schedule.Schedule;
 import grpc.services.service1.*;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.StatusRuntimeException;
 
 public class Service1ClientGUI extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
@@ -137,21 +139,28 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 			String position = userPositionField.getText();
 
 			// Create LoginRequest
-			LoginRequest request = LoginRequest.newBuilder().setName(username).setPosition(position).build();
+	        LoginRequest request = LoginRequest.newBuilder().setName(username).setPosition(position).build();
 
-			// Call gRPC login method
-			LoginResponse response = scheduleStub.login(request);
+	        try {
+	            // Call gRPC login method with a deadline of 5 seconds
+	            LoginResponse response = scheduleStub.withDeadlineAfter(5, TimeUnit.SECONDS).login(request);
 
-			// Handle login response (e.g., show error message or switch to register panel)
-			if (response.getAuthenticated()) {
-				System.out.println("Login successful.");
-				loginPanel.setVisible(false);
-				registerPanel.setVisible(true);
-			} else {
-				System.out.println("Login failed");
-				JOptionPane.showMessageDialog(this, "Invalid username or position", "Login Failed",
-						JOptionPane.ERROR_MESSAGE);
-			}
+	            // Handle login response (e.g., show error message or switch to register panel)
+	            if (response.getAuthenticated()) {
+	                System.out.println("Login successful.");
+	                loginPanel.setVisible(false);
+	                registerPanel.setVisible(true);
+	            } else {
+	                System.out.println("Login failed");
+	                JOptionPane.showMessageDialog(this, "Invalid username or position", "Login Failed",
+	                        JOptionPane.ERROR_MESSAGE);
+	            }
+	        } catch (StatusRuntimeException ex) {
+	            // Handle gRPC call timeout or other errors
+	            System.out.println("Login failed due to error: " + ex.getMessage());
+	            JOptionPane.showMessageDialog(this, "Failed to login due to an error: " + ex.getMessage(), "Error",
+	                    JOptionPane.ERROR_MESSAGE);
+	        }
 		} else if (e.getSource() == addScheduleButton) {
 			// Get input values from register panel
 			String name = nameField.getText();
@@ -166,19 +175,30 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 
 			// Create a ScheduleRequest object
 			ScheduleRequest request = ScheduleRequest.newBuilder().setSchedule(schedule).build();
+			
+			try {
+				// Call gRPC addSchedule method
+				ScheduleResponse response = scheduleStub.withDeadlineAfter(5, TimeUnit.SECONDS).registerSchedule(request);
+				
+				// Handle addSchedule response
+				if (response.getRegistered()) {
+					System.out.println("Schedule added successfully.");
+					JOptionPane.showMessageDialog(this, "Schedule added successfully", "Success",
+							JOptionPane.INFORMATION_MESSAGE);
+				} else {
+					System.out.println("Failed to add schedule");
+					JOptionPane.showMessageDialog(this, "Failed to add schedule", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 
-			// Call gRPC addSchedule method
-			ScheduleResponse response = scheduleStub.registerSchedule(request);
+			} catch (StatusRuntimeException ex) {
+	            // Handle gRPC call timeout or other errors
+	            System.out.println("Login failed due to error: " + ex.getMessage());
+	            JOptionPane.showMessageDialog(this, "Failed to login due to an error: " + ex.getMessage(), "Error",
+	                    JOptionPane.ERROR_MESSAGE);
+	        }
 
-			// Handle addSchedule response
-			if (response.getRegistered()) {
-				System.out.println("Schedule added successfully.");
-				JOptionPane.showMessageDialog(this, "Schedule added successfully", "Success",
-						JOptionPane.INFORMATION_MESSAGE);
-			} else {
-				System.out.println("Failed to add schedule");
-				JOptionPane.showMessageDialog(this, "Failed to add schedule", "Error", JOptionPane.ERROR_MESSAGE);
-			}
+			
+			
 		}
 	}
 

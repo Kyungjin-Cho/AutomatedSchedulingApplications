@@ -193,11 +193,9 @@ public class Service3 extends StaffAvailabilityImplBase {
 
 			// Wait a bit
 			Thread.sleep(20000);
-
-			// Unregister all services
-			// jmdns.unregisterAllServices();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 	}

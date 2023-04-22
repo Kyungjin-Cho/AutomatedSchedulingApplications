@@ -120,11 +120,9 @@ public class Service1 extends ScheduleServiceImplBase {
 
 			// Wait a bit
 			Thread.sleep(20000);
-
-			// Unregister all services
-			// jmdns.unregisterAllServices();
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
 
 	}
