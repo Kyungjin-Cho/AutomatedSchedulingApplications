@@ -233,7 +233,16 @@ public class Service3ClientGUI extends JFrame {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		sdf.setLenient(false);
 		try {
-			sdf.parse(date);
+			Date parsedDate = sdf.parse(date);
+			Date startDate = sdf.parse(startDateTextField.getText());
+			Date endDate = sdf.parse(endDateTextField.getText());
+
+			// Check if date is within the period of startDate and endDate
+			if (parsedDate.before(startDate) || parsedDate.after(endDate)) {
+				JOptionPane.showMessageDialog(Service3ClientGUI.this, "Date must be within the period of startDate and endDate", "Error",
+						JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(Service3ClientGUI.this, "Invalid date format. Please use yyyy-MM-dd", "Error",
 					JOptionPane.ERROR_MESSAGE);
