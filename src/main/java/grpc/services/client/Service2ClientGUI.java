@@ -121,7 +121,6 @@ public class Service2ClientGUI extends JFrame {
 				.build();
 
 		try {
-			// Replace the following line
 			Iterator<ScheduleListResponse> response = blockingStub.withDeadlineAfter(5, TimeUnit.SECONDS)
 					.listSchedule(request);
 
@@ -139,8 +138,8 @@ public class Service2ClientGUI extends JFrame {
 			}
 		} catch (StatusRuntimeException ex) {
 			// Handle gRPC call timeout or other errors
-			System.out.println("Login failed due to error: " + ex.getMessage());
-			JOptionPane.showMessageDialog(this, "Failed to login due to an error: " + ex.getMessage(), "Error",
+			System.out.println("Listing Schedule failed due to error: " + ex.getMessage());
+			JOptionPane.showMessageDialog(this, "Failed to list schedule due to an error: " + ex.getMessage(), "Error",
 					JOptionPane.ERROR_MESSAGE);
 		}
 

@@ -104,7 +104,7 @@ public class Service2 extends ScheduleServiceImplBase {
 
 			@Override
 			public void onError(Throwable throwable) {
-				// Handle error if needed
+				System.err.println("Error in chhangeSchedule: " + throwable);
 			}
 
 			@Override

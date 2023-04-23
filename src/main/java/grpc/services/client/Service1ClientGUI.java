@@ -193,7 +193,7 @@ public class Service1ClientGUI extends JFrame implements ActionListener {
 			} catch (StatusRuntimeException ex) {
 	            // Handle gRPC call timeout or other errors
 	            System.out.println("Login failed due to error: " + ex.getMessage());
-	            JOptionPane.showMessageDialog(this, "Failed to login due to an error: " + ex.getMessage(), "Error",
+	            JOptionPane.showMessageDialog(this, "Failed to adding schedule due to an error: " + ex.getMessage(), "Error",
 	                    JOptionPane.ERROR_MESSAGE);
 	        }
 
